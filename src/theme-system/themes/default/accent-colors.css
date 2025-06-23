@@ -1,0 +1,19 @@
+@layer default-theme {
+    :root {
+        --accent-1: var(--yellow-1);
+        --accent-2: var(--yellow-2);
+        --accent-3: var(--yellow-3);
+        --accent-4: var(--yellow-4);
+        --accent-5: var(--yellow-5);
+        --accent-6: var(--yellow-6);
+        --accent-7: var(--yellow-7);
+
+        --accent-raw-1: var(--raw-yellow-1);
+        --accent-raw-2: var(--raw-yellow-2);
+        --accent-raw-3: var(--raw-yellow-3);
+        --accent-raw-4: var(--raw-yellow-4);
+        --accent-raw-5: var(--raw-yellow-5);
+        --accent-raw-6: var(--raw-yellow-6);
+        --accent-raw-7: var(--raw-yellow-7);
+    }
+}

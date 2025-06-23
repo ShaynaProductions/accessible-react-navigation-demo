@@ -12,11 +12,12 @@ const createJestConfig = nextJest({
 const config: Config = {
   clearMocks: true, // Automatically clear mock calls, instances, contexts and results before every test
   testEnvironment: "jsdom", // The test environment that will be used for testing
-  setupFilesAfterEnv: ["<rootDir>/test/setupTests.js"],
+  setupFilesAfterEnv: ["<rootDir>/src/setupTests.js"],
   collectCoverageFrom: [
     "src/**/*.{js,jsx,ts,tsx}",
     "!src/app/**/*.{js,jsx,ts,tsx}",
     "!src/**/*.spec.{js,jsx,ts,tsx}",
+    "!src/**/*.test.{js,jsx,ts,tsx}",
     "!src/**/__fixtures__/**/*.{js,jsx,ts,tsx}",
     "!src/**/__mocks__/**/*.{js,jsx,ts,tsx}",
     "!src/**/*.stories.{js,jsx,ts,tsx}",

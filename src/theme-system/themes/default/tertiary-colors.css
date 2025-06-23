@@ -1,0 +1,35 @@
+@layer default-theme {
+    :root {
+        --tertiary-1: var(--purple-1);
+        --tertiary-2: var(--purple-2);
+        --tertiary-3: var(--purple-3);
+        --tertiary-4: var(--purple-4);
+        --tertiary-5: var(--purple-5);
+        --tertiary-6: var(--purple-6);
+        --tertiary-7: var(--purple-7);
+        --tertiary-8: var(--purple-8);
+        --tertiary-9: var(--purple-9);
+        --tertiary-10: var(--purple-10);
+        --tertiary-11: var(--purple-11);
+        --tertiary-12: var(--purple-12);
+
+        --tertiary-raw-1: var(--raw-purple-1);
+        --tertiary-raw-2: var(--raw-purple-2);
+        --tertiary-raw-3: var(--raw-purple-3);
+        --tertiary-raw-4: var(--raw-purple-4);
+        --tertiary-raw-5: var(--raw-purple-5);
+        --tertiary-raw-6: var(--raw-purple-6);
+        --tertiary-raw-7: var(--raw-purple-7);
+        --tertiary-raw-8: var(--raw-purple-8);
+        --tertiary-raw-9: var(--raw-purple-9);
+        --tertiary-raw-10: var(--raw-purple-10);
+        --tertiary-raw-11: var(--raw-purple-11);
+        --tertiary-raw-12: var(--raw-purple-12);
+
+        --tertiary-shadow: var(--purple-shadow);
+        --tertiary-overlay: var(--purple-overlay);
+
+    }
+}
+
+

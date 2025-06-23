@@ -1,0 +1,48 @@
+@layer default-theme {
+    :root {
+        --modal-border-radius: var(--default-border-radius);
+        --modal-border-width: calc(var(--px) * 1);
+        --modal-z-index: 100;
+
+        /* Colors */
+        --modal-background: var(--common-background);
+        --modal-border-color: var(--common-border-color);
+        --modal-heading-color: var(--common-heading-color);
+
+        --modal-shadow: var(--common-shadow);
+        --modal-overlay: var(--common-overlay);
+
+        /* Variants */
+
+        /* Center Variant - default */
+        --modal-center-position-top: 20%;
+        --modal-center-position-width: 50%;
+        --modal-center-position-left: 4;
+
+        /* Top and Bottom Variants */
+        --modal-vertical-position-height: 30vh;
+        --modal-vertical-position-width: 100vw;
+
+        /* Top Variant */
+        --modal-top-position-left: 0;
+        --modal-top-position-top: 0;
+
+        /* Bottom Variant */
+        --modal-bottom-position-left: 0;
+        --modal-bottom-position-bottom: 0;
+
+        /* Left and Right Variants */
+        --modal-horizontal-position-height: 100vh;
+        --modal-horizontal-position-width: 30vw;
+
+        /* Left Variant */
+        --modal-left-position-left: 0;
+        --modal-left-position-top: 0;
+
+        /* Right Variant */
+        --modal-right-position-right: 0;
+        --modal-right-position-top: 0;
+    }
+
+
+}
