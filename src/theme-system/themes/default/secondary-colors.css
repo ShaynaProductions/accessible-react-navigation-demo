@@ -1,0 +1,32 @@
+@layer default-theme {
+    :root {
+        --secondary-1: var(--green-1);
+        --secondary-2: var(--green-2);
+        --secondary-3: var(--green-3);
+        --secondary-4: var(--green-4);
+        --secondary-5: var(--green-5);
+        --secondary-6: var(--green-6);
+        --secondary-7: var(--green-7);
+        --secondary-8: var(--green-8);
+        --secondary-9: var(--green-9);
+        --secondary-10: var(--green-10);
+        --secondary-11: var(--green-11);
+        --secondary-12: var(--green-12);
+
+        --secondary-raw-1: var(--raw-green-1);
+        --secondary-raw-2: var(--raw-green-2);
+        --secondary-raw-3: var(--raw-green-3);
+        --secondary-raw-4: var(--raw-green-4);
+        --secondary-raw-5: var(--raw-green-5);
+        --secondary-raw-6: var(--raw-green-6);
+        --secondary-raw-7: var(--raw-green-7);
+        --secondary-raw-8: var(--raw-green-8);
+        --secondary-raw-9: var(--raw-green-9);
+        --secondary-raw-10: var(--raw-green-10);
+        --secondary-raw-11: var(--raw-green-11);
+        --secondary-raw-12: var(--raw-green-12);
+
+    }
+}
+
+

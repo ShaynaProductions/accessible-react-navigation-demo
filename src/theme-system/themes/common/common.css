@@ -1,0 +1,27 @@
+@layer base-theme {
+    :root {
+        --common-ease: 50ms;
+        --common-border-radius: calc(var(--px) * 6);
+        --common-border-width: calc(var(--px) * 1);
+        --common-text-size: calc(var(--px) * 16);
+        --common-item-size: var(--common-text-size);
+        --common-line-height: 1.5;
+
+        --focus-outline-offset: calc(var(--px) * 4);
+        --focus-outline-border-radius: calc(var(--px) * 2);
+        --focus-outline: calc(var(--px) * 2) solid;
+        --focus-outline-color: var(--common-border-color);
+
+        --shadow-button: calc(var(--px) * 4) calc(var(--px) * 4) calc(var(--px) * 6) calc(var(--px) * 2);
+        /*--shadow-dialog: calc(var(--px) * 4) calc(var(--px) * 4) calc(var(--px) * 6) calc(var(--px) * 1);*/
+
+        & body {
+            background-color: var(--common-1);
+            font-family: system-ui, sans-serif;
+
+        }
+    }
+
+}
+
+

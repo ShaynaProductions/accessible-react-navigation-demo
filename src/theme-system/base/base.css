@@ -1,0 +1,5 @@
+@layer system {
+    :root {
+        --sizing-base: 1rem;
+        --px: calc(var(--sizing-base) * 0.0625);
+    }}

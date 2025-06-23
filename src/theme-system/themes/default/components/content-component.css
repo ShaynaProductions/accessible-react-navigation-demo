@@ -1,0 +1,63 @@
+@layer default-theme {
+    :root {
+        --content-component-font-size: var(--default-text-size);
+        --content-component-item-size: var(--content-component-font-size);
+
+        --content-component-border-radius: var(--default-border-radius);
+        --content-component-border-width: var(--default-border-width);
+        --content-component-disclosure-trigger-border-width: calc(var(--px) * 1);
+
+
+        --content-component-background: var(--common-background);
+        --content-component-background-focused: var(--common-background-focused);
+        --content-component-background-hovered: var(--common-background-hovered);
+        --content-component-background-pressed: var(--common-background-pressed);
+        --content-component-background-selected: var(--common-background-selected);
+
+        --content-component-border-color: var(--common-border-color);
+        --content-component-border-color-disabled: var(--common-border-color-disabled);
+        --content-component-border-color-focused: var(--common-border-color-focused);
+        --content-component-border-color-hovered: var(--content-component-border-color-hovered);
+        --content-component-border-color-pressed: var(--common-border-color-pressed);
+        --content-component-border-color-selected: var(--common-border-color-selected);
+        --content-component-border-color-selected-disabled: var(--common-border-color-selected-disabled);
+
+        --content-component-color: var(--common-color);
+        --content-component-color-disabled: var(--common-color-disabled);
+        --content-component-color-focused: var(--common-color-focused);
+        --content-component-color-hovered: var(--common-color-hovered);
+        --content-component-color-pressed: var(--common-color-pressed);
+        --content-component-color-selected: var(--common-color-selected);
+
+
+        --content-component-fill-disabled: var(--common-fill-disabled);
+
+        --content-component-text-color: var(--common-text-color);
+        --content-component-text-color-disabled: var(--common-text-color-disabled);
+        --content-component-text-color-hovered: var(--common-text-color-hovered);
+        --content-component-text-color-pressed: var(--common-text-color-pressed);
+
+        /* Disclosure */
+        .disclosure{
+            --content-component-border-color-disabled: transparent;
+            --content-component-border-color-hovered: transparent;
+
+            --content-component-background-disabled: transparent;
+            --content-component-disclosure-trigger-color: var(--common-color);
+
+            &.bottom{
+                --content-component-border-color: var(--common-border-color);
+            }
+        }
+
+
+
+        /* Tabs */
+        .tabs{
+        --content-component-border-radius: calc(var(--px) * 12);
+        --content-component-padding: calc(var(--px) * 12);
+        --content-component-background-color: transparent;
+
+        }
+    }
+}

@@ -1,0 +1,39 @@
+@layer default-theme {
+    :root {
+        --primary-1: var(--brown-1);
+        --primary-2: var(--brown-2);
+        --primary-3: var(--brown-3);
+        --primary-4: var(--brown-4);
+        --primary-5: var(--brown-5);
+        --primary-6: var(--brown-6);
+        --primary-7: var(--brown-7);
+        --primary-8: var(--brown-8);
+        --primary-9: var(--brown-9);
+        --primary-10: var(--brown-10);
+        --primary-11: var(--brown-11);
+        --primary-12: var(--brown-12);
+
+        --primary-raw-1: var(--raw-brown-1);
+        --primary-raw-2: var(--raw-brown-2);
+        --primary-raw-3: var(--raw-brown-3);
+        --primary-raw-4: var(--raw-brown-4);
+        --primary-raw-5: var(--raw-brown-5);
+        --primary-raw-6: var(--raw-brown-6);
+        --primary-raw-7: var(--raw-brown-7);
+        --primary-raw-8: var(--raw-brown-8);
+        --primary-raw-9: var(--raw-brown-9);
+        --primary-raw-10: var(--raw-brown-10);
+        --primary-raw-11: var(--raw-brown-11);
+        --primary-raw-12: var(--raw-brown-12);
+
+        --primary-shadow: var(--brown-shadow);
+        --primary-overlay: var(--brown-overlay);
+
+        --primary-color-invalid: var(--red-6);
+
+        --primary-text-color: var(--primary-12);
+
+    }
+}
+
+
