@@ -1,0 +1,57 @@
+@layer base-theme {
+    :root {
+
+
+        --default-shadow: var(--gray-shadow);
+        --default-overlay: var(--gray-overlay);
+
+        --default-background: var(--gray-1);
+        --default-background-disabled: var(--gray-2);
+        --default-background-focused: var(--gray-1);
+        --default-background-hovered: var(--gray-2);
+        --default-background-invalid: var(--gray-1);
+        --default-background-pressed: var(--gray-2);
+        --default-background-required: var(--default-background);
+        --default-background-selected: var(--gray-3);
+
+        --default-border-color: var(--gray-7);
+        --default-border-color-disabled: var(--gray-5);
+        --default-border-color-focused: var(--gray-10);
+        --default-border-color-hovered: var(--gray-11);
+        --default-border-color-invalid: var(--red-5);
+        --default-border-color-pressed: var(--gray-9);
+        --default-border-color-required: var(--default-border-color);
+        --default-border-color-selected: var(--gray-11);
+        --default-border-color-selected-disabled: var(--gray-7);
+
+        --default-color: var(--gray-9);
+        --default-color-disabled: var(--gray-7);
+        --default-color-focused: var(--default-color);
+        --default-color-hovered: var(--gray-11);
+        --default-color-invalid: var(--red-5);
+        --default-color-pressed: var(--gray-11);
+        --default-color-required: var(--default-color);
+        --default-color-selected: var(--gray-11);
+
+        --default-fill: var(--gray-9);
+        --default-fill-disabled: var(--gray-8);
+        --default-fill-focused: var(--default-color);
+        --default-fill-hovered: var(--gray-11);
+        --default-fill-invalid: var(--red-5);
+        --default-fill-pressed: var(--gray-11);
+        --default-fill-required: var(--default-fill);
+        --default-fill-selected: var(--gray-11);
+
+        --default-heading-color: var(--gray-11);
+
+        --default-text-color: var(--gray-11);
+        --default-text-color-disabled: var(--gray-8);
+        --default-text-color-focused: var(--gray-11);
+        --default-text-color-hovered: var(--gray-9);
+        --default-text-color-invalid: var(--red-7);
+        --default-text-color-pressed: var(--gray-10);
+        --default-text-color-required: var(--default-text-color);
+        --default-text-color-selected: var(--gray-10);
+
+    }
+}

@@ -1,0 +1,13 @@
+@layer base-component {
+    .svg-icon {
+        height: calc(var(--px) * calc(var(--component-item-size)));
+        width: calc(var(--px) * calc(var(--component-item-size)));
+        color: var(--svg-color);
+        fill: var(--svg-fill);
+        stroke: var(--svg-fill);
+
+        &.outline {
+            fill: transparent;
+        }
+    }
+}

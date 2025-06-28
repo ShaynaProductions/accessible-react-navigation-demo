@@ -6,8 +6,8 @@
         --component-text-size: var(--default-text-size);
         --component-item-size: var(--component-text-size);
         
-        --component-background: var(--common-background);
-        --component-border-color: var(--common-border-color);
+        --component-background: var(--default-background);
+        --component-border-color: var(--default-border-color);
 
 
         /* Links */
@@ -15,20 +15,20 @@
         --component-link-focus-outline: calc(var(--px) * 0);
         --component-link-outline-offset:  calc(var(--px) * 4);
         --component-link-background: transparent;
-        --component-link-background-focused: var(--common-background-focused);
-        --component-link-background-hovered: var(--common-background-pressed);
-        --component-link-color: var(--common-text-color);
-        --component-link-color-disabled: var(--common-text-color-disabled);
-        --component-link-color-focused: var(--common-text-color-focused);
-        --component-link-color-hovered: var(--common-text-color-hovered);
-        --component-link-color-pressed: var(--common-text-color-pressed);
+        --component-link-background-focused: var(--default-background-focused);
+        --component-link-background-hovered: var(--default-background-pressed);
+        --component-link-color: var(--default-text-color);
+        --component-link-color-disabled: var(--default-text-color-disabled);
+        --component-link-color-focused: var(--default-text-color-focused);
+        --component-link-color-hovered: var(--default-text-color-hovered);
+        --component-link-color-pressed: var(--default-text-color-pressed);
         --component-link-fill: var(--component-link-color);
 
 
         --svg-button-min-width: calc(var(--px) * 24);
-        --svg-color: var(--common-color);
-        --svg-fill: var(--common-color);
-        --svg-stroke: var(--common-color);
+        --svg-color: var(--default-color);
+        --svg-fill: var(--default-color);
+        --svg-stroke: var(--default-color);
 
     }
 

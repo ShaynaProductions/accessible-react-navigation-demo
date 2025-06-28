@@ -17,6 +17,7 @@
         box-sizing: border-box;
         margin: 0;
         max-width: 1280px;
+        padding: calc(var(--px) * 8) calc(var(--px) * 16);
 
         font-family:  system-ui, sans-serif;
         line-height: 1.5;
@@ -27,7 +28,7 @@
 
         background-color: #ffffff;
         border-color: transparent;
-        color: var(--primary-text-color);
+        color: var( --default-text-color);
     }
 
     @media screen and (min-width: 1281px) {
