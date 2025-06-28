@@ -5,12 +5,12 @@
         --modal-z-index: 100;
 
         /* Colors */
-        --modal-background: var(--common-background);
-        --modal-border-color: var(--common-border-color);
-        --modal-heading-color: var(--common-heading-color);
+        --modal-background: var(--default-background);
+        --modal-border-color: var(--default-border-color);
+        --modal-heading-color: var(--default-heading-color);
 
-        --modal-shadow: var(--common-shadow);
-        --modal-overlay: var(--common-overlay);
+        --modal-shadow: var(--default-shadow);
+        --modal-overlay: var(--default-overlay);
 
         /* Variants */
 

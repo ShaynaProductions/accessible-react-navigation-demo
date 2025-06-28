@@ -18,6 +18,7 @@ const config: Config = {
     "!src/app/**/*.{js,jsx,ts,tsx}",
     "!src/**/*.spec.{js,jsx,ts,tsx}",
     "!src/**/*.test.{js,jsx,ts,tsx}",
+    "!src/**/*Types.{js,jsx,ts,tsx}",
     "!src/**/__fixtures__/**/*.{js,jsx,ts,tsx}",
     "!src/**/__mocks__/**/*.{js,jsx,ts,tsx}",
     "!src/**/*.stories.{js,jsx,ts,tsx}",

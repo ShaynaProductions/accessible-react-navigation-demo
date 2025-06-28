@@ -12,25 +12,25 @@
     }
 
     h2, .h2 {
-        font-size: var(calc(var(--px) * 22));
+        font-size: calc(var(--px) * 22);
         line-height: 1.4;
         margin: calc(var(--px) * 8) 0;
     }
 
     h3, .h3 {
-        font-size: var(calc(var(--px) * 18));
+        font-size: calc(var(--px) * 18);
         line-height: 1.4;
         margin: calc(var(--px) * 8) 0;
     }
 
     h4, .h4 {
-        font-size: var(calc(var(--px) * 16));
+        font-size: calc(var(--px) * 16);
         line-height: 1.4;
         margin: calc(var(--px) * 8) 0;
     }
 
     h5, h6, .h5, .h6 {
-        font-size: var(calc(var(--px) * 14));
+        font-size: calc(var(--px) * 14);
         line-height: 1.4;
         margin: calc(var(--px) * 8) 0;
     }

@@ -11,23 +11,23 @@
         --button-letter-spacing: normal;
 
         /* Default - Solid */
-        --button-background: var(--common-10);
-        --button-background-disabled: var(--common-3);
-        --button-background-focused: var(--common-9);
-        --button-background-hovered: var(--common-5);
-        --button-background-pressed: var(--common-5);
+        --button-background: var(--gray-10);
+        --button-background-disabled: var(--gray-3);
+        --button-background-focused: var(--gray-9);
+        --button-background-hovered: var(--gray-5);
+        --button-background-pressed: var(--gray-5);
 
-        --button-border-color: var(--common-10);
-        --button-border-color-disabled: var(--common-3);
+        --button-border-color: var(--gray-10);
+        --button-border-color-disabled: var(--gray-3);
         --button-border-color-focused: var(--button-border-color);
         --button-border-color-hovered: var(--button-border-color);
         --button-border-color-pressed: var(--button-border-color);
         
-        --button-color: var(--common-1);
-        --button-color-disabled: var(--common-10);
+        --button-color: var(--gray-1);
+        --button-color-disabled: var(--gray-10);
         --button-color-focused: var(--button-color);
-        --button-color-hovered: var(--common-10);
-        --button-color-pressed: var(--common-11);
+        --button-color-hovered: var(--gray-10);
+        --button-color-pressed: var(--gray-11);
 
         --button-fill: var(--button-color);
         --button-fill-disabled: var(--button-color-disabled);
@@ -36,37 +36,37 @@
         --button-fill-pressed: var(--button-color-pressed);
 
         /* Variants - In Common - Meets all WCAG Color Contrast requirements */
-            --button-search-color: var(--common-11);
+            --button-search-color: var(--gray-11);
 
            /* Outline  */
-        --button-outline-background: var(--common-2);
-        --button-outline-background-disabled: var(--common-2);
+        --button-outline-background: var(--gray-2);
+        --button-outline-background-disabled: var(--gray-2);
         --button-outline-background-focused: var(--button-outline-background);
-        --button-outline-background-hovered: var(--common-2);
-        --button-outline-background-pressed: var(--common-3);
+        --button-outline-background-hovered: var(--gray-2);
+        --button-outline-background-pressed: var(--gray-3);
 
-        --button-outline-border-color: var(--common-11);
-        --button-outline-border-color-disabled: var(--common-6);
-        --button-outline-border-color-hovered: var(--common-4);
-        --button-outline-border-color-pressed: var(--common-5);
+        --button-outline-border-color: var(--gray-11);
+        --button-outline-border-color-disabled: var(--gray-6);
+        --button-outline-border-color-hovered: var(--gray-4);
+        --button-outline-border-color-pressed: var(--gray-5);
 
-        --button-outline-color: var(--common-11);
-        --button-outline-color-disabled: var(--common-9);
-        --button-outline-color-hovered: var(--common-12);
-        --button-outline-color-pressed: var(--common-12);
+        --button-outline-color: var(--gray-11);
+        --button-outline-color-disabled: var(--gray-9);
+        --button-outline-color-hovered: var(--gray-12);
+        --button-outline-color-pressed: var(--gray-12);
 
-        --button-outline-fill: var(--common-11);
-        --button-outline-fill-disabled: var(--common-9);
+        --button-outline-fill: var(--gray-11);
+        --button-outline-fill-disabled: var(--gray-9);
         --button-outline-fill-focused: var(--button-outline-fill);
-        --button-outline-fill-hovered: var(--common-12);
-        --button-outline-fill-pressed: var(--common-12);
+        --button-outline-fill-hovered: var(--gray-12);
+        --button-outline-fill-pressed: var(--gray-12);
 
         /* Ghost  */
         --button-ghost-background: transparent;
         --button-ghost-background-disabled: var(--button-ghost-background);
         --button-ghost-background-focused: var(--button-ghost-background);
-        --button-ghost-background-hovered: var(--common-2);
-        --button-ghost-background-pressed: var(--common-2);
+        --button-ghost-background-hovered: var(--gray-2);
+        --button-ghost-background-pressed: var(--gray-2);
 
         --button-ghost-border-color: transparent;
         --button-ghost-border-color-disabled: var(--button-ghost-border-color);
@@ -74,17 +74,17 @@
         --button-ghost-border-color-hovered: var(--button-ghost-border-color);
         --button-ghost-border-color-pressed: var(--button-ghost-border-color);
 
-        --button-ghost-color: var(--common-12);
-        --button-ghost-color-disabled: var(--common-9);
+        --button-ghost-color: var(--gray-12);
+        --button-ghost-color-disabled: var(--gray-9);
         --button-ghost-color-focused: var(--button-ghost-color);
-        --button-ghost-color-hovered: var(--common-7);
-        --button-ghost-color-pressed: var(--common-12);
+        --button-ghost-color-hovered: var(--gray-7);
+        --button-ghost-color-pressed: var(--gray-12);
 
-        --button-ghost-fill: var(--common-12);
-        --button-ghost-fill-disabled: var(--common-9);
+        --button-ghost-fill: var(--gray-12);
+        --button-ghost-fill-disabled: var(--gray-9);
         --button-ghost-fill-focused: var(--button-ghost-fill);
-        --button-ghost-fill-hovered: var(--common-7);
-        --button-ghost-fill-pressed: var(--common-12);
+        --button-ghost-fill-hovered: var(--gray-7);
+        --button-ghost-fill-pressed: var(--gray-12);
 
     }
 

@@ -15,61 +15,61 @@
         --form-component-label-padding: calc(var(--px) * 8);
 
 
-        --form-component-shadow: var(--common-shadow);
+        --form-component-shadow: var(--default-shadow);
 
         --form-background: inherit;
         --form-width: 100%;
 
         --form-component-background: transparent;
-        --form-component-background-disabled: var(--common-background-disabled);
-        --form-component-background-focused: var(--common-background-focused);
-        --form-component-background-hovered: var(--common-background-hovered);
-        --form-component-background-invalid: var(--common-background-invalid);
-        --form-component-background-pressed: var(--common-background-pressed);
+        --form-component-background-disabled: var(--default-background-disabled);
+        --form-component-background-focused: var(--default-background-focused);
+        --form-component-background-hovered: var(--default-background-hovered);
+        --form-component-background-invalid: var(--default-background-invalid);
+        --form-component-background-pressed: var(--default-background-pressed);
         --form-component-background-required: transparent;
-        --form-component-background-selected: var(--common-background-selected);
+        --form-component-background-selected: var(--default-background-selected);
 
-        --form-component-border-color: var(--common-border-color);
-        --form-component-border-color-disabled: var(--common-border-color-disabled);
-        --form-component-border-color-focused: var(--common-border-color-focused);
-        --form-component-border-color-hovered: var(--common-border-color-hovered);
-        --form-component-border-color-invalid: var(--common-border-color-invalid);
-        --form-component-border-color-pressed: var(--common-border-color-pressed);
-        --form-component-border-color-required: var(--common-border-color-required);
-        --form-component-border-color-selected: var(--common-border-color-selected);
+        --form-component-border-color: var(--default-border-color);
+        --form-component-border-color-disabled: var(--default-border-color-disabled);
+        --form-component-border-color-focused: var(--default-border-color-focused);
+        --form-component-border-color-hovered: var(--default-border-color-hovered);
+        --form-component-border-color-invalid: var(--default-border-color-invalid);
+        --form-component-border-color-pressed: var(--default-border-color-pressed);
+        --form-component-border-color-required: var(--default-border-color-required);
+        --form-component-border-color-selected: var(--default-border-color-selected);
 
-        --form-component-color: var(--common-color);
-        --form-component-color-disabled: var(--common-color-disabled);
-        --form-component-color-focused: var(--common-color-focused);
-        --form-component-color-hovered: var(--common-color-hovered);
-        --form-component-color-invalid: var(--common-color-invalid);
-        --form-component-color-pressed: var(--common-color-pressed);
-        --form-component-color-required: var(--common-color-required);
-        --form-component-color-selected: var(--common-color-selected);
+        --form-component-color: var(--default-color);
+        --form-component-color-disabled: var(--default-color-disabled);
+        --form-component-color-focused: var(--default-color-focused);
+        --form-component-color-hovered: var(--default-color-hovered);
+        --form-component-color-invalid: var(--default-color-invalid);
+        --form-component-color-pressed: var(--default-color-pressed);
+        --form-component-color-required: var(--default-color-required);
+        --form-component-color-selected: var(--default-color-selected);
 
-        --form-component-fill: var(--common-fill);
-        --form-component-fill-disabled: var(--common-fill-disabled);
-        --form-component-fill-focused: var(--common-fill-focused);
-        --form-component-fill-hovered: var(--common-fill-hovered);
-        --form-component-fill-invalid: var(--common-fill-invalid);
-        --form-component-fill-pressed: var(--common-fill-pressed);
-        --form-component-fill-required: var(--common-fill-required);
-        --form-component-fill-selected: var(--common-fill-selected);
+        --form-component-fill: var(--default-fill);
+        --form-component-fill-disabled: var(--default-fill-disabled);
+        --form-component-fill-focused: var(--default-fill-focused);
+        --form-component-fill-hovered: var(--default-fill-hovered);
+        --form-component-fill-invalid: var(--default-fill-invalid);
+        --form-component-fill-pressed: var(--default-fill-pressed);
+        --form-component-fill-required: var(--default-fill-required);
+        --form-component-fill-selected: var(--default-fill-selected);
 
 
-        --form-component-text-color: var(--common-text-color);
-        --form-component-text-color-disabled: var(--common-text-color-disabled);
-        --form-component-text-color-focused: var(--common-text-color-focused);
-        --form-component-text-color-hovered: var(--common-text-color-hovered);
-        --form-component-text-color-invalid: var(--common-text-color);
-        --form-component-text-color-pressed: var(--common-text-color-pressed);
-        --form-component-text-color-required: var(--common-text-color-required);
-        --form-component-text-color-selected: var(--common-text-color-selected);
+        --form-component-text-color: var(--default-text-color);
+        --form-component-text-color-disabled: var(--default-text-color-disabled);
+        --form-component-text-color-focused: var(--default-text-color-focused);
+        --form-component-text-color-hovered: var(--default-text-color-hovered);
+        --form-component-text-color-invalid: var(--default-text-color);
+        --form-component-text-color-pressed: var(--default-text-color-pressed);
+        --form-component-text-color-required: var(--default-text-color-required);
+        --form-component-text-color-selected: var(--default-text-color-selected);
 
         /* Individual Overrides */
 
         .checkbox-container {
-            --form-component-fill-selected: var(--common-text-color);
+            --form-component-fill-selected: var(--default-text-color);
         }
 
         .input {
@@ -79,11 +79,11 @@
         }
 
         .select-list {
-            --form-component-background: var(--common-background);
+            --form-component-background: var(--default-background);
             & .select-item {
                 --form-component-color: var(--form-component-text-color);
-                --form-component-background-focused: var(--common-5);
-                --form-component-background-hovered: var(--common-5);
+                --form-component-background-focused: var(--gray-5);
+                --form-component-background-hovered: var(--gray-5);
             }
 
         }

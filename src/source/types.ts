@@ -1,3 +1,5 @@
+export type Orientation = "horizontal" | "vertical";
+
 export interface BaseInterface {
   /**
    *  classnames to pass
@@ -11,4 +13,21 @@ export interface BaseInterface {
    * Id used for testing purposes only.
    */
   testId?: string;
+}
+
+export interface SvgProps
+  extends Omit<BaseInterface, "cx">,
+    React.SVGAttributes<SVGElement> {
+  /**
+   * classes to pass
+   */
+  cx?: string;
+  /**
+   * non-visual label describing the image.
+   */
+  label?: string;
+  /**
+   * size of Icon if needed.
+   */
+  size?: number;
 }

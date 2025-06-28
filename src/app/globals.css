@@ -1,2 +1,9 @@
 @import url('../theme-system/index.css');
 
+@layer default-theme {
+
+    body header, body footer  body main{
+        margin-bottom: calc(var(--px) * 16);
+    }
+}
+

@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import type { Metadata } from "next";
+import {Footer, Header} from "@/source/components/site"
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,10 +16,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <title>Accessible React Navigatio Component</title>
+        <title>Accessible React Navigation Component</title>
       </head>
       <body className="">
+      <Header />
         <main id="main">{children}</main>
+      <Footer />
       </body>
     </html>
   );
