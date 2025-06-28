@@ -1,7 +1,7 @@
 import { ButtonProps as RacButtonProps } from "react-aria-components";
-import { BaseInterface } from "@/source/types";
+import { BaseProps } from "@/source/types";
 
-export interface ButtonProps extends BaseInterface, RacButtonProps {
+export interface ButtonProps extends BaseProps, RacButtonProps {
   isPressed?: boolean;
   ref?: React.RefObject<HTMLButtonElement | null>;
 }

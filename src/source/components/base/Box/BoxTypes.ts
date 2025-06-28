@@ -1,6 +1,6 @@
-import { BaseInterface } from "@/source/types";
+import { BaseProps } from "@/source/types";
 
-export interface BoxProps extends BaseInterface {
+export interface BoxProps extends BaseProps {
     /**
      * The children of the component.
      */

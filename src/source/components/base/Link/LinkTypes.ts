@@ -3,9 +3,9 @@ import { type LinkProps as NextLinkProps } from "next/link";
 import {Url} from "next/dist/shared/lib/router/router";
 import { type HoverEvent } from "react-aria";
 import {type LinkProps as RacLinkProps} from "react-aria-components";
-import { type BaseInterface } from "@/source/types";
+import { type BaseProps } from "@/source/types";
 
-export interface InternalLinkProps extends BaseInterface, NextLinkProps {
+export interface InternalLinkProps extends BaseProps, NextLinkProps {
     children: ReactNode;
     href: Url;
     isDisabled?: boolean;
@@ -48,7 +48,7 @@ export interface InternalLinkProps extends BaseInterface, NextLinkProps {
 
 export type LinkTargets = "_self" | "_blank" | "_parent" | "_top";
 
-export interface ExternalLinkProps extends BaseInterface, RacLinkProps {
+export interface ExternalLinkProps extends BaseProps, RacLinkProps {
     children: React.ReactNode;
     href: string;
 

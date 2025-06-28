@@ -1,6 +1,6 @@
 export type Orientation = "horizontal" | "vertical";
 
-export interface BaseInterface {
+export interface BaseProps {
   /**
    *  classnames to pass
    */
@@ -16,7 +16,7 @@ export interface BaseInterface {
 }
 
 export interface SvgProps
-  extends Omit<BaseInterface, "cx">,
+  extends Omit<BaseProps, "cx">,
     React.SVGAttributes<SVGElement> {
   /**
    * classes to pass

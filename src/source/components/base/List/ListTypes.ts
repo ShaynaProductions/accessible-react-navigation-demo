@@ -1,7 +1,7 @@
 import React from "react";
-import { BaseInterface, Orientation } from "@/source/types";
+import { BaseProps, Orientation } from "@/source/types";
 
-export interface ListProps extends BaseInterface {
+export interface ListProps extends BaseProps {
   children?: React.ReactNode;
   /**
    * Used for both Ordered and unordered lists
@@ -34,7 +34,7 @@ export interface ListProps extends BaseInterface {
 
 export type ListItemRoles = "listitem" | "menuitem" | "treeitem";
 
-export interface ListItemProps extends BaseInterface {
+export interface ListItemProps extends BaseProps {
   /**
    * The children of the component.
    */
