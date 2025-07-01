@@ -16,7 +16,7 @@ export default function ListItem({
       <li
         className={cx}
         data-testid={returnTrueElementOrUndefined(!!testId, testId)}
-        role={role || "listitem"}
+        role={returnTrueElementOrUndefined(!!role, role)}
         {...rest}
       >
         {children}

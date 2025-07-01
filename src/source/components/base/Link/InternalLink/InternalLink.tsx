@@ -100,7 +100,6 @@ export default function InternalLink({
     onMouseLeave:
       handleHoverOut as unknown as MouseEventHandler<HTMLAnchorElement>,
     ref: combinedRef,
-    type: "link",
   };
 
   return <Link {...linkProps}>{children}</Link>;

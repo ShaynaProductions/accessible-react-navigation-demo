@@ -1,15 +1,18 @@
 "use client";
-import {JSX} from "react";
-import {Text} from "@/source/components";
+import { JSX } from "react";
+import { ExternalLink, Text } from "@/source/components";
 
-export const Footer = () : JSX.Element => {
-    const today = new Date();
+export const Footer = (): JSX.Element => {
+  const today = new Date();
 
-    return (
-        <footer>
-            <Text>
-                <abbr title="copyright">&#169;</abbr> {today.getFullYear()} Shayna Productions
-            </Text>
-        </footer>
-    )
-}
+  return (
+    <footer>
+      <Text>
+        <abbr title="copyright">&#169;</abbr> {today.getFullYear()}{" "}
+        <ExternalLink href="shaynaproductions.com" openInNewTab={true}>
+          Shayna Productions
+        </ExternalLink>
+      </Text>
+    </footer>
+  );
+};

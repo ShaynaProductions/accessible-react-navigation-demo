@@ -1,5 +1,5 @@
+import { act } from "react";
 import { axe, render } from "@/test";
-
 import List from "./List";
 import ListItem from "./ListItem";
 import { ListProps } from "./ListTypes";
@@ -35,7 +35,7 @@ const renderMenu = (optProps: ListProps) => {
 describe("<List />", () => {
   it("should be WCAG compliant", async () => {
     const optProps = {};
-    const { container } = renderList(optProps);
+    const { container } = await act(() => renderList(optProps));
 
     const results = await axe(container);
 

@@ -1,12 +1,12 @@
 import { CSSProperties } from "react";
-import { AiOutlineExport } from "react-icons/ai";
+import { HiChevronRight } from "react-icons/hi2";
 import classNames from "classnames";
 import { SvgProps } from "@/source/types";
 import { returnTrueElementOrUndefined } from "@/source/utilities";
 
 import "../icon.css";
 
-export const NewWindowIcon = ({
+export const ChevronRightIcon = ({
   cx,
   label,
   size,
@@ -14,7 +14,7 @@ export const NewWindowIcon = ({
 }: Partial<SvgProps>) => {
   return (
     <>
-      <AiOutlineExport
+      <HiChevronRight
         className={classNames("svg-icon", cx)}
         data-testid={testId}
         aria-label={returnTrueElementOrUndefined(!!label, label)}
