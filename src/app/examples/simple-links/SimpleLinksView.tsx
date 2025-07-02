@@ -5,6 +5,7 @@ import {
   Text,
   transformNavigation,
 } from "@/source/components";
+
 export default function SimpleLinksView(navObject) {
   const navigation = transformNavigation(navObject.navigation);
 

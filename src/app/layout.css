@@ -1,0 +1,22 @@
+@layer theme{
+    body {
+        height: 100vh;
+    }
+    header{
+        height: calc(var(--px) * 80);
+        background-color: transparent;
+        border-bottom-width: calc(var(--px) * 1);
+        border-bottom-style: solid;
+    }
+    main {
+        margin: calc(var(--px) * 24) 0;
+    }
+   
+    footer {
+        height: calc(var(--px) * 80);
+        background-color: transparent;
+        border-top-width: calc(var(--px) * 1);
+        border-top-style: solid;
+        text-align: center;
+    }
+}

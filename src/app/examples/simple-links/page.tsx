@@ -13,6 +13,7 @@ export default async function SimpleLinksExamplePage() {
   );
 
   const nav = JSON.parse(jsonObj);
-
-  return <SimpleLinksView navigation={nav.navigation} />;
+  if (nav) {
+    return <SimpleLinksView navigation={nav.navigation} />;
+  }
 }

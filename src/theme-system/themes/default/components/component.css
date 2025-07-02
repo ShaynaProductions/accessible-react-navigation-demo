@@ -24,6 +24,11 @@
         --component-link-color-pressed: var(--default-text-color-pressed);
         --component-link-fill: var(--component-link-color);
 
+        --component-text-color: var(--default-text-color);
+        --component-text-color-disabled: var(--default-text-color-disabled);
+        --component-text-color-pressed: var(--default-text-color-pressed);
+
+
 
         --svg-button-min-width: calc(var(--px) * 24);
         --svg-color: var(--default-color);
