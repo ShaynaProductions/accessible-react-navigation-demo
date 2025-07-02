@@ -5,7 +5,7 @@ import "./globals.css";
 import "./layout.css";
 
 export const metadata: Metadata = {
-  title: "React Accessibile Navigation Demo",
+  title: "React Accessible Navigation Demo",
   description: "Examples",
 };
 
