@@ -1,15 +1,13 @@
-"use client";
-import {
-   Text,
-} from "@/source/components";
+import { Metadata } from "next";
+
+import Home from "@/app/Home";
 
 import "./page.css";
 
-export default function Home() {
-  return (
-      <Text>
-        This repository is provided as an example of an accessible react
-        navigation component.
-      </Text>
-  );
+export const metadata: Metadata = {
+  title: "Home",
+};
+
+export default function HomePage() {
+  return <Home />;
 }

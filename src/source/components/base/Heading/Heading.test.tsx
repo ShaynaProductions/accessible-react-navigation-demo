@@ -1,3 +1,4 @@
+import { act } from "react";
 import { axe, render } from "@/test";
 import { HeadingProps } from "./HeadingTypes";
 import Heading from "./Heading";
@@ -5,8 +6,7 @@ import Heading from "./Heading";
 const TEST_ID = "Heading";
 
 const renderHeading = (optProps: HeadingProps, children?: string) => {
-
- return render(
+  return render(
     <Heading testId={TEST_ID} {...optProps}>
       {children || "Heading"}
     </Heading>,
@@ -18,7 +18,9 @@ describe("<Heading />", () => {
     const optProps = {
       level: 1,
     };
-    const { container } = renderHeading(optProps, "Hello World");
+    const { container } = await act(() =>
+      renderHeading(optProps, "Hello World"),
+    );
 
     const results = await axe(container);
 
@@ -51,7 +53,7 @@ describe("<Heading />", () => {
     expect(text).toBeInTheDocument();
   });
   it("should render as an h2 when no headinglevel is passed", () => {
-    const optProps = {  };
+    const optProps = {};
     const { getByRole } = renderHeading(optProps);
 
     const component = getByRole("heading", { level: 2 });

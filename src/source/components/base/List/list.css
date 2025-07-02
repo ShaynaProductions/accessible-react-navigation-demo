@@ -3,12 +3,13 @@
         padding: 0;
         margin: 0;
         display: flex;
+        list-style: none;
         color: var(--component-text-color);
 
         &[data-orientation="horizontal"] {
             flex-direction: row;
-            column-gap: calc(var(--size-1) * 16);
-            row-gap: calc(var(--size-1) * 8);
+            column-gap: calc(var(--px) * 16);
+            row-gap: calc(var(--px) * 8);
 
             width: 100%;
         }
@@ -16,13 +17,8 @@
         &[data-orientation="vertical"] {
             display: flex;
             flex-direction: column;
-            gap: calc(var(--size-1) * 4);
+            gap: calc(var(--px) * 4);
         }
-
-      /* List Item deliberately not added. Nothing to style at the moment:
-      & .list-item
-      */
-
     }
 
 }

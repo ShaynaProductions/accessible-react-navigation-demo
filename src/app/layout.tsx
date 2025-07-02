@@ -1,7 +1,8 @@
 import { ReactNode } from "react";
 import type { Metadata } from "next";
-import {Footer, Header} from "@/source/components/site"
+import { Footer, Header } from "@/source/components/site";
 import "./globals.css";
+import "./layout.css";
 
 export const metadata: Metadata = {
   title: "React Accessibile Navigation Demo",
@@ -16,12 +17,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <title>Accessible React Navigation Component</title>
+        <title>Accessible React Navigation Component Demo</title>
       </head>
       <body className="">
-      <Header />
+        <Header />
         <main id="main">{children}</main>
-      <Footer />
+        <Footer />
       </body>
     </html>
   );

@@ -1,3 +1,4 @@
+import { act } from "react";
 import { render, axe } from "@/test";
 import Text from "./Text";
 import { TextProps } from "./TextTypes";
@@ -11,7 +12,7 @@ const renderText = (optProps: TextProps) => {
 describe("<Text />", () => {
   it("should be WCAG compliant as a Phrase control", async () => {
     const optProps = { inline: true, testId: TEST_ID };
-    const { container } = renderText(optProps);
+    const { container } = await act(() => renderText(optProps));
 
     const results = await axe(container);
 
@@ -20,7 +21,7 @@ describe("<Text />", () => {
 
   it("should be WCAG compliant as a Flow control", async () => {
     const optProps = {};
-    const { container } = renderText(optProps);
+    const { container } = await act(() => renderText(optProps));
 
     const results = await axe(container);
 

@@ -1,0 +1,19 @@
+{
+  "navigation": [
+    {
+      "label": "About",
+      "id": "about",
+      "href": "/#about"
+    },
+    {
+      "label": "Read",
+      "href": "/#read",
+      "id": "read"
+    },
+    {
+      "label": "Musings",
+      "id": "musings",
+      "href": "/#blog"
+    }
+  ]
+}

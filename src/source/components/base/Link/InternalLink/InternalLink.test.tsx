@@ -3,7 +3,6 @@ import { axe, fireEvent, render } from "@/test";
 import { InternalLinkProps } from "../LinkTypes";
 import InternalLink from "./InternalLink";
 
-
 const TEST_ID = "LinkFacade";
 const label = "Internal InternalLink";
 
@@ -15,12 +14,10 @@ const renderLink = (props: Partial<InternalLinkProps>) => {
   );
 };
 
-
-
 describe("<InternalLink />", () => {
   it("should be WCAG compliant", async () => {
-    const optProps = {testId: undefined };
-    const { container } = renderLink(optProps);
+    const optProps = { testId: undefined };
+    const { container } = await act(() => renderLink(optProps));
 
     const results = await act(() => axe(container));
 
@@ -28,7 +25,7 @@ describe("<InternalLink />", () => {
   });
 
   it("should not have an href when disabled", () => {
-    const optProps = {isDisabled: true };
+    const optProps = { isDisabled: true };
     const { getByTestId } = renderLink(optProps);
 
     const link = getByTestId(`${TEST_ID}-client`);
@@ -39,7 +36,7 @@ describe("<InternalLink />", () => {
   });
 
   it("should have an href when enabled", () => {
-    const optProps = { };
+    const optProps = {};
     const { getByTestId } = renderLink(optProps);
 
     const link = getByTestId(`${TEST_ID}-client`);
@@ -50,7 +47,7 @@ describe("<InternalLink />", () => {
   });
 
   it("should not have a data-focused attribute when isFocused is false", () => {
-    const optProps = {isFocused: false };
+    const optProps = { isFocused: false };
 
     const { getByTestId } = renderLink(optProps);
 
@@ -60,7 +57,7 @@ describe("<InternalLink />", () => {
   });
 
   it("should have a data-focused attribute when isLinkFocused is true", () => {
-    const optProps = {isFocused: true };
+    const optProps = { isFocused: true };
 
     const { getByTestId } = renderLink(optProps);
 
@@ -70,7 +67,7 @@ describe("<InternalLink />", () => {
   });
 
   it("should not have a data-hovered attribute when isHovered is false", () => {
-    const optProps = {isHovered: false };
+    const optProps = { isHovered: false };
 
     const { getByTestId } = renderLink(optProps);
 
@@ -80,7 +77,7 @@ describe("<InternalLink />", () => {
   });
 
   it("should have a data-hovered attribute when isLinkFocused is true", () => {
-    const optProps = {isHovered: true };
+    const optProps = { isHovered: true };
 
     const { getByTestId } = renderLink(optProps);
 
@@ -92,7 +89,7 @@ describe("<InternalLink />", () => {
   it("should handle an onFocusEvent when onFocus is triggered", async () => {
     const handleOnFocus = jest.fn();
 
-    const optProps = {onFocus: handleOnFocus };
+    const optProps = { onFocus: handleOnFocus };
     const { getByTestId } = renderLink(optProps);
 
     const link = getByTestId(`${TEST_ID}-client`);
@@ -109,7 +106,6 @@ describe("<InternalLink />", () => {
     const handleOnFocus = jest.fn();
 
     const optProps = {
-
       onFocus: handleOnFocus,
       onBlur: handleOnBlur,
     };
@@ -130,7 +126,6 @@ describe("<InternalLink />", () => {
     const handleOnHoverOut = jest.fn();
 
     const optProps = {
-
       onHover: handleOnHover,
       onHoverOut: handleOnHoverOut,
     };

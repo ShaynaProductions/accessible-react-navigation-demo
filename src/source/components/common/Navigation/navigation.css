@@ -1,0 +1,37 @@
+@layer common-component {
+    nav {
+        border-radius: var(--default-border-radius);
+        border-style: var( --default-divider-style);
+        border-width: var(--default-border-width);
+        padding: calc(var(--px) * 16);
+
+        & li button {
+            --button-border: 0;
+
+            --button-background: var( --button-ghost-background);
+            --button-background-disabled: var( --button-ghost-background-disabled);
+            --button-background-focused: var(--button-ghost-background-focused);
+            --button-background-hover: var(--button-ghost-background-hovered);
+            --button-background-pressed: var(--button-ghost-background-pressed);
+
+            --button-border-color: var(--button-ghost-border-color);
+            --button-border-color-disabled: var(--button-ghost-border-color-disabled);
+            --button-border-color-focused: var(--button-ghost-border-color-focused);
+            --button-border-color-hover: var(--button-ghost-border-color-hovered);
+            --button-border-color-pressed: var(--button-ghost-border-color-pressed);
+
+            --button-color: var(--button-ghost-color);
+            --button-color-disabled: var(--button-ghost-color-disabled);
+            --button-color-focused: var(--button-ghost-color-focused);
+            --button-color-hover: var(--button-ghost-color-hovered);
+            --button-color-pressed: var(--button-ghost-color-pressed);
+
+            --button-fill: var(--button-ghost-fill);
+            --button-fill-disabled: var(--button-ghost-fill-disabled);
+            --button-fill-focused: var(--button-ghost-fill-focused);
+            --button-fill-hover: var(--button-ghost-fill-hovered);
+            --button-fill-pressed: var(--button-ghost-fill-pressed);
+        }
+    }
+
+}
