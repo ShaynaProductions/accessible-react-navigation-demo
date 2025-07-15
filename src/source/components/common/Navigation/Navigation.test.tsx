@@ -1,4 +1,4 @@
-import { act, axe, render } from "@/test";
+import { act, axe, render, userEvent } from "@/test";
 import Navigation from "./Navigation";
 import { NavigationProps } from "./NavigationTypes";
 import fs from "fs";
@@ -42,5 +42,20 @@ describe("<Navigation WCAG />", () => {
     const results = await act(() => axe(container));
 
     expect(results).toHaveNoViolations();
+  });
+
+  it("should handle an OnClick", async () => {
+    const optProps = {};
+    const { getByTestId, getByLabelText } = await act(() =>
+      renderNavigation("SimpleStructureWithSubNav", optProps),
+    );
+    const readButton = getByLabelText("Read sub menu");
+    const readList = getByTestId(`${TEST_ID}-read-menu-read-menu-list`);
+
+    expect(readButton).toBeInTheDocument();
+    expect(readList).toBeInTheDocument();
+    expect(readList).toHaveClass("srOnly");
+    await userEvent.click(readButton);
+    expect(readList).not.toHaveClass("srOnly");
   });
 });

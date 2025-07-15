@@ -1,15 +1,15 @@
 @layer common-component {
     nav {
         border-radius: var(--default-border-radius);
-        border-style: var( --default-divider-style);
+        border-style: var(--default-divider-style);
         border-width: var(--default-border-width);
         padding: calc(var(--px) * 16);
 
         & li button {
             --button-border: 0;
 
-            --button-background: var( --button-ghost-background);
-            --button-background-disabled: var( --button-ghost-background-disabled);
+            --button-background: var(--button-ghost-background);
+            --button-background-disabled: var(--button-ghost-background-disabled);
             --button-background-focused: var(--button-ghost-background-focused);
             --button-background-hover: var(--button-ghost-background-hovered);
             --button-background-pressed: var(--button-ghost-background-pressed);
@@ -31,6 +31,17 @@
             --button-fill-focused: var(--button-ghost-fill-focused);
             --button-fill-hover: var(--button-ghost-fill-hovered);
             --button-fill-pressed: var(--button-ghost-fill-pressed);
+            position: relative;
+            left: calc(var(--px) * -14);
+
+            & svg {
+                left: calc(var(--px) * 8);
+                position: relative;
+            }
+
+            &.expanded svg {
+                rotate: 90deg;
+            }
         }
     }
 

@@ -11,7 +11,9 @@ export default function Navigation({
   return (
     <>
       <nav aria-label={label} className={cx}>
-        <NavigationList id={id}>{children}</NavigationList>
+        <NavigationList id={id} isOpen={true}>
+          {children}
+        </NavigationList>
       </nav>
     </>
   );
