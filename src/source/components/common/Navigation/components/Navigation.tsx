@@ -1,6 +1,6 @@
-import { NavigationProps } from "./NavigationTypes";
+import { NavigationProps } from "../NavigationTypes";
 import NavigationList from "./NavigationList";
-import "./navigation.css";
+import "../navigation.css";
 
 export default function Navigation({
   children,
