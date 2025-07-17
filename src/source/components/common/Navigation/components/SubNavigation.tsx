@@ -1,11 +1,10 @@
 "use client";
-
-import { useState } from "react";
 import classNames from "classnames";
+import { useState } from "react";
 import { Button, ListItem } from "@/source/components/base";
 import { ChevronRightIcon } from "@/source/icons";
 import NavigationList from "./NavigationList";
-import { SubNavigationProps } from "./NavigationTypes";
+import { SubNavigationProps } from "../NavigationTypes";
 
 export default function SubNavigation({
   children,

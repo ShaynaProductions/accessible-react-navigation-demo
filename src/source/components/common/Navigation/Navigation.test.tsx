@@ -1,5 +1,5 @@
 import { act, axe, render, userEvent } from "@/test";
-import Navigation from "./Navigation";
+import Navigation from "./components/Navigation";
 import { NavigationProps } from "./NavigationTypes";
 import fs from "fs";
 import { transformNavigation } from "@/source/components";

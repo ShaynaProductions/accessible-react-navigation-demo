@@ -9,6 +9,11 @@
       "href": "/#read",
       "id": "read"
     },
+   {
+     "label": "Sandy",
+     "href": "#/sandy",
+     "id": "sandy"
+   },
     {
       "label": "Musings",
       "id": "musings",

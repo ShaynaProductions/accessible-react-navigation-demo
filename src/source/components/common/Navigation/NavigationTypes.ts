@@ -5,10 +5,12 @@ import { ListProps } from "@/source/components/base";
 export interface NavigationProps extends BaseProps {
   children: ReactNode;
   label: string;
+  parentRef?: RefObject<HTMLButtonElement | null>;
 }
 
 export interface NavigationListProps extends BaseProps, ListProps {
   isOpen: boolean;
+  parentRef?: RefObject<HTMLButtonElement | null>;
 }
 
 export interface NavigationItemProps extends BaseProps {
