@@ -1,8 +1,9 @@
 import { act, axe, render } from "@/test";
-import Navigation from "./components/Navigation";
-import { NavigationProps } from "./NavigationTypes";
 import fs from "fs";
 import { transformNavigation } from "@/source/components";
+
+import Navigation from "../components/Navigation";
+import { NavigationProps } from "../NavigationTypes";
 
 const TEST_ID = "Navigation";
 

@@ -11,21 +11,21 @@
         --button-letter-spacing: normal;
 
         /* Default - Solid */
-        --button-background: var(--gray-10);
+        --button-background: var(--purple-9);
         --button-background-disabled: var(--gray-3);
-        --button-background-focused: var(--gray-9);
+        --button-background-focused: var(--purple-3);
         --button-background-hovered: var(--gray-5);
         --button-background-pressed: var(--gray-5);
 
-        --button-border-color: var(--gray-10);
+        --button-border-color: var(--gray-5);
         --button-border-color-disabled: var(--gray-3);
-        --button-border-color-focused: var(--button-border-color);
+        --button-border-color-focused: var(--gray-9);
         --button-border-color-hovered: var(--button-border-color);
         --button-border-color-pressed: var(--button-border-color);
         
         --button-color: var(--gray-1);
         --button-color-disabled: var(--gray-10);
-        --button-color-focused: var(--button-color);
+        --button-color-focused: var(--purple-11);
         --button-color-hovered: var(--gray-10);
         --button-color-pressed: var(--gray-11);
 

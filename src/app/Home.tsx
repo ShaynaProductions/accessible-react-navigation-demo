@@ -23,6 +23,11 @@ export default function Home() {
           </InternalLink>
         </ListItem>
         <ListItem>
+          <InternalLink href="/examples/links-buttons">
+            Simple Structure - Links Only - Focusable Out of DOM Buttons
+          </InternalLink>
+        </ListItem>
+        <ListItem>
           <InternalLink href="/examples/simple-subnav">
             Simple Subnavigation
           </InternalLink>
