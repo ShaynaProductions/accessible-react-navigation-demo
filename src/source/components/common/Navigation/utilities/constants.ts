@@ -8,3 +8,16 @@ export const ListActionTypes = Object.freeze({
   TAB_PREVIOUS: 7,
   TAB_NEXT: 8,
 });
+
+export const Keys = Object.freeze({
+  DOWN: "ArrowDown",
+  END: "End",
+  ENTER: "Enter",
+  ESC: "Escape",
+  HOME: "Home",
+  LEFT: "ArrowLeft",
+  RIGHT: "ArrowRight",
+  SPACE: " ",
+  TAB: "Tab",
+  UP: "ArrowUp",
+});

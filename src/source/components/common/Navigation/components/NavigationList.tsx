@@ -1,8 +1,8 @@
 import { Fragment, useRef } from "react";
 import { List, ListProps } from "@/source/components/base";
+
 import { NavigationListProps } from "../NavigationTypes";
-import { NavListContextValueProps } from "@/source/components/common/Navigation/providers";
-import NavListProvider from "@/source/components/common/Navigation/providers/NavListProvider/NavListProvider";
+import { NavListContextValueProps, NavListProvider } from "../providers";
 
 export default function NavigationList({
   children,
