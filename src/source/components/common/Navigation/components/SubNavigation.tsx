@@ -19,8 +19,6 @@ export default function SubNavigation({
     "aria-controls": `list-${id}`,
     "aria-expanded": true,
     "aria-label": `${label} sub menu`,
-    cx: classNames({ expanded: isSubListOpen }, cx),
-    onPress: () => setIsSubListOpen(!isSubListOpen),
     testId: testId,
   };
   const listProps = {
