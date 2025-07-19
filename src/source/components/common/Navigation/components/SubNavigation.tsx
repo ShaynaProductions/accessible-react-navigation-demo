@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import classNames from "classnames";
 
 import { Button, ListItem } from "@/source/components/base";
 import { ChevronRightIcon } from "@/source/icons";
@@ -9,7 +8,6 @@ import { SubNavigationProps } from "../NavigationTypes";
 
 export default function SubNavigation({
   children,
-  cx,
   id,
   label,
   testId,
@@ -19,6 +17,7 @@ export default function SubNavigation({
     "aria-controls": `list-${id}`,
     "aria-expanded": true,
     "aria-label": `${label} sub menu`,
+    onPress: () => setIsSubListOpen(!isSubListOpen),
     testId: testId,
   };
   const listProps = {

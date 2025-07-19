@@ -1,4 +1,5 @@
 import { Fragment, useRef } from "react";
+import classNames from "classnames";
 import { List, ListProps } from "@/source/components/base";
 
 import { NavigationListProps } from "../NavigationTypes";
@@ -6,7 +7,9 @@ import { NavListContextValueProps, NavListProvider } from "../providers";
 
 export default function NavigationList({
   children,
+  cx,
   id,
+  isOpen,
   parentRef,
   ...rest
 }: NavigationListProps) {
@@ -18,7 +21,9 @@ export default function NavigationList({
   const listProps: ListProps = {
     ...rest,
     id,
+    cx: classNames({ srOnly: !isOpen }, cx),
   };
+
   return (
     <Fragment>
       <NavListProvider value={listContext}>
