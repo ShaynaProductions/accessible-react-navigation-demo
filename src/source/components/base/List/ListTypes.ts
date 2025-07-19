@@ -38,7 +38,7 @@ export interface ListItemProps extends BaseProps {
   /**
    * The children of the component.
    */
-  children?: React.ReactNode;
+  children: React.ReactNode;
   /**
    * Unique key for each item
    */
