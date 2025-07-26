@@ -2,6 +2,8 @@ import React from "react";
 import { BaseProps } from "@/source/types";
 import { ListProps } from "@/source/components/base";
 
+export type FocusableElement = HTMLAnchorElement | HTMLButtonElement;
+
 export interface NavigationProps extends BaseProps {
   children: React.ReactNode;
   label: string;

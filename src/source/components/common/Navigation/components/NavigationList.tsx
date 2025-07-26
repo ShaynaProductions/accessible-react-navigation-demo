@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { List, ListProps } from "@/source/components/base";
 
 import { NavigationListProps } from "../NavigationTypes";
-import { NavListContextValueProps, NavListProvider } from "../providers";
+import { NavListContextStoredValueProps, NavListProvider } from "../providers";
 
 export default function NavigationList({
   children,
@@ -15,9 +15,11 @@ export default function NavigationList({
 }: NavigationListProps) {
   const emptyRef = useRef<HTMLButtonElement | null>(null);
 
-  const listContext: NavListContextValueProps = {
+  const listContext: NavListContextStoredValueProps = {
+    isListOpen: isOpen,
     parentRef: parentRef || emptyRef,
   };
+
   const listProps: ListProps = {
     ...rest,
     id,

@@ -1,18 +1,20 @@
-import { createContext, useCallback, useState } from "react";
-import { DispatchNavAction, FocusableElement } from "./NavListProviderTypes";
+import React, { createContext, useCallback, useState } from "react";
+import { EmptyObject } from "@/source/types";
+
+import { FocusableElement } from "../../NavigationTypes";
+import {
+  DispatchNavAction,
+  NavListContextValueProps,
+} from "./NavListProviderTypes";
 import { ListActionTypes } from "../../utilities";
 
 const NavListContext = createContext<
-  | {
-      currentListItems?: FocusableElement[];
-      listDispatch?: DispatchNavAction;
-    }
-  | undefined
+  Partial<NavListContextValueProps> | EmptyObject
 >({});
 
 export default function NavListProvider({ children, value }) {
   const [currentListItems] = useState<FocusableElement[]>([]);
-  const {} = value;
+  const { isListOpen, parentRef }: NavListContextValueProps = value;
 
   const getCurrentIndex = (
     focusableEl: FocusableElement,
@@ -44,6 +46,7 @@ export default function NavListProvider({ children, value }) {
               currentListItems.push(focusableEl);
             }
           }
+
           break;
         case ListActionTypes.FIRST:
           /* istanbul ignore else */
@@ -106,7 +109,9 @@ export default function NavListProvider({ children, value }) {
     <NavListContext.Provider
       value={{
         currentListItems,
+        isListOpen,
         listDispatch,
+        parentRef,
       }}
     >
       {children}

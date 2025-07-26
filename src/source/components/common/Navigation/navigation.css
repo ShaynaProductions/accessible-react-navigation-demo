@@ -22,18 +22,21 @@
 
             --button-color: var(--button-ghost-color);
             --button-color-disabled: var(--button-ghost-color-disabled);
-            --button-color-focused: var(--button-ghost-color-focused);
+            /*--button-color-focused: var(--button-ghost-color-focused);*/
             --button-color-hover: var(--button-ghost-color-hovered);
             --button-color-pressed: var(--button-ghost-color-pressed);
 
             --button-fill: var(--button-ghost-fill);
             --button-fill-disabled: var(--button-ghost-fill-disabled);
-            --button-fill-focused: var(--button-ghost-fill-focused);
+            /*--button-fill-focused: var(--button-ghost-fill-focused);*/
             --button-fill-hover: var(--button-ghost-fill-hovered);
             --button-fill-pressed: var(--button-ghost-fill-pressed);
             position: relative;
             left: calc(var(--px) * -14);
 
+            &[data-focused] {
+                --button-border-color: var(--gray-12);
+            }
             & svg {
                 left: calc(var(--px) * 8);
                 position: relative;
