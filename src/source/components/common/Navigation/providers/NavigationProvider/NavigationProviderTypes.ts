@@ -13,16 +13,27 @@ export interface NavigationContextStoredValueProps {
 }
 
 export interface NavigationContextReturnValueProps {
+  getFirstChildElement: (
+    parentEl: HTMLButtonElement | null,
+  ) => FocusableElement;
+  getNextSiblingElement: (
+    parentEl: HTMLButtonElement | null,
+    focusableEl: FocusableElement,
+    currentFocusedList: FocusableElement[],
+    isListOpen: boolean,
+  ) => FocusableElement;
   registerNavItem: (
     navList: FocusableElement[],
     parentEl: HTMLButtonElement | null,
   ) => void;
   registerSubNav: (
     isListOpen: boolean,
-    navList: FocusableElement[],
     parentEl: HTMLButtonElement | null,
   ) => void;
-  setIsListOpen: (isListOpen: boolean, parentEl: HTMLButtonElement) => void;
+  setIsListOpen: (
+    isListOpen: boolean,
+    parentEl: HTMLButtonElement | null,
+  ) => void;
   setListItems: (
     navList: FocusableElement[],
     parentEl: HTMLButtonElement | null,

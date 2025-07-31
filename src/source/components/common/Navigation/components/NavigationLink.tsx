@@ -17,12 +17,13 @@ export default function NavigationLink({
   const navigationContextObject = use(NavigationProvider.context);
   const navListContextObject = use(NavListProvider.context);
 
-  const { registerNavItem } = returnTrueElementOrUndefined(
-    !!navigationContextObject,
-    navigationContextObject,
-  );
+  const { getNextSiblingElement, registerNavItem } =
+    returnTrueElementOrUndefined(
+      !!navigationContextObject,
+      navigationContextObject,
+    );
 
-  const { currentListItems, listDispatch, parentRef } =
+  const { currentListItems, isListOpen, listDispatch, parentRef } =
     returnTrueElementOrUndefined(!!navListContextObject, navListContextObject);
 
   const linkRef = useRef<FocusableElement>(null);
@@ -40,6 +41,9 @@ export default function NavigationLink({
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
+      const parentEl = parentRef.current;
+      const linkEl = linkRef.current as FocusableElement;
+
       switch (e.key) {
         case Keys.HOME:
         case Keys.END:
@@ -50,7 +54,6 @@ export default function NavigationLink({
           e.preventDefault();
           break;
       }
-      const linkEl = linkRef.current as FocusableElement;
 
       switch (e.key) {
         case Keys.HOME:
@@ -64,12 +67,33 @@ export default function NavigationLink({
           listDispatch(ListActionTypes.PREVIOUS, linkEl);
           break;
         case Keys.RIGHT:
-        case Keys.DOWN:
           listDispatch(ListActionTypes.NEXT, linkEl);
+          e.stopPropagation();
+          break;
+        case Keys.DOWN:
+          if (isListOpen) {
+            const nextItem = getNextSiblingElement(
+              parentEl,
+              linkEl,
+              currentListItems,
+              isListOpen,
+            );
+            listDispatch(ListActionTypes.SET, nextItem);
+          } else {
+            listDispatch(ListActionTypes.NEXT, linkEl);
+          }
+
+          e.stopPropagation();
           break;
       }
     },
-    [listDispatch],
+    [
+      currentListItems,
+      getNextSiblingElement,
+      isListOpen,
+      listDispatch,
+      parentRef,
+    ],
   );
 
   const linkProps = {

@@ -16,6 +16,7 @@ export default function Navigation({
       value={{
         storedParentEl: parentRef?.current || null,
         storedList: [],
+        isListOpen: true,
       }}
     >
       <nav aria-label={label} className={cx}>

@@ -16,23 +16,23 @@ export default function NavListProvider({ children, value }) {
   const [currentListItems] = useState<FocusableElement[]>([]);
   const { isListOpen, parentRef }: NavListContextValueProps = value;
 
-  const getCurrentIndex = (
-    focusableEl: FocusableElement,
-    currentListItems: FocusableElement[],
-  ) => {
-    let currentIndex = -1;
-    /* istanbul ignore else */
-    if (currentListItems.length > 0) {
-      currentIndex = currentListItems.indexOf(focusableEl);
-    }
-    return currentIndex;
-  };
+  const getCurrentIndex = useCallback(
+    (focusableEl: FocusableElement, currentListItems: FocusableElement[]) => {
+      let currentIndex = -1;
+      /* istanbul ignore else */
+      if (currentListItems.length > 0) {
+        currentIndex = currentListItems.indexOf(focusableEl);
+      }
+      return currentIndex;
+    },
+    [],
+  );
 
   const listDispatch: DispatchNavAction = useCallback(
     (actionType: number, focusableEl?: FocusableElement) => {
       const currentListLength = currentListItems?.length || 0;
 
-      let currentIndex: number = 0,
+      let currentIndex: number = -1,
         dispatchItem: FocusableElement | undefined,
         newIndex: number = 0,
         shouldFocus: boolean = false;
@@ -46,7 +46,10 @@ export default function NavListProvider({ children, value }) {
               currentListItems.push(focusableEl);
             }
           }
-
+          break;
+        case ListActionTypes.SET:
+          dispatchItem = focusableEl;
+          shouldFocus = true;
           break;
         case ListActionTypes.FIRST:
           /* istanbul ignore else */
@@ -87,14 +90,13 @@ export default function NavListProvider({ children, value }) {
 
           newIndex = currentIndex + 1;
 
-          if (newIndex > 0 && newIndex >= currentListLength) {
+          if (newIndex > currentListLength - 1) {
             newIndex = 0;
           }
-          /* istanbul ignore else */
-          if (currentListItems && newIndex >= 0) {
-            dispatchItem = currentListItems[newIndex];
-            shouldFocus = true;
-          }
+
+          dispatchItem = currentListItems[newIndex];
+          shouldFocus = true;
+
           break;
       }
 
@@ -102,7 +104,7 @@ export default function NavListProvider({ children, value }) {
         dispatchItem?.focus({ preventScroll: true });
       }
     },
-    [currentListItems],
+    [currentListItems, getCurrentIndex],
   );
 
   return (

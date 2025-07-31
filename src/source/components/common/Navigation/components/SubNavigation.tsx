@@ -2,7 +2,6 @@
 import React, { use, useCallback, useEffect, useRef, useState } from "react";
 
 import { Button, ListItem } from "@/source/components/base";
-import { usePrevious } from "@/source/hooks";
 import { ChevronRightIcon } from "@/source/icons";
 import { returnTrueElementOrUndefined } from "@/source/utilities";
 
@@ -19,33 +18,36 @@ export default function SubNavigation({
 }: SubNavigationProps) {
   const navigationContextObject = use(NavigationProvider.context);
 
-  const { registerSubNav, setIsListOpen, setListItems } =
-    returnTrueElementOrUndefined(
-      !!navigationContextObject,
-      navigationContextObject,
-    );
+  const {
+    getFirstChildElement,
+    getNextSiblingElement,
+    registerSubNav,
+    setIsListOpen,
+    setListItems,
+  } = returnTrueElementOrUndefined(
+    !!navigationContextObject,
+    navigationContextObject,
+  );
 
   const navListContextObject = use(NavListProvider.context);
 
-  const { currentListItems, listDispatch, parentRef } =
+  const { currentListItems, listDispatch, isListOpen, parentRef } =
     returnTrueElementOrUndefined(!!navListContextObject, navListContextObject);
 
   const buttonRef = useRef<HTMLButtonElement | null>(null);
-  const prevButtonRef = usePrevious(buttonRef);
   const [isSubListOpen, setIsSubListOpen] = useState(false);
 
   useEffect(() => {
-    if (buttonRef !== prevButtonRef) {
-      const buttonEl = buttonRef?.current;
+    const buttonEl = buttonRef?.current;
+    if (buttonRef) {
       listDispatch(ListActionTypes.REGISTER, buttonEl);
-      registerSubNav(isSubListOpen, currentListItems, buttonEl);
     }
+    registerSubNav(isSubListOpen, buttonEl);
   }, [
     buttonRef,
-    currentListItems,
     isSubListOpen,
     listDispatch,
-    prevButtonRef,
+    // prevButtonRef,
     registerSubNav,
   ]);
 
@@ -89,6 +91,7 @@ export default function SubNavigation({
         case Keys.DOWN:
         case Keys.TAB:
           e.preventDefault();
+          e.stopPropagation();
           break;
       }
       const buttonEl = buttonRef.current as FocusableElement;
@@ -111,13 +114,29 @@ export default function SubNavigation({
           break;
         case Keys.DOWN:
           if (isSubListOpen) {
+            const childEl = getFirstChildElement(buttonEl);
+            listDispatch(ListActionTypes.SET, childEl);
           } else {
-            listDispatch(ListActionTypes.NEXT, buttonEl);
+            const nextItem = getNextSiblingElement(
+              parentRef.current,
+              buttonEl,
+              currentListItems,
+              isListOpen,
+            );
+            listDispatch(ListActionTypes.SET, nextItem);
           }
           break;
       }
     },
-    [isSubListOpen, listDispatch],
+    [
+      currentListItems,
+      getFirstChildElement,
+      getNextSiblingElement,
+      isListOpen,
+      isSubListOpen,
+      listDispatch,
+      parentRef,
+    ],
   );
 
   const buttonProps = {
