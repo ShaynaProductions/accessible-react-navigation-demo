@@ -1,18 +1,11 @@
-import {
-  KeyboardEvent,
-  RefObject,
-  use,
-  useCallback,
-  useEffect,
-  useRef,
-} from "react";
+import React, { use, useCallback, useEffect, useRef } from "react";
 
 import { InternalLink, ListItem } from "@/source/components/base";
 import { usePrevious } from "@/source/hooks";
 import { returnTrueElementOrUndefined } from "@/source/utilities";
 
-import { NavigationItemProps } from "../NavigationTypes";
-import { FocusableElement, NavListProvider } from "../providers";
+import { FocusableElement, NavigationItemProps } from "../NavigationTypes";
+import { NavigationContext, NavListContext } from "../providers";
 import { Keys, ListActionTypes } from "../utilities";
 
 export default function NavigationLink({
@@ -21,25 +14,35 @@ export default function NavigationLink({
   label,
   ...rest
 }: NavigationItemProps) {
-  const navListContextObject = use(NavListProvider.context);
+  const navigationContextObject = use(NavigationContext);
+  const navListContextObject = use(NavListContext);
 
-  const { listDispatch } = returnTrueElementOrUndefined(
-    !!navListContextObject,
-    navListContextObject,
+  const { getNextElement, registerNavItem } = returnTrueElementOrUndefined(
+    !!navigationContextObject,
+    navigationContextObject,
   );
+
+  const { currentListItems, isListOpen, listDispatch, parentRef } =
+    returnTrueElementOrUndefined(!!navListContextObject, navListContextObject);
 
   const linkRef = useRef<FocusableElement>(null);
   const prevLinkRef = usePrevious(linkRef);
 
   useEffect(() => {
-    /* istanbul ignore else */
     if (linkRef !== prevLinkRef) {
       listDispatch(ListActionTypes.REGISTER, linkRef.current);
     }
   }, [linkRef, listDispatch, prevLinkRef]);
 
+  useEffect(() => {
+    registerNavItem(currentListItems, parentRef.current);
+  }, [currentListItems, parentRef, registerNavItem]);
+
   const handleKeyDown = useCallback(
-    (e: KeyboardEvent) => {
+    (e: React.KeyboardEvent) => {
+      const parentEl = parentRef.current;
+      const linkEl = linkRef.current as FocusableElement;
+
       switch (e.key) {
         case Keys.HOME:
         case Keys.END:
@@ -48,9 +51,9 @@ export default function NavigationLink({
         case Keys.RIGHT:
         case Keys.DOWN:
           e.preventDefault();
+          e.stopPropagation();
           break;
       }
-      const linkEl = linkRef.current as FocusableElement;
 
       switch (e.key) {
         case Keys.HOME:
@@ -64,17 +67,25 @@ export default function NavigationLink({
           listDispatch(ListActionTypes.PREVIOUS, linkEl);
           break;
         case Keys.RIGHT:
-        case Keys.DOWN:
           listDispatch(ListActionTypes.NEXT, linkEl);
+          break;
+        case Keys.DOWN:
+          const nextItem = getNextElement(
+            parentEl,
+            linkEl,
+            currentListItems,
+            isListOpen,
+          );
+          listDispatch(ListActionTypes.SET, nextItem);
           break;
       }
     },
-    [listDispatch],
+    [currentListItems, getNextElement, isListOpen, listDispatch, parentRef],
   );
 
   const linkProps = {
     ...rest,
-    ref: linkRef as unknown as RefObject<HTMLAnchorElement>,
+    ref: linkRef as unknown as React.RefObject<HTMLAnchorElement>,
   };
   return (
     <>
