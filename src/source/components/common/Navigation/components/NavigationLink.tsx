@@ -17,11 +17,10 @@ export default function NavigationLink({
   const navigationContextObject = use(NavigationProvider.context);
   const navListContextObject = use(NavListProvider.context);
 
-  const { getNextSiblingElement, registerNavItem } =
-    returnTrueElementOrUndefined(
-      !!navigationContextObject,
-      navigationContextObject,
-    );
+  const { getNextElement, registerNavItem } = returnTrueElementOrUndefined(
+    !!navigationContextObject,
+    navigationContextObject,
+  );
 
   const { currentListItems, isListOpen, listDispatch, parentRef } =
     returnTrueElementOrUndefined(!!navListContextObject, navListContextObject);
@@ -52,6 +51,7 @@ export default function NavigationLink({
         case Keys.RIGHT:
         case Keys.DOWN:
           e.preventDefault();
+          e.stopPropagation();
           break;
       }
 
@@ -68,32 +68,19 @@ export default function NavigationLink({
           break;
         case Keys.RIGHT:
           listDispatch(ListActionTypes.NEXT, linkEl);
-          e.stopPropagation();
           break;
         case Keys.DOWN:
-          if (isListOpen) {
-            const nextItem = getNextSiblingElement(
-              parentEl,
-              linkEl,
-              currentListItems,
-              isListOpen,
-            );
-            listDispatch(ListActionTypes.SET, nextItem);
-          } else {
-            listDispatch(ListActionTypes.NEXT, linkEl);
-          }
-
-          e.stopPropagation();
+          const nextItem = getNextElement(
+            parentEl,
+            linkEl,
+            currentListItems,
+            isListOpen,
+          );
+          listDispatch(ListActionTypes.SET, nextItem);
           break;
       }
     },
-    [
-      currentListItems,
-      getNextSiblingElement,
-      isListOpen,
-      listDispatch,
-      parentRef,
-    ],
+    [currentListItems, getNextElement, isListOpen, listDispatch, parentRef],
   );
 
   const linkProps = {

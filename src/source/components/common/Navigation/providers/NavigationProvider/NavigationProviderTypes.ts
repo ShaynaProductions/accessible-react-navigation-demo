@@ -1,10 +1,4 @@
-import { JSX } from "react";
 import { FocusableElement } from "../../NavigationTypes";
-
-export interface NavigationProviderProps {
-  children: JSX.Element;
-  value: NavigationContextStoredValueProps;
-}
 
 export interface NavigationContextStoredValueProps {
   isListOpen?: boolean;
@@ -16,7 +10,7 @@ export interface NavigationContextReturnValueProps {
   getFirstChildElement: (
     parentEl: HTMLButtonElement | null,
   ) => FocusableElement;
-  getNextSiblingElement: (
+  getNextElement: (
     parentEl: HTMLButtonElement | null,
     focusableEl: FocusableElement,
     currentFocusedList: FocusableElement[],

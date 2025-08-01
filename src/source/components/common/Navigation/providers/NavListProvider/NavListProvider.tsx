@@ -90,10 +90,6 @@ export default function NavListProvider({ children, value }) {
 
           newIndex = currentIndex + 1;
 
-          if (newIndex > currentListLength - 1) {
-            newIndex = 0;
-          }
-
           dispatchItem = currentListItems[newIndex];
           shouldFocus = true;
 

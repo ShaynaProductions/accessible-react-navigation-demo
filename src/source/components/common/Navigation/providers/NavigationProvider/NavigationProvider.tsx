@@ -62,7 +62,7 @@ export default function NavigationProvider({ children, value }): JSX.Element {
 
   const _getNavObjectContainingElement = useCallback(
     (focusableElement: FocusableElement): NavigationContextStoredValueProps => {
-      let returnObj;
+      let returnObj: NavigationContextStoredValueProps = {};
       for (const navObject of navigationArray) {
         const { storedList } = navObject;
         if (storedList.length > 0) {
@@ -77,26 +77,11 @@ export default function NavigationProvider({ children, value }): JSX.Element {
     [navigationArray],
   );
 
-  // const _getNextElement = useCallback(
-  //   (parentEl, focusedEl) => {
-  //     const parentIndex = _getNavigationIndex(parentEl);
-  //     const { storedList } = _getNavigationArray()[parentIndex];
-  //     const currentElementIndex = storedList.indexOf(focusedEl);
-  //     let nextIndex = 0;
-  //
-  //     if (currentElementIndex === storedList.length - 1) {
-  //       nextIndex = 0;
-  //     } else {
-  //       nextIndex = currentElementIndex + 1;
-  //     }
-  //
-  //     return storedList[nextIndex];
-  //   },
-  //   [_getNavigationArray, _getNavigationIndex],
-  // );
-
-  const getNextElementInRow = (focusableEl, currentList) => {
-    let newIndex = 0;
+  const _getNextElementInRow = (
+    focusableEl: FocusableElement,
+    currentList: FocusableElement[],
+  ) => {
+    let newIndex: number;
 
     const currentIndex = currentList.indexOf(focusableEl);
 
@@ -108,7 +93,7 @@ export default function NavigationProvider({ children, value }): JSX.Element {
     return currentList[newIndex];
   };
 
-  const _isTopRow = (parentEl) => {
+  const _isTopRow = (parentEl: HTMLButtonElement | null) => {
     const topRowParent = _getNavigationArray()[0].storedParentEl;
     return topRowParent === parentEl;
   };
@@ -132,38 +117,37 @@ export default function NavigationProvider({ children, value }): JSX.Element {
       return currentList[0];
     };
 
-  const getNextSiblingElement: NavigationContextReturnValueProps["getNextSiblingElement"] =
-    (
-      parentEl,
+  const getNextElement: NavigationContextReturnValueProps["getNextElement"] = (
+    parentEl,
+    focusableEl,
+    currentFocusedList,
+    isListOpen = false,
+  ): FocusableElement => {
+    const isTopRow = _isTopRow(parentEl);
+    const currentlyFocusedIndex = currentFocusedList.indexOf(focusableEl);
+    let nextFocusableElement: FocusableElement = _getNextElementInRow(
       focusableEl,
       currentFocusedList,
-      isListOpen,
-    ): FocusableElement => {
-      const isTopRow = _isTopRow(parentEl);
-      const currentlyFocusedIndex = currentFocusedList.indexOf(focusableEl);
-      let nextFocusableElement: FocusableElement = getNextElementInRow(
-        focusableEl,
-        currentFocusedList,
-      );
+    );
 
-      if (!isTopRow) {
-        if (
-          currentlyFocusedIndex === currentFocusedList.length - 1 &&
-          isListOpen
-        ) {
-          const { storedParentEl, storedList, isListOpen } =
-            _getNavObjectContainingElement(parentEl as FocusableElement);
-          nextFocusableElement = getNextSiblingElement(
-            storedParentEl as HTMLButtonElement | null,
-            parentEl as FocusableElement,
-            storedList as FocusableElement[],
-            isListOpen || false,
-          );
-        }
+    if (!isTopRow) {
+      if (
+        currentlyFocusedIndex === currentFocusedList.length - 1 &&
+        isListOpen
+      ) {
+        const { storedParentEl, storedList, isListOpen } =
+          _getNavObjectContainingElement(parentEl as FocusableElement);
+        nextFocusableElement = getNextElement(
+          storedParentEl as HTMLButtonElement | null,
+          parentEl as FocusableElement,
+          storedList as FocusableElement[],
+          isListOpen as boolean,
+        );
       }
+    }
 
-      return nextFocusableElement;
-    };
+    return nextFocusableElement;
+  };
 
   const setIsListOpen: NavigationContextReturnValueProps["setIsListOpen"] =
     useCallback(
@@ -216,7 +200,7 @@ export default function NavigationProvider({ children, value }): JSX.Element {
     <NavigationContext.Provider
       value={{
         getFirstChildElement,
-        getNextSiblingElement,
+        getNextElement,
         registerNavItem,
         registerSubNav,
         setIsListOpen,

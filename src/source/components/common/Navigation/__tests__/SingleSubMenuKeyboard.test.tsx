@@ -133,9 +133,6 @@ describe("Single SubMenu Navigation", () => {
     const storyLink = getByRole("link", { name: "Stories" });
     const commentaryLink = getByRole("link", { name: "Commentary" });
     const referenceButton = getByRole("button", { name: "Reference sub menu" });
-    const charactersLink = getByRole("link", { name: "Characters" });
-    const glossaryLink = getByRole("link", { name: "Glossary" });
-    const appendicesLink = getByRole("link", { name: "Appendices" });
     const blogLink = getByRole("link", { name: "Musings" });
 
     await userEvent.tab();

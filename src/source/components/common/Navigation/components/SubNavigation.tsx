@@ -20,7 +20,7 @@ export default function SubNavigation({
 
   const {
     getFirstChildElement,
-    getNextSiblingElement,
+    getNextElement,
     registerSubNav,
     setIsListOpen,
     setListItems,
@@ -39,17 +39,9 @@ export default function SubNavigation({
 
   useEffect(() => {
     const buttonEl = buttonRef?.current;
-    if (buttonRef) {
-      listDispatch(ListActionTypes.REGISTER, buttonEl);
-    }
+    listDispatch(ListActionTypes.REGISTER, buttonEl);
     registerSubNav(isSubListOpen, buttonEl);
-  }, [
-    buttonRef,
-    isSubListOpen,
-    listDispatch,
-    // prevButtonRef,
-    registerSubNav,
-  ]);
+  }, [buttonRef, isSubListOpen, listDispatch, registerSubNav]);
 
   useEffect(() => {
     setListItems(currentListItems, parentRef.current);
@@ -114,10 +106,9 @@ export default function SubNavigation({
           break;
         case Keys.DOWN:
           if (isSubListOpen) {
-            const childEl = getFirstChildElement(buttonEl);
-            listDispatch(ListActionTypes.SET, childEl);
+            listDispatch(ListActionTypes.SET, getFirstChildElement(buttonEl));
           } else {
-            const nextItem = getNextSiblingElement(
+            const nextItem = getNextElement(
               parentRef.current,
               buttonEl,
               currentListItems,
@@ -131,7 +122,7 @@ export default function SubNavigation({
     [
       currentListItems,
       getFirstChildElement,
-      getNextSiblingElement,
+      getNextElement,
       isListOpen,
       isSubListOpen,
       listDispatch,
@@ -144,7 +135,6 @@ export default function SubNavigation({
     "aria-expanded": true,
     "aria-label": `${label} sub menu`,
     cx: returnTrueElementOrUndefined(isSubListOpen, "expanded"),
-    onPress: () => handlePress(),
     ref: buttonRef,
     testId: testId,
   };
@@ -156,7 +146,7 @@ export default function SubNavigation({
   };
   return (
     <ListItem key={id} onKeyDown={handleKeyDown}>
-      <Button {...buttonProps}>
+      <Button {...buttonProps} onPress={handlePress}>
         {label}
         <ChevronRightIcon />
       </Button>
