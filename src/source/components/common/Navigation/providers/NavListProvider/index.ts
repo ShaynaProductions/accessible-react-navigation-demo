@@ -1,2 +1,2 @@
-export { default as NavListProvider } from "./NavListProvider";
+export { default as NavListProvider, NavListContext } from "./NavListProvider";
 export * from "./NavListProviderTypes";

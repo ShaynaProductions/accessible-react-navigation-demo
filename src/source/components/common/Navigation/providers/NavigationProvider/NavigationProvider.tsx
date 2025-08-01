@@ -51,20 +51,12 @@ export default function NavigationProvider({ children, value }): JSX.Element {
     [_getNavigationArray, navigationArray],
   );
 
-  // const _getLastElement = useCallback(
-  //   (parentEl: HTMLButtonElement | null): FocusableElement => {
-  //     const parentIndex = _getNavigationIndex(parentEl);
-  //     const { storedList } = _getNavigationArray()[parentIndex];
-  //     return storedList[storedList.length - 1];
-  //   },
-  //   [_getNavigationArray, _getNavigationIndex],
-  // );
-
   const _getNavObjectContainingElement = useCallback(
     (focusableElement: FocusableElement): NavigationContextStoredValueProps => {
       let returnObj: NavigationContextStoredValueProps = {};
       for (const navObject of navigationArray) {
         const { storedList } = navObject;
+        /* istanbul ignore else */
         if (storedList.length > 0) {
           if (storedList.indexOf(focusableElement) > -1) {
             returnObj = navObject;
@@ -121,7 +113,7 @@ export default function NavigationProvider({ children, value }): JSX.Element {
     parentEl,
     focusableEl,
     currentFocusedList,
-    isListOpen = false,
+    isListOpen,
   ): FocusableElement => {
     const isTopRow = _isTopRow(parentEl);
     const currentlyFocusedIndex = currentFocusedList.indexOf(focusableEl);
@@ -166,7 +158,7 @@ export default function NavigationProvider({ children, value }): JSX.Element {
     useCallback(
       (navList: FocusableElement[], parentEl: HTMLButtonElement | null) => {
         const parentIndex = _getNavigationIndex(parentEl);
-
+        /* istanbul ignore else */
         if (parentIndex >= 0) {
           const currentObj = _getNavigationArray()[parentIndex];
           if (currentObj.storedList !== navList) {

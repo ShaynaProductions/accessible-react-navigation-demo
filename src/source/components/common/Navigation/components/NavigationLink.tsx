@@ -5,7 +5,7 @@ import { usePrevious } from "@/source/hooks";
 import { returnTrueElementOrUndefined } from "@/source/utilities";
 
 import { FocusableElement, NavigationItemProps } from "../NavigationTypes";
-import { NavigationProvider, NavListProvider } from "../providers";
+import { NavigationContext, NavListContext } from "../providers";
 import { Keys, ListActionTypes } from "../utilities";
 
 export default function NavigationLink({
@@ -14,8 +14,8 @@ export default function NavigationLink({
   label,
   ...rest
 }: NavigationItemProps) {
-  const navigationContextObject = use(NavigationProvider.context);
-  const navListContextObject = use(NavListProvider.context);
+  const navigationContextObject = use(NavigationContext);
+  const navListContextObject = use(NavListContext);
 
   const { getNextElement, registerNavItem } = returnTrueElementOrUndefined(
     !!navigationContextObject,

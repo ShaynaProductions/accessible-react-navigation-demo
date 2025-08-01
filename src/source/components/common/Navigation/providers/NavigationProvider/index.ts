@@ -1,2 +1,5 @@
-export { default as NavigationProvider } from "./NavigationProvider";
+export {
+  default as NavigationProvider,
+  NavigationContext,
+} from "./NavigationProvider";
 export * from "./NavigationProviderTypes";

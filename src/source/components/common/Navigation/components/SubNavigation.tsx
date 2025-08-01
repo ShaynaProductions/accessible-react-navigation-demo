@@ -7,7 +7,7 @@ import { returnTrueElementOrUndefined } from "@/source/utilities";
 
 import NavigationList from "./NavigationList";
 import { FocusableElement, SubNavigationProps } from "../NavigationTypes";
-import { NavigationProvider, NavListProvider } from "../providers";
+import { NavigationContext, NavListContext } from "../providers";
 import { Keys, ListActionTypes } from "../utilities";
 
 export default function SubNavigation({
@@ -16,7 +16,8 @@ export default function SubNavigation({
   label,
   testId,
 }: SubNavigationProps) {
-  const navigationContextObject = use(NavigationProvider.context);
+  const navigationContextObject = use(NavigationContext);
+  const navListContextObject = use(NavListContext);
 
   const {
     getFirstChildElement,
@@ -28,8 +29,6 @@ export default function SubNavigation({
     !!navigationContextObject,
     navigationContextObject,
   );
-
-  const navListContextObject = use(NavListProvider.context);
 
   const { currentListItems, listDispatch, isListOpen, parentRef } =
     returnTrueElementOrUndefined(!!navListContextObject, navListContextObject);

@@ -63,6 +63,12 @@ describe("Single SubMenu Navigation", () => {
     expect(readMenu).toHaveClass("srOnly");
     await userEvent.keyboard("{Enter}");
     expect(readMenu).not.toHaveClass("srOnly");
+    await userEvent.keyboard("{Enter}");
+
+    expect(readMenu).toHaveClass("srOnly");
+    await userEvent.keyboard("{Enter}");
+
+    expect(readMenu).not.toHaveClass("srOnly");
     await userEvent.keyboard("{Down}");
     expect(storyLink).toHaveFocus();
     await userEvent.keyboard("{Down}");

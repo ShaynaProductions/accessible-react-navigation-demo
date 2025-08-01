@@ -8,7 +8,7 @@ import {
 } from "./NavListProviderTypes";
 import { ListActionTypes } from "../../utilities";
 
-const NavListContext = createContext<
+export const NavListContext = createContext<
   Partial<NavListContextValueProps> | EmptyObject
 >({});
 
