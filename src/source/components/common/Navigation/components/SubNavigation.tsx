@@ -22,6 +22,7 @@ export default function SubNavigation({
   const {
     getFirstChildElement,
     getNextElement,
+    getPreviousElement,
     registerSubNav,
     setIsListOpen,
     setListItems,
@@ -48,7 +49,7 @@ export default function SubNavigation({
 
   const closeSubNav = useCallback(
     (buttonEl: HTMLButtonElement) => {
-      setIsListOpen(buttonEl, false);
+      setIsListOpen(false, buttonEl);
       setIsSubListOpen(false);
     },
     [setIsListOpen, setIsSubListOpen],
@@ -56,7 +57,7 @@ export default function SubNavigation({
 
   const openSubNav = useCallback(
     (buttonEl: HTMLButtonElement) => {
-      setIsListOpen(buttonEl, true);
+      setIsListOpen(true, buttonEl);
       setIsSubListOpen(true);
     },
     [setIsListOpen, setIsSubListOpen],
@@ -73,6 +74,9 @@ export default function SubNavigation({
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
+      const parentEl = parentRef.current;
+      const buttonEl = buttonRef.current as FocusableElement;
+
       switch (e.key) {
         case Keys.HOME:
         case Keys.END:
@@ -85,7 +89,6 @@ export default function SubNavigation({
           e.stopPropagation();
           break;
       }
-      const buttonEl = buttonRef.current as FocusableElement;
 
       switch (e.key) {
         case Keys.HOME:
@@ -98,7 +101,14 @@ export default function SubNavigation({
           listDispatch(ListActionTypes.PREVIOUS, buttonEl);
           break;
         case Keys.UP:
-          listDispatch(ListActionTypes.PREVIOUS, buttonEl);
+          const prevItem = getPreviousElement(
+            parentEl,
+            buttonEl,
+            currentListItems,
+            isListOpen,
+          );
+
+          listDispatch(ListActionTypes.SET, prevItem);
           break;
         case Keys.RIGHT:
           listDispatch(ListActionTypes.NEXT, buttonEl);
@@ -122,6 +132,7 @@ export default function SubNavigation({
       currentListItems,
       getFirstChildElement,
       getNextElement,
+      getPreviousElement,
       isListOpen,
       isSubListOpen,
       listDispatch,

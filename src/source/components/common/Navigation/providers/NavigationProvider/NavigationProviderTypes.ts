@@ -16,6 +16,12 @@ export interface NavigationContextReturnValueProps {
     currentFocusedList: FocusableElement[],
     isListOpen: boolean,
   ) => FocusableElement;
+  getPreviousElement: (
+    parentEl: HTMLButtonElement | null,
+    focusableEl: FocusableElement,
+    currentFocusedList: FocusableElement[],
+    isListOpen: boolean,
+  ) => FocusableElement;
   registerNavItem: (
     navList: FocusableElement[],
     parentEl: HTMLButtonElement | null,
