@@ -352,4 +352,46 @@ describe("Single SubMenu Navigation", () => {
     await userEvent.tab({ shift: true });
     expect(aboutLink).toHaveFocus();
   });
+
+  it("should close children subnavigation when closed itself", async () => {
+    const { getByRole, getByTestId } = renderNavigation(reqProps);
+
+    const frontButton = getByRole("button", { name: frontButtonLabel });
+    const aboutLink = getByRole("link", { name: "About" });
+    const readButton = getByRole("button", { name: "Read sub menu" });
+    const readMenu = getByTestId(`${TEST_ID}-read-menu-read-menu-list`);
+    const storyLink = getByRole("link", { name: "Stories" });
+    const commentaryLink = getByRole("link", { name: "Commentary" });
+    const referenceButton = getByRole("button", { name: "Reference sub menu" });
+    const referenceMenu = getByTestId(
+      `${TEST_ID}-reference-menu-reference-menu-list`,
+    );
+
+    await userEvent.tab();
+    expect(frontButton).toHaveFocus();
+    await userEvent.tab();
+    expect(aboutLink).toHaveFocus();
+    await userEvent.tab();
+    expect(readButton).toHaveFocus();
+    expect(readMenu).toHaveClass("srOnly");
+    await userEvent.keyboard("{Enter}");
+    expect(readMenu).not.toHaveClass("srOnly");
+    await userEvent.keyboard("{ArrowDown}");
+    expect(storyLink).toHaveFocus();
+    await userEvent.keyboard("{ArrowDown}");
+    expect(commentaryLink).toHaveFocus();
+    await userEvent.keyboard("{ArrowDown}");
+    expect(referenceButton).toHaveFocus();
+    expect(referenceMenu).toHaveClass("srOnly");
+    await userEvent.keyboard("{Enter}");
+    expect(referenceMenu).not.toHaveClass("srOnly");
+    await userEvent.keyboard("{ArrowUp}");
+    await userEvent.keyboard("{ArrowUp}");
+    await userEvent.keyboard("{ArrowUp}");
+    expect(readButton).toHaveFocus();
+    expect(readMenu).not.toHaveClass("srOnly");
+    await userEvent.keyboard("{Enter}");
+    expect(readMenu).toHaveClass("srOnly");
+    expect(referenceMenu).toHaveClass("srOnly");
+  });
 });

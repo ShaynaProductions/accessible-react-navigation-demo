@@ -7,7 +7,11 @@ import { returnTrueElementOrUndefined } from "@/source/utilities";
 
 import NavigationList from "./NavigationList";
 import { FocusableElement, SubNavigationProps } from "../NavigationTypes";
-import { NavigationContext, NavListContext } from "../providers";
+import {
+  NavigationContext,
+  NavigationContextStoredValueProps,
+  NavListContext,
+} from "../providers";
 import { Keys, ListActionTypes } from "../utilities";
 
 export default function SubNavigation({
@@ -23,6 +27,7 @@ export default function SubNavigation({
     getFirstChildElement,
     getNextElement,
     getPreviousElement,
+    getSubNavigation,
     registerSubNav,
     setIsListOpen,
     setListItems,
@@ -37,22 +42,22 @@ export default function SubNavigation({
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const [isSubListOpen, setIsSubListOpen] = useState(false);
 
-  useEffect(() => {
-    const buttonEl = buttonRef?.current;
-    listDispatch(ListActionTypes.REGISTER, buttonEl);
-    registerSubNav(isSubListOpen, buttonEl);
-  }, [buttonRef, isSubListOpen, listDispatch, registerSubNav]);
-
-  useEffect(() => {
-    setListItems(currentListItems, parentRef.current);
-  }, [currentListItems, parentRef, setListItems]);
-
   const closeSubNav = useCallback(
     (buttonEl: HTMLButtonElement) => {
+      const dispatchArray: NavigationContextStoredValueProps[] =
+        getSubNavigation(buttonEl);
+
+      for (const dispatchObj of dispatchArray) {
+        const { dispatchChildClose, storedParentEl, isListOpen } = dispatchObj;
+        if (isListOpen && dispatchChildClose && storedParentEl) {
+          dispatchChildClose(storedParentEl);
+        }
+      }
+
       setIsListOpen(false, buttonEl);
       setIsSubListOpen(false);
     },
-    [setIsListOpen, setIsSubListOpen],
+    [getSubNavigation, setIsListOpen],
   );
 
   const openSubNav = useCallback(
@@ -62,6 +67,16 @@ export default function SubNavigation({
     },
     [setIsListOpen, setIsSubListOpen],
   );
+
+  useEffect(() => {
+    const buttonEl = buttonRef?.current;
+    listDispatch(ListActionTypes.REGISTER, buttonEl);
+    registerSubNav(isSubListOpen, buttonEl, closeSubNav);
+  }, [buttonRef, closeSubNav, isSubListOpen, listDispatch, registerSubNav]);
+
+  useEffect(() => {
+    setListItems(currentListItems, parentRef.current);
+  }, [currentListItems, parentRef, setListItems]);
 
   const handlePress = useCallback(() => {
     const buttonEl = buttonRef.current as HTMLButtonElement;

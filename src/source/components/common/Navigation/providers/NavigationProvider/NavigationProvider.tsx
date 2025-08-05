@@ -143,6 +143,23 @@ export default function NavigationProvider({ children, value }): JSX.Element {
     return currentList[newIndex];
   };
 
+  const _setDispatchChildClose = useCallback(
+    (parentEl: HTMLButtonElement | null, dispatchChildClose: () => void) => {
+      const parentIndex: number = _getNavigationIndex(parentEl);
+      const currentObj = _getNavigationArray()[parentIndex];
+      if (
+        parentIndex >= 0 &&
+        currentObj.dispatchChildClose?.toString() !==
+          dispatchChildClose.toString()
+      ) {
+        _setNavigationArrayObject(parentIndex, {
+          dispatchChildClose: dispatchChildClose,
+        });
+      }
+    },
+    [_getNavigationArray, _getNavigationIndex, _setNavigationArrayObject],
+  );
+
   const _setParentEl = useCallback(
     (parentEl: HTMLButtonElement | null) => {
       const parentIndex = _getNavigationIndex(parentEl);
@@ -259,6 +276,25 @@ export default function NavigationProvider({ children, value }): JSX.Element {
       ],
     );
 
+  const getSubNavigation: NavigationContextReturnValueProps["getSubNavigation"] =
+    useCallback(
+      (parentEl) => {
+        const subNavListItems: NavigationContextStoredValueProps[] = [];
+        const currentNavObject = _getNavObjectByParent(parentEl);
+        const currentList = currentNavObject.storedList;
+        /* istanbul ignore else */
+        if (currentList) {
+          for (const currentItem of currentList) {
+            if (currentItem.type === "button") {
+              subNavListItems.push(_getNavObjectByParent(currentItem));
+            }
+          }
+        }
+        return subNavListItems;
+      },
+      [_getNavObjectByParent],
+    );
+
   const setIsListOpen: NavigationContextReturnValueProps["setIsListOpen"] =
     useCallback(
       (isListOpen: boolean, parentEl: HTMLButtonElement | null) => {
@@ -299,11 +335,16 @@ export default function NavigationProvider({ children, value }): JSX.Element {
     );
   const registerSubNav: NavigationContextReturnValueProps["registerSubNav"] =
     useCallback(
-      (isListOpen: boolean, parentEl: HTMLButtonElement | null) => {
+      (
+        isListOpen: boolean,
+        parentEl: HTMLButtonElement | null,
+        dispatchChildClose: () => void,
+      ) => {
         _setParentEl(parentEl);
         setIsListOpen(isListOpen, parentEl);
+        _setDispatchChildClose(parentEl, dispatchChildClose);
       },
-      [setIsListOpen, _setParentEl],
+      [_setParentEl, setIsListOpen, _setDispatchChildClose],
     );
 
   return (
@@ -312,6 +353,7 @@ export default function NavigationProvider({ children, value }): JSX.Element {
         getFirstChildElement,
         getNextElement,
         getPreviousElement,
+        getSubNavigation,
         registerNavItem,
         registerSubNav,
         setIsListOpen,
