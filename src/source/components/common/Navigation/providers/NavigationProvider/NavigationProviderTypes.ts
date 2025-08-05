@@ -15,12 +15,14 @@ export interface NavigationContextReturnValueProps {
     focusableEl: FocusableElement,
     currentFocusedList: FocusableElement[],
     isListOpen: boolean,
+    currentKey?: KeyboardEvent["key"],
   ) => FocusableElement;
   getPreviousElement: (
     parentEl: HTMLButtonElement | null,
     focusableEl: FocusableElement,
     currentFocusedList: FocusableElement[],
     isListOpen: boolean,
+    currentKey?: KeyboardEvent["key"],
   ) => FocusableElement;
   registerNavItem: (
     navList: FocusableElement[],

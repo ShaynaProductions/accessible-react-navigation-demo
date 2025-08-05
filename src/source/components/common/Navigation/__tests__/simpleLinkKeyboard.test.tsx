@@ -40,10 +40,9 @@ describe("Simple Links Navigation", () => {
     id: "main-menu",
     label: "Simple Link List",
   };
-  it("should move through the list.", async () => {
+  it("should move through the list Arrow Up and Arrow Down.", async () => {
     const { getByRole } = renderNavigation(reqProps);
     const frontButton = getByRole("button", { name: frontButtonLabel });
-    const endButton = getByRole("button", { name: endButtonLabel });
     const aboutLink = getByRole("link", { name: "About" });
     const readLink = getByRole("link", { name: "Read" });
     const blogLink = getByRole("link", { name: "Musings" });
@@ -68,7 +67,51 @@ describe("Simple Links Navigation", () => {
     expect(aboutLink).toHaveFocus();
     await userEvent.keyboard("{ArrowUp}");
     expect(blogLink).toHaveFocus();
+  });
+  it("should move through the list using Tab and exit to the end button.", async () => {
+    const { getByRole } = renderNavigation(reqProps);
+    const frontButton = getByRole("button", { name: frontButtonLabel });
+    const endButton = getByRole("button", { name: endButtonLabel });
+    const aboutLink = getByRole("link", { name: "About" });
+    const readLink = getByRole("link", { name: "Read" });
+    const blogLink = getByRole("link", { name: "Musings" });
+
+    await userEvent.tab();
+    expect(frontButton).toHaveFocus();
+    await userEvent.tab();
+    expect(frontButton).not.toHaveFocus();
+    expect(aboutLink).toHaveFocus();
+    await userEvent.tab();
+    expect(readLink).toHaveFocus();
+    await userEvent.tab();
+    expect(blogLink).toHaveFocus();
     await userEvent.tab();
     expect(endButton).toHaveFocus();
+    await userEvent.tab({ shift: true });
+    expect(blogLink).toHaveFocus();
+    await userEvent.tab({ shift: true });
+  });
+
+  it("should move through the list using Tab and Shift Tab and exit back to the front button.", async () => {
+    const { getByRole } = renderNavigation(reqProps);
+    const frontButton = getByRole("button", { name: frontButtonLabel });
+    const aboutLink = getByRole("link", { name: "About" });
+    const readLink = getByRole("link", { name: "Read" });
+    const blogLink = getByRole("link", { name: "Musings" });
+
+    await userEvent.tab();
+    expect(frontButton).toHaveFocus();
+    await userEvent.tab();
+    expect(frontButton).not.toHaveFocus();
+    expect(aboutLink).toHaveFocus();
+    await userEvent.tab();
+    expect(readLink).toHaveFocus();
+    await userEvent.tab();
+    expect(blogLink).toHaveFocus();
+    await userEvent.tab({ shift: true });
+    expect(readLink).toHaveFocus();
+    await userEvent.tab({ shift: true });
+    expect(aboutLink).toHaveFocus();
+    await userEvent.tab({ shift: true });
   });
 });

@@ -7,7 +7,7 @@ import {
   Text,
   transformNavigation,
 } from "@/source/components";
-import "./links-buttons.css";
+import "../links-buttons.css";
 
 export default function LinksButtonsView(navObject) {
   const navigation = transformNavigation(navObject.navigation);

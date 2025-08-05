@@ -6,6 +6,7 @@ import {
 } from "./NavigationProviderTypes";
 import { FocusableElement } from "../../NavigationTypes";
 import { EmptyObject } from "@/source/types";
+import { getFocusableElement } from "@/source/utilities";
 
 export const NavigationContext = createContext<
   NavigationContextValueProps | EmptyObject
@@ -80,40 +81,37 @@ export default function NavigationProvider({ children, value }): JSX.Element {
       /* istanbul ignore next */
       const { isListOpen, storedList = [], storedParentEl } = navObject;
       const lastIndex = storedList.length - 1;
-      const isTop = _isTopRow(storedParentEl as HTMLButtonElement | null);
 
       if (isListOpen) {
-        /* istanbul ignore else */
-        if (!isTop) {
-          if (storedList[lastIndex].type === "button") {
-            const currentObj = storedList[lastIndex];
-            const currentNavObject = _getNavObjectByParent(currentObj);
-            return _getLastOpenElementByParent(currentNavObject);
-          } else {
-            return storedList[lastIndex];
-          }
+        if (storedList[lastIndex].type === "button") {
+          const currentObj = storedList[lastIndex];
+          const currentNavObject = _getNavObjectByParent(currentObj);
+          return _getLastOpenElementByParent(currentNavObject);
+        } else {
+          return storedList[lastIndex];
         }
       }
       return storedParentEl as FocusableElement;
     },
-    [_getNavObjectByParent, _isTopRow],
+    [_getNavObjectByParent],
   );
   const _getNavObjectContainingElement = useCallback(
     (focusableElement: FocusableElement): NavigationContextStoredValueProps => {
       let returnObj: NavigationContextStoredValueProps = {};
-      for (const navObject of navigationArray) {
+      for (const navObject of _getNavigationArray()) {
         const { storedList } = navObject;
         /* istanbul ignore else */
-        if (storedList.length > 0) {
-          if (storedList.indexOf(focusableElement) > -1) {
-            returnObj = navObject;
-            break;
-          }
+        if (
+          storedList.length > 0 &&
+          storedList.indexOf(focusableElement) > -1
+        ) {
+          returnObj = navObject;
+          break;
         }
       }
       return returnObj;
     },
-    [navigationArray],
+    [_getNavigationArray],
   );
 
   const _getNextElementInRow = (
@@ -171,10 +169,11 @@ export default function NavigationProvider({ children, value }): JSX.Element {
         focusableEl,
         currentFocusedList,
         isListOpen,
+        currentKey,
       ): FocusableElement => {
         const isTopRow = _isTopRow(parentEl);
         const currentlyFocusedIndex = currentFocusedList.indexOf(focusableEl);
-
+        const parentNavObject = _getNavObjectContainingElement(focusableEl);
         let nextFocusableElement: FocusableElement = _getNextElementInRow(
           focusableEl,
           currentFocusedList,
@@ -195,10 +194,20 @@ export default function NavigationProvider({ children, value }): JSX.Element {
             isListOpen as boolean,
           );
         }
+        if (
+          currentKey === "Tab" &&
+          // !isTopRow &&
+          focusableEl === _getLastOpenElementByParent(parentNavObject)
+        ) {
+          nextFocusableElement = getFocusableElement(
+            focusableEl,
+            "next",
+          ) as FocusableElement;
+        }
 
         return nextFocusableElement;
       },
-      [_getNavObjectContainingElement, _isTopRow],
+      [_getLastOpenElementByParent, _getNavObjectContainingElement, _isTopRow],
     );
 
   const getPreviousElement: NavigationContextReturnValueProps["getPreviousElement"] =
@@ -208,6 +217,7 @@ export default function NavigationProvider({ children, value }): JSX.Element {
         focusableEl,
         currentFocusedList,
         isListOpen,
+        currentKey,
       ): FocusableElement => {
         const isTopRow = _isTopRow(parentEl);
         const currentlyFocusedIndex = currentFocusedList.indexOf(focusableEl);
@@ -229,10 +239,24 @@ export default function NavigationProvider({ children, value }): JSX.Element {
           );
           prevFocusableElement = _getLastOpenElementByParent(parentNavObj);
         }
-
+        if (
+          currentKey === "Tab" &&
+          // isTopRow &&
+          focusableEl === _getNavigationArray()[0].storedList[0]
+        ) {
+          prevFocusableElement = getFocusableElement(
+            focusableEl,
+            "prev",
+          ) as FocusableElement;
+        }
         return prevFocusableElement;
       },
-      [_getLastOpenElementByParent, _getNavObjectByParent, _isTopRow],
+      [
+        _getLastOpenElementByParent,
+        _getNavObjectByParent,
+        _getNavigationArray,
+        _isTopRow,
+      ],
     );
 
   const setIsListOpen: NavigationContextReturnValueProps["setIsListOpen"] =

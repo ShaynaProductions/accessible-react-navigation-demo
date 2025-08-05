@@ -126,6 +126,33 @@ export default function SubNavigation({
             listDispatch(ListActionTypes.SET, nextItem);
           }
           break;
+        case Keys.TAB:
+          if (e.shiftKey) {
+            // Follows Keys.Up
+            const prevItem = getPreviousElement(
+              parentEl,
+              buttonEl,
+              currentListItems,
+              isListOpen,
+            );
+
+            listDispatch(ListActionTypes.SET, prevItem);
+          } else {
+            // follows Keys.Down with exception
+            if (isSubListOpen) {
+              listDispatch(ListActionTypes.SET, getFirstChildElement(buttonEl));
+            } else {
+              const nextItem = getNextElement(
+                parentRef.current,
+                buttonEl,
+                currentListItems,
+                isListOpen,
+                e.key,
+              );
+              listDispatch(ListActionTypes.SET, nextItem);
+            }
+          }
+          break;
       }
     },
     [

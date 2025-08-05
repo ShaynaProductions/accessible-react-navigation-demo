@@ -51,6 +51,7 @@ export default function NavigationLink({
         case Keys.UP:
         case Keys.RIGHT:
         case Keys.DOWN:
+        case Keys.TAB:
           e.preventDefault();
           e.stopPropagation();
           break;
@@ -88,6 +89,30 @@ export default function NavigationLink({
             isListOpen,
           );
           listDispatch(ListActionTypes.SET, nextItem);
+          break;
+        case Keys.TAB:
+          if (e.shiftKey) {
+            // Follows Keys.Up
+            const prevItem = getPreviousElement(
+              parentEl,
+              linkEl,
+              currentListItems,
+              isListOpen,
+              e.key,
+            );
+
+            listDispatch(ListActionTypes.SET, prevItem);
+          } else {
+            // Follows Keys.Down
+            const nextItem = getNextElement(
+              parentEl,
+              linkEl,
+              currentListItems,
+              isListOpen,
+              e.key,
+            );
+            listDispatch(ListActionTypes.SET, nextItem);
+          }
           break;
       }
     },
