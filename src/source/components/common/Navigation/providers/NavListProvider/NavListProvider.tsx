@@ -72,6 +72,7 @@ export default function NavListProvider({ children, value }) {
           }
 
           newIndex = currentIndex - 1;
+          /* istanbul ignore next */
           if (newIndex < 0) {
             newIndex = currentListLength - 1;
           }

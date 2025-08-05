@@ -7,7 +7,6 @@ import {
   NavigationProps,
   transformNavigation,
 } from "@/source/components";
-
 const jsonObj = fs.readFileSync(
   "public/__static__/SimpleStructureWithSubNav.json",
   "utf8",
@@ -39,55 +38,6 @@ describe("Single SubMenu Navigation", () => {
     id: "main-menu",
     label: "Single Sub Menu",
   };
-
-  it("should move down through the list and open the read menu.", async () => {
-    const { getByRole, getByTestId } = renderNavigation(reqProps);
-    const frontButton = getByRole("button", { name: frontButtonLabel });
-    const aboutLink = getByRole("link", { name: "About" });
-    const readButton = getByRole("button", { name: "Read sub menu" });
-    const readMenu = getByTestId(`${TEST_ID}-read-menu-read-menu-list`);
-    const storyLink = getByRole("link", { name: "Stories" });
-    const commentaryLink = getByRole("link", { name: "Commentary" });
-    const referenceButton = getByRole("button", { name: "Reference sub menu" });
-    const charactersLink = getByRole("link", { name: "Characters" });
-    const glossaryLink = getByRole("link", { name: "Glossary" });
-    const appendicesLink = getByRole("link", { name: "Appendices" });
-    const blogLink = getByRole("link", { name: "Musings" });
-
-    await userEvent.tab();
-    expect(frontButton).toHaveFocus();
-    await userEvent.tab();
-    expect(aboutLink).toHaveFocus();
-    await userEvent.keyboard("{ArrowDown}");
-    expect(readButton).toHaveFocus();
-    expect(readMenu).toHaveClass("srOnly");
-    await userEvent.keyboard("{Enter}");
-    expect(readMenu).not.toHaveClass("srOnly");
-    await userEvent.keyboard("{Enter}");
-
-    expect(readMenu).toHaveClass("srOnly");
-    await userEvent.keyboard("{Enter}");
-
-    expect(readMenu).not.toHaveClass("srOnly");
-    await userEvent.keyboard("{Down}");
-    expect(storyLink).toHaveFocus();
-    await userEvent.keyboard("{Down}");
-    expect(commentaryLink).toHaveFocus();
-    await userEvent.keyboard("{Down}");
-    expect(referenceButton).toHaveFocus();
-    await userEvent.keyboard("{Enter}");
-    await userEvent.keyboard("{Down}");
-    expect(charactersLink).toHaveFocus();
-    await userEvent.keyboard("{Down}");
-    expect(glossaryLink).toHaveFocus();
-    await userEvent.keyboard("{Down}");
-    expect(appendicesLink).toHaveFocus();
-    await userEvent.keyboard("{Down}");
-    expect(blogLink).toHaveFocus();
-
-    await userEvent.keyboard("{Down}");
-    expect(aboutLink).toHaveFocus();
-  });
 
   it("should trigger basic keyboard navigation on a button when list is closed", async () => {
     const { getByRole, getByTestId } = renderNavigation(reqProps);
@@ -164,5 +114,242 @@ describe("Single SubMenu Navigation", () => {
     expect(referenceButton).toHaveFocus();
     await userEvent.keyboard("{ArrowDown}");
     expect(blogLink).toHaveFocus();
+  });
+
+  it("should move down through the list and open the read menu.", async () => {
+    const { getByRole, getByTestId } = renderNavigation(reqProps);
+    const frontButton = getByRole("button", { name: frontButtonLabel });
+    const aboutLink = getByRole("link", { name: "About" });
+    const readButton = getByRole("button", { name: "Read sub menu" });
+    const readMenu = getByTestId(`${TEST_ID}-read-menu-read-menu-list`);
+    const storyLink = getByRole("link", { name: "Stories" });
+    const commentaryLink = getByRole("link", { name: "Commentary" });
+    const referenceButton = getByRole("button", { name: "Reference sub menu" });
+    const charactersLink = getByRole("link", { name: "Characters" });
+    const glossaryLink = getByRole("link", { name: "Glossary" });
+    const appendicesLink = getByRole("link", { name: "Appendices" });
+    const blogLink = getByRole("link", { name: "Musings" });
+
+    await userEvent.tab();
+    expect(frontButton).toHaveFocus();
+    await userEvent.tab();
+    expect(aboutLink).toHaveFocus();
+    await userEvent.keyboard("{ArrowDown}");
+    expect(readButton).toHaveFocus();
+    expect(readMenu).toHaveClass("srOnly");
+    await userEvent.keyboard("{Enter}");
+    expect(readMenu).not.toHaveClass("srOnly");
+    await userEvent.keyboard("{Enter}");
+
+    expect(readMenu).toHaveClass("srOnly");
+    await userEvent.keyboard("{Enter}");
+
+    expect(readMenu).not.toHaveClass("srOnly");
+    await userEvent.keyboard("{Down}");
+    expect(storyLink).toHaveFocus();
+    await userEvent.keyboard("{Down}");
+    expect(commentaryLink).toHaveFocus();
+    await userEvent.keyboard("{Down}");
+    expect(referenceButton).toHaveFocus();
+    await userEvent.keyboard("{Enter}");
+    await userEvent.keyboard("{Down}");
+    expect(charactersLink).toHaveFocus();
+    await userEvent.keyboard("{Down}");
+    expect(glossaryLink).toHaveFocus();
+    await userEvent.keyboard("{Down}");
+    expect(appendicesLink).toHaveFocus();
+    await userEvent.keyboard("{Down}");
+    expect(blogLink).toHaveFocus();
+
+    await userEvent.keyboard("{Down}");
+    expect(aboutLink).toHaveFocus();
+  });
+  it("should move up through the list and open the read menu.", async () => {
+    const { getByRole, getByTestId } = renderNavigation(reqProps);
+    const frontButton = getByRole("button", { name: frontButtonLabel });
+    const aboutLink = getByRole("link", { name: "About" });
+    const readButton = getByRole("button", { name: "Read sub menu" });
+    const readMenu = getByTestId(`${TEST_ID}-read-menu-read-menu-list`);
+    const storyLink = getByRole("link", { name: "Stories" });
+    const commentaryLink = getByRole("link", { name: "Commentary" });
+    const referenceButton = getByRole("button", { name: "Reference sub menu" });
+
+    const charactersLink = getByRole("link", { name: "Characters" });
+    const appendicesLink = getByRole("link", { name: "Appendices" });
+    const blogLink = getByRole("link", { name: "Musings" });
+
+    await userEvent.tab();
+    expect(frontButton).toHaveFocus();
+    await userEvent.tab();
+    expect(aboutLink).toHaveFocus();
+    await userEvent.keyboard("{ArrowUp}");
+    expect(blogLink).toHaveFocus();
+    await userEvent.keyboard("{ArrowUp}");
+    expect(readButton).toHaveFocus();
+    expect(readMenu).toHaveClass("srOnly");
+    await userEvent.keyboard("{Enter}");
+    expect(readMenu).not.toHaveClass("srOnly");
+    await userEvent.keyboard("{ArrowDown}");
+    await userEvent.keyboard("{ArrowDown}");
+    expect(commentaryLink).toHaveFocus();
+    await userEvent.keyboard("{ArrowUp}");
+    expect(storyLink).toHaveFocus();
+    await userEvent.keyboard("{ArrowUp}");
+    expect(readButton).toHaveFocus();
+    await userEvent.keyboard("{ArrowUp}");
+    expect(aboutLink).toHaveFocus();
+    await userEvent.keyboard("{ArrowDown}");
+    expect(readButton).toHaveFocus();
+    await userEvent.keyboard("{ArrowDown}");
+    await userEvent.keyboard("{ArrowDown}");
+    await userEvent.keyboard("{ArrowDown}");
+    await userEvent.keyboard("{ArrowDown}");
+    expect(blogLink).toHaveFocus();
+    await userEvent.keyboard("{ArrowUp}");
+    expect(referenceButton).toHaveFocus();
+    await userEvent.keyboard("{Enter}");
+    await userEvent.keyboard("{ArrowDown}");
+    expect(charactersLink).toHaveFocus();
+    await userEvent.keyboard("{ArrowDown}");
+    await userEvent.keyboard("{ArrowDown}");
+    expect(appendicesLink).toHaveFocus();
+    await userEvent.keyboard("{ArrowDown}");
+    expect(blogLink).toHaveFocus();
+    await userEvent.keyboard("{ArrowUp}");
+    expect(appendicesLink).toHaveFocus();
+  });
+
+  it("should tab down through the open the read and reference sub navigation and exit at the end .", async () => {
+    const { getByRole, getByTestId } = renderNavigation(reqProps);
+    const endButton = getByRole("button", { name: endButtonLabel });
+    const frontButton = getByRole("button", { name: frontButtonLabel });
+    const aboutLink = getByRole("link", { name: "About" });
+    const readButton = getByRole("button", { name: "Read sub menu" });
+    const readMenu = getByTestId(`${TEST_ID}-read-menu-read-menu-list`);
+    const storyLink = getByRole("link", { name: "Stories" });
+    const commentaryLink = getByRole("link", { name: "Commentary" });
+    const referenceButton = getByRole("button", { name: "Reference sub menu" });
+    const referenceMenu = getByTestId(
+      `${TEST_ID}-reference-menu-reference-menu-list`,
+    );
+    const charactersLink = getByRole("link", { name: "Characters" });
+    const glossaryLink = getByRole("link", { name: "Glossary" });
+    const appendicesLink = getByRole("link", { name: "Appendices" });
+    const blogLink = getByRole("link", { name: "Musings" });
+
+    await userEvent.tab();
+    expect(frontButton).toHaveFocus();
+    await userEvent.tab();
+    expect(aboutLink).toHaveFocus();
+    await userEvent.tab();
+    expect(readButton).toHaveFocus();
+    expect(readMenu).toHaveClass("srOnly");
+    await userEvent.keyboard("{Enter}");
+    expect(readMenu).not.toHaveClass("srOnly");
+    await userEvent.keyboard("{Enter}");
+
+    expect(readMenu).toHaveClass("srOnly");
+    await userEvent.keyboard("{Enter}");
+
+    expect(readMenu).not.toHaveClass("srOnly");
+    await userEvent.tab();
+    expect(storyLink).toHaveFocus();
+    await userEvent.tab();
+    expect(commentaryLink).toHaveFocus();
+    await userEvent.tab();
+    expect(referenceButton).toHaveFocus();
+    expect(referenceMenu).toHaveClass("srOnly");
+    await userEvent.keyboard("{Enter}");
+    expect(referenceMenu).not.toHaveClass("srOnly");
+    await userEvent.tab();
+    expect(charactersLink).toHaveFocus();
+    await userEvent.tab();
+    expect(glossaryLink).toHaveFocus();
+    await userEvent.tab();
+    expect(appendicesLink).toHaveFocus();
+    await userEvent.tab();
+    expect(blogLink).toHaveFocus();
+    await userEvent.tab();
+    expect(endButton).toHaveFocus();
+  });
+
+  it("should tab down when sub navigation is closed", async () => {
+    const { getByRole } = renderNavigation(reqProps);
+    const endButton = getByRole("button", { name: endButtonLabel });
+
+    const frontButton = getByRole("button", { name: frontButtonLabel });
+    const aboutLink = getByRole("link", { name: "About" });
+    const readButton = getByRole("button", { name: "Read sub menu" });
+    const blogLink = getByRole("link", { name: "Musings" });
+
+    await userEvent.pointer({ keys: "[MouseLeft]", target: frontButton });
+    expect(frontButton).toHaveFocus();
+    await userEvent.tab();
+    expect(aboutLink).toHaveFocus();
+    await userEvent.tab();
+    expect(readButton).toHaveFocus();
+    await userEvent.tab();
+    expect(blogLink).toHaveFocus();
+    await userEvent.tab();
+    expect(endButton).toHaveFocus();
+  });
+
+  it("should tab up through the open the read and reference subnavigation and exit at the top.", async () => {
+    const { getByRole, getByTestId } = renderNavigation(reqProps);
+    const endButton = getByRole("button", { name: endButtonLabel });
+
+    const frontButton = getByRole("button", { name: frontButtonLabel });
+    const aboutLink = getByRole("link", { name: "About" });
+    const readButton = getByRole("button", { name: "Read sub menu" });
+    const readMenu = getByTestId(`${TEST_ID}-read-menu-read-menu-list`);
+    const storyLink = getByRole("link", { name: "Stories" });
+    const commentaryLink = getByRole("link", { name: "Commentary" });
+    const referenceButton = getByRole("button", { name: "Reference sub menu" });
+
+    const charactersLink = getByRole("link", { name: "Characters" });
+    const glossaryLink = getByRole("link", { name: "Glossary" });
+    const appendicesLink = getByRole("link", { name: "Appendices" });
+    const blogLink = getByRole("link", { name: "Musings" });
+
+    // set up scenario with pointer events.
+    await userEvent.pointer({ keys: "[MouseLeft]", target: readButton });
+    await userEvent.pointer({ keys: "[MouseLeft]", target: referenceButton });
+    await userEvent.pointer({ keys: "[MouseLeft]", target: endButton });
+
+    // begin interactions
+    expect(endButton).toHaveFocus();
+    await userEvent.tab({ shift: true });
+    expect(blogLink).toHaveFocus();
+    await userEvent.tab({ shift: true });
+    expect(appendicesLink).toHaveFocus();
+    await userEvent.tab({ shift: true });
+    expect(glossaryLink).toHaveFocus();
+    await userEvent.tab({ shift: true });
+    expect(charactersLink).toHaveFocus();
+    await userEvent.tab({ shift: true });
+    expect(referenceButton).toHaveFocus();
+    await userEvent.keyboard("{Enter}");
+    await userEvent.tab({ shift: true });
+    expect(commentaryLink).toHaveFocus();
+    await userEvent.tab({ shift: true });
+
+    expect(storyLink).toHaveFocus();
+    await userEvent.tab({ shift: true });
+    expect(readButton).toHaveFocus();
+    expect(readMenu).not.toHaveClass("srOnly");
+    await userEvent.keyboard("{Enter}");
+    expect(readMenu).toHaveClass("srOnly");
+    await userEvent.tab({ shift: true });
+    expect(aboutLink).toHaveFocus();
+    await userEvent.tab({ shift: true });
+    expect(frontButton).toHaveFocus();
+    await userEvent.tab();
+    expect(aboutLink).toHaveFocus();
+    await userEvent.keyboard("{ArrowUp}");
+    expect(blogLink).toHaveFocus();
+    await userEvent.tab({ shift: true });
+    expect(readButton).toHaveFocus();
+    await userEvent.tab({ shift: true });
+    expect(aboutLink).toHaveFocus();
   });
 });

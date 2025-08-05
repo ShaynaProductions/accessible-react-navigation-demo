@@ -1,3 +1,4 @@
+export * from "./getFocusableElement";
 export * from "./mergeRefs";
 export * from "./returnTrueElementOrUndefined";
 

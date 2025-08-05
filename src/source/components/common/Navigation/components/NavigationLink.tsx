@@ -17,10 +17,11 @@ export default function NavigationLink({
   const navigationContextObject = use(NavigationContext);
   const navListContextObject = use(NavListContext);
 
-  const { getNextElement, registerNavItem } = returnTrueElementOrUndefined(
-    !!navigationContextObject,
-    navigationContextObject,
-  );
+  const { getNextElement, getPreviousElement, registerNavItem } =
+    returnTrueElementOrUndefined(
+      !!navigationContextObject,
+      navigationContextObject,
+    );
 
   const { currentListItems, isListOpen, listDispatch, parentRef } =
     returnTrueElementOrUndefined(!!navListContextObject, navListContextObject);
@@ -50,6 +51,7 @@ export default function NavigationLink({
         case Keys.UP:
         case Keys.RIGHT:
         case Keys.DOWN:
+        case Keys.TAB:
           e.preventDefault();
           e.stopPropagation();
           break;
@@ -63,11 +65,21 @@ export default function NavigationLink({
           listDispatch(ListActionTypes.LAST);
           break;
         case Keys.LEFT:
-        case Keys.UP:
           listDispatch(ListActionTypes.PREVIOUS, linkEl);
           break;
         case Keys.RIGHT:
           listDispatch(ListActionTypes.NEXT, linkEl);
+          break;
+
+        case Keys.UP:
+          const prevItem = getPreviousElement(
+            parentEl,
+            linkEl,
+            currentListItems,
+            isListOpen,
+          );
+
+          listDispatch(ListActionTypes.SET, prevItem);
           break;
         case Keys.DOWN:
           const nextItem = getNextElement(
@@ -78,9 +90,40 @@ export default function NavigationLink({
           );
           listDispatch(ListActionTypes.SET, nextItem);
           break;
+        case Keys.TAB:
+          if (e.shiftKey) {
+            // Follows Keys.Up
+            const prevItem = getPreviousElement(
+              parentEl,
+              linkEl,
+              currentListItems,
+              isListOpen,
+              e.key,
+            );
+
+            listDispatch(ListActionTypes.SET, prevItem);
+          } else {
+            // Follows Keys.Down
+            const nextItem = getNextElement(
+              parentEl,
+              linkEl,
+              currentListItems,
+              isListOpen,
+              e.key,
+            );
+            listDispatch(ListActionTypes.SET, nextItem);
+          }
+          break;
       }
     },
-    [currentListItems, getNextElement, isListOpen, listDispatch, parentRef],
+    [
+      currentListItems,
+      getNextElement,
+      getPreviousElement,
+      isListOpen,
+      listDispatch,
+      parentRef,
+    ],
   );
 
   const linkProps = {
