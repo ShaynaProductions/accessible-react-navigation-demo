@@ -24,7 +24,6 @@ export default function SubNavigation({
   const navListContextObject = use(NavListContext);
 
   const {
-    getFirstChildElement,
     getNextElement,
     getPreviousElement,
     getSubNavigation,
@@ -36,7 +35,7 @@ export default function SubNavigation({
     navigationContextObject,
   );
 
-  const { currentListItems, listDispatch, isListOpen, parentRef } =
+  const { currentListItems, isListOpen, listDispatch, parentRef } =
     returnTrueElementOrUndefined(!!navListContextObject, navListContextObject);
 
   const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -78,15 +77,6 @@ export default function SubNavigation({
     setListItems(currentListItems, parentRef.current);
   }, [currentListItems, parentRef, setListItems]);
 
-  const handlePress = useCallback(() => {
-    const buttonEl = buttonRef.current as HTMLButtonElement;
-    if (isSubListOpen) {
-      closeSubNav(buttonEl);
-    } else {
-      openSubNav(buttonEl);
-    }
-  }, [buttonRef, closeSubNav, isSubListOpen, openSubNav]);
-
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       const parentEl = parentRef.current;
@@ -113,8 +103,6 @@ export default function SubNavigation({
           listDispatch(ListActionTypes.LAST);
           break;
         case Keys.LEFT:
-          listDispatch(ListActionTypes.PREVIOUS, buttonEl);
-          break;
         case Keys.UP:
           const prevItem = getPreviousElement(
             parentEl,
@@ -126,20 +114,14 @@ export default function SubNavigation({
           listDispatch(ListActionTypes.SET, prevItem);
           break;
         case Keys.RIGHT:
-          listDispatch(ListActionTypes.NEXT, buttonEl);
-          break;
         case Keys.DOWN:
-          if (isSubListOpen) {
-            listDispatch(ListActionTypes.SET, getFirstChildElement(buttonEl));
-          } else {
-            const nextItem = getNextElement(
-              parentRef.current,
-              buttonEl,
-              currentListItems,
-              isListOpen,
-            );
-            listDispatch(ListActionTypes.SET, nextItem);
-          }
+          const nextItem = getNextElement(
+            parentRef.current,
+            buttonEl,
+            currentListItems,
+            isListOpen,
+          );
+          listDispatch(ListActionTypes.SET, nextItem);
           break;
         case Keys.TAB:
           if (e.shiftKey) {
@@ -153,26 +135,20 @@ export default function SubNavigation({
 
             listDispatch(ListActionTypes.SET, prevItem);
           } else {
-            // follows Keys.Down with exception
-            if (isSubListOpen) {
-              listDispatch(ListActionTypes.SET, getFirstChildElement(buttonEl));
-            } else {
-              const nextItem = getNextElement(
-                parentRef.current,
-                buttonEl,
-                currentListItems,
-                isListOpen,
-                e.key,
-              );
-              listDispatch(ListActionTypes.SET, nextItem);
-            }
+            const nextItem = getNextElement(
+              parentRef.current,
+              buttonEl,
+              currentListItems,
+              isSubListOpen,
+              e.key,
+            );
+            listDispatch(ListActionTypes.SET, nextItem);
           }
           break;
       }
     },
     [
       currentListItems,
-      getFirstChildElement,
       getNextElement,
       getPreviousElement,
       isListOpen,
@@ -182,6 +158,14 @@ export default function SubNavigation({
     ],
   );
 
+  const handlePress = useCallback(() => {
+    const buttonEl = buttonRef.current as HTMLButtonElement;
+    if (isSubListOpen) {
+      closeSubNav(buttonEl);
+    } else {
+      openSubNav(buttonEl);
+    }
+  }, [buttonRef, closeSubNav, isSubListOpen, openSubNav]);
   const buttonProps = {
     "aria-controls": `list-${id}`,
     "aria-expanded": true,

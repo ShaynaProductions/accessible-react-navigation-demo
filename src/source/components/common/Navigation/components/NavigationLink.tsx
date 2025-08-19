@@ -39,6 +39,13 @@ export default function NavigationLink({
     registerNavItem(currentListItems, parentRef.current);
   }, [currentListItems, parentRef, registerNavItem]);
 
+  // const handleFocus = useCallback(() => {
+  //   const parentEl = parentRef.current as HTMLButtonElement | null;
+  //   if (isTopRow(parentEl)) {
+  //     // closeOpenSiblings();
+  //   }
+  // }, [/*closeOpenSiblings,*/ isTopRow, parentRef]);
+
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       const parentEl = parentRef.current;

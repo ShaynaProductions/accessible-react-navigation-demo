@@ -32,6 +32,11 @@ export default function Home() {
             Simple Subnavigation
           </InternalLink>
         </ListItem>
+        <ListItem>
+          <InternalLink href="/examples/complex-subnav">
+            Complex Subnavigation
+          </InternalLink>
+        </ListItem>
       </List>
     </>
   );

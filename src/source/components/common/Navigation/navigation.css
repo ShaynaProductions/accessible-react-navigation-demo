@@ -1,9 +1,15 @@
 @layer common-component {
+
+
     nav {
         border-radius: var(--default-border-radius);
         border-style: var(--default-divider-style);
         border-width: var(--default-border-width);
         padding: calc(var(--px) * 16);
+
+        & > ul ul {
+            margin-left: calc(var(--px) * 32);
+        }
 
         & li button {
             --button-border: 0;
@@ -37,6 +43,7 @@
             &[data-focused] {
                 --button-border-color: var(--gray-12);
             }
+
             & svg {
                 left: calc(var(--px) * 8);
                 position: relative;
