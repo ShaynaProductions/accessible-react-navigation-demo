@@ -68,7 +68,7 @@ describe("Simple Links Navigation", () => {
     await userEvent.keyboard("{ArrowUp}");
     expect(blogLink).toHaveFocus();
   });
-  it("should move through the list using Tab and exit to the end button.", async () => {
+  it("should move through the list using Tab and end up outside the component.", async () => {
     const { getByRole } = renderNavigation(reqProps);
     const frontButton = getByRole("button", { name: frontButtonLabel });
     const endButton = getByRole("button", { name: endButtonLabel });
@@ -87,9 +87,6 @@ describe("Simple Links Navigation", () => {
     expect(blogLink).toHaveFocus();
     await userEvent.tab();
     expect(endButton).toHaveFocus();
-    await userEvent.tab({ shift: true });
-    expect(blogLink).toHaveFocus();
-    await userEvent.tab({ shift: true });
   });
 
   it("should move through the list using Tab and Shift Tab and exit back to the front button.", async () => {

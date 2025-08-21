@@ -54,8 +54,8 @@ describe("<Navigation WCAG />", () => {
 
     expect(readButton).toBeInTheDocument();
     expect(readList).toBeInTheDocument();
-    expect(readList).toHaveClass("srOnly");
+    expect(readButton).not.toHaveClass("expanded");
     await userEvent.click(readButton);
-    expect(readList).not.toHaveClass("srOnly");
+    expect(readButton).toHaveClass("expanded");
   });
 });

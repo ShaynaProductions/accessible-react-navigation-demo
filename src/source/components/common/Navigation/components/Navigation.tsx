@@ -8,6 +8,7 @@ export default function Navigation({
   children,
   cx,
   id,
+  orientation = "vertical",
   parentRef,
   label,
 }: NavigationProps) {
@@ -20,7 +21,7 @@ export default function Navigation({
       }}
     >
       <nav aria-label={label} className={cx}>
-        <NavigationList id={id} isOpen={true}>
+        <NavigationList id={id} isOpen={true} orientation={orientation}>
           {children}
         </NavigationList>
       </nav>

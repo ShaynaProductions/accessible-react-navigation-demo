@@ -7,6 +7,7 @@ export type FocusableElement = HTMLAnchorElement | HTMLButtonElement;
 export interface NavigationProps extends BaseProps {
   children: React.ReactNode;
   label: string;
+  orientation?: "horizontal" | "vertical";
   parentRef?: React.RefObject<HTMLButtonElement | null>;
 }
 
