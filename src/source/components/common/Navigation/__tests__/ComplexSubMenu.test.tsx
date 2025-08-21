@@ -135,7 +135,63 @@ describe("Complex SubNavigation Next", () => {
   it("if top row; should move focus out of the component when it's the last child (button closed subnav or link)", async () => {});
 });
 
-describe.skip("Multiple SubMenu Navigation", () => {
+describe("Complex SubNavigation Previous", () => {
+  const reqProps = {
+    children: transformNavigation(nav, TEST_ID),
+    id: "main-menu",
+    label: "Complex Sub Menu",
+  };
+
+  it("Arrow Up should move focus to it's previous sibling, previous parent and then end of row when all dropdowns are collapsed and the parent is the first sibling", async () => {
+    const { getByRole, getByTestId } = renderNavigation(reqProps);
+
+    const communityButton = getByRole("button", { name: "Community sub menu" });
+    const communityMenu = getByTestId(
+      `${TEST_ID}-community-menu-community-menu-list`,
+    );
+    const blogLink = getByRole("link", { name: "Musings" });
+    const forumLink = getByRole("link", { name: "Forum" });
+    const aboutButton = getByRole("button", { name: "About sub menu" });
+
+    expect(communityMenu).toHaveClass("srOnly");
+    await userEvent.pointer({ target: communityButton, keys: "[MouseLeft]" });
+    expect(communityMenu).not.toHaveClass("srOnly");
+    await userEvent.keyboard("{ArrowDown}");
+    await userEvent.keyboard("{ArrowDown}");
+    expect(forumLink).toHaveFocus();
+    await userEvent.keyboard("{ArrowUp}");
+    expect(blogLink).toHaveFocus();
+    await userEvent.keyboard("{ArrowUp}");
+    expect(communityButton).toHaveFocus();
+    await userEvent.keyboard("{ArrowUp}");
+    expect(aboutButton).toHaveFocus();
+  });
+  it("shift Tab should move focus to it's previous sibling, previous parent and previous focusable item outside of the component.", async () => {
+    const { getByRole, getByTestId } = renderNavigation(reqProps);
+
+    const frontButton = getByRole("button", { name: frontButtonLabel });
+    const communityButton = getByRole("button", { name: "Community sub menu" });
+    const communityMenu = getByTestId(
+      `${TEST_ID}-community-menu-community-menu-list`,
+    );
+    const blogLink = getByRole("link", { name: "Musings" });
+    const forumLink = getByRole("link", { name: "Forum" });
+
+    expect(communityMenu).toHaveClass("srOnly");
+    await userEvent.pointer({ target: communityButton, keys: "[MouseLeft]" });
+    expect(communityMenu).not.toHaveClass("srOnly");
+    await userEvent.tab();
+    await userEvent.tab();
+    expect(forumLink).toHaveFocus();
+    await userEvent.tab({ shift: true });
+    expect(blogLink).toHaveFocus();
+    await userEvent.tab({ shift: true });
+    expect(communityButton).toHaveFocus();
+    await userEvent.tab({ shift: true });
+    expect(frontButton).toHaveFocus();
+  });
+});
+describe("Multiple SubMenu Navigation", () => {
   const reqProps = {
     children: transformNavigation(nav, TEST_ID),
     id: "main-menu",
@@ -205,7 +261,7 @@ describe.skip("Multiple SubMenu Navigation", () => {
     expect(communityButton).toHaveFocus();
   });
 
-  it("should move from a closed subnav button at the end and it's parent's next sibling", async () => {
+  it.skip("should move from a closed subnav button at the end and it's parent's next sibling", async () => {
     const { getByRole, getByTestId } = renderNavigation(reqProps);
     const storiesButton = getByRole("button", {
       name: "Stories and Commentary sub menu",

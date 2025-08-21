@@ -137,6 +137,7 @@ describe("Single Subnavigation Tab", () => {
     const storyLink = getByRole("link", { name: "Stories" });
     const referenceButton = getByRole("button", { name: "Reference sub menu" });
     const appendicesLink = getByRole("link", { name: "Appendices" });
+    const blogLink = getByRole("link", { name: "Musings" });
 
     /* TODO: Needs to be updated when tab out is fixed. */
 
@@ -153,16 +154,18 @@ describe("Single Subnavigation Tab", () => {
     await userEvent.tab();
     expect(appendicesLink).toHaveFocus();
     await userEvent.tab();
-    expect(readButton).toHaveFocus();
+    expect(blogLink).toHaveFocus();
   });
 
   it("if top row; should move focus out of the component when it's the last child (button closed subnav or link)", async () => {
     const { getByRole, getByTestId } = renderNavigation(reqProps);
+    const endButton = getByRole("button", { name: endButtonLabel });
     const readButton = getByRole("button", { name: "Read sub menu" });
     const readMenu = getByTestId(`${TEST_ID}-read-menu-read-menu-list`);
     const storyLink = getByRole("link", { name: "Stories" });
     const referenceButton = getByRole("button", { name: "Reference sub menu" });
     const appendicesLink = getByRole("link", { name: "Appendices" });
+    const blogLink = getByRole("link", { name: "Musings" });
 
     /* TODO: Needs to be updated when tab out is fixed. */
 
@@ -179,7 +182,9 @@ describe("Single Subnavigation Tab", () => {
     await userEvent.tab();
     expect(appendicesLink).toHaveFocus();
     await userEvent.tab();
-    expect(readButton).toHaveFocus();
+    expect(blogLink).toHaveFocus();
+    await userEvent.tab();
+    expect(endButton).toHaveFocus();
   });
 });
 

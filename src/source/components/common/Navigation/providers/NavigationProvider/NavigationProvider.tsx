@@ -235,7 +235,6 @@ export default function NavigationProvider({ children, value }): JSX.Element {
         parentEl,
         focusableEl,
         currentFocusedList,
-        isListOpen,
         currentKey,
       ): FocusableElement => {
         const isTopRow = _isTopRow(parentEl);
@@ -251,85 +250,25 @@ export default function NavigationProvider({ children, value }): JSX.Element {
           const isSubListOpen = isListOpen;
           /* istanbul ignore next */
           const subNavigation = storedList || [];
-          if (isSubListOpen) {
-            /* istanbul ignore else */
-            if (subNavigation.length > 0) {
-              nextFocusableElement = subNavigation[0];
-            }
-            if (isTopRow) {
-              /* istanbul ignore else */
-            } else {
-              // !isTopRow
-            }
-          } else {
-            // !isSubListOpen
-            /* istanbul ignore else */
-            if (isTopRow) {
-            } else {
-              // !isTopRow
-            }
+
+          if (isSubListOpen && subNavigation.length > 0) {
+            nextFocusableElement = subNavigation[0];
           }
         } else {
           // focusableEl.type !== "button";
-          if (isTopRow) {
-            if (focusableEl == lastElement) {
-              if (currentKey === "Tab") {
-                nextFocusableElement = getFocusableElement(
-                  lastElement,
-                  "next",
-                ) as FocusableElement;
-              }
-            }
-          } else {
-            // !isTopRow
-            if (focusableEl === lastElement) {
-              /* istanbul ignore else */
-              if (focusableEl == lastElement) {
-                nextFocusableElement = _getTopParent(
-                  parentNavObject,
-                ) as FocusableElement;
-              }
+          if (focusableEl === lastElement) {
+            if (currentKey === "Tab") {
+              nextFocusableElement = getFocusableElement(
+                lastElement,
+                "next",
+              ) as FocusableElement;
+            } else if (!isTopRow) {
+              nextFocusableElement = _getTopParent(
+                parentNavObject,
+              ) as FocusableElement;
             }
           }
         }
-        // New
-        // if (focusableEl.type === "button") {
-        //   const { isListOpen, storedList } = _getNavObjectByParent(focusableEl);
-        //   const isSubListOpen = isListOpen;
-        //   const subNavigation = storedList || [];
-        //
-        //   if (isSubListOpen) {
-        //
-        //   }
-        //   if (isTopRow) {
-        //     if (currentKey === "Tab") {
-        //       if (
-        //         focusableEl === lastTopElement &&
-        //         !parentNavObject.isListOpen
-        //       ) {
-        //         nextFocusableElement = getFocusableElement(
-        //           lastElement,
-        //           "next",
-        //         ) as FocusableElement;
-        //       }
-        //     } else {
-        //       // focusableEl.type is not button.
-        //     }
-        //   }
-        // } else if (currentKey === "Tab") {
-        //   if (focusableEl === lastElement) {
-        //     nextFocusableElement = getFocusableElement(
-        //       focusableEl,
-        //       "next",
-        //     ) as FocusableElement;
-        //   }
-        // } else {
-        //   if (focusableEl === lastElement && !isTopRow) {
-        //     nextFocusableElement = _getTopParent(
-        //       parentNavObject,
-        //     ) as FocusableElement;
-        //   }
-        // }
 
         return nextFocusableElement;
       },
@@ -351,6 +290,8 @@ export default function NavigationProvider({ children, value }): JSX.Element {
         currentKey,
       ): FocusableElement => {
         const isTopRow = _isTopRow(parentEl);
+        /* istanbul ignore next */
+        const topList = getNavigationArray()[0].storedList || [];
         const currentlyFocusedIndex = currentFocusedList.indexOf(focusableEl);
 
         let prevFocusableElement = _getPreviousElementInRow(
@@ -358,26 +299,32 @@ export default function NavigationProvider({ children, value }): JSX.Element {
           currentFocusedList,
         );
 
-        if (!isTopRow && isListOpen && currentlyFocusedIndex === 0) {
-          prevFocusableElement = parentEl as FocusableElement;
-        } else if (
-          isTopRow &&
-          currentlyFocusedIndex > 0 &&
-          prevFocusableElement.type === "button"
-        ) {
-          const parentNavObj = _getNavObjectByParent(
-            prevFocusableElement as FocusableElement,
-          );
-          prevFocusableElement = _getLastElementByParent(parentNavObj);
+        if (isTopRow) {
+          /* istanbul ignore else */
+          if (currentlyFocusedIndex >= 0) {
+            if (prevFocusableElement.type === "button") {
+              const parentNavObj = _getNavObjectByParent(
+                prevFocusableElement as FocusableElement,
+              );
+              prevFocusableElement = _getLastElementByParent(parentNavObj);
+            }
+          }
+
+          if (currentKey === "Tab") {
+            if (focusableEl === topList[0]) {
+              prevFocusableElement = getFocusableElement(
+                focusableEl,
+                "prev",
+              ) as FocusableElement;
+            }
+          }
+        } else {
+          // !isTopRow
+          if (isListOpen && currentlyFocusedIndex === 0) {
+            prevFocusableElement = parentEl as FocusableElement;
+          }
         }
-        /* istanbul ignore next */
-        const topList = getNavigationArray()[0].storedList || [];
-        if (currentKey === "Tab" && focusableEl === topList[0]) {
-          prevFocusableElement = getFocusableElement(
-            focusableEl,
-            "prev",
-          ) as FocusableElement;
-        }
+
         return prevFocusableElement;
       },
       [

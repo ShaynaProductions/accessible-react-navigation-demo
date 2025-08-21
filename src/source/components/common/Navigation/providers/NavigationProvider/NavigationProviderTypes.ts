@@ -18,7 +18,6 @@ export interface NavigationContextReturnValueProps {
     parentEl: HTMLButtonElement | null,
     focusableEl: FocusableElement,
     currentFocusedList: FocusableElement[],
-    isListOpen: boolean,
     currentKey?: KeyboardEvent["key"],
   ) => FocusableElement;
   getPreviousElement: (

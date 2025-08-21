@@ -109,6 +109,7 @@ export default function SubNavigation({
             buttonEl,
             currentListItems,
             isListOpen,
+            e.key,
           );
 
           listDispatch(ListActionTypes.SET, prevItem);
@@ -119,7 +120,7 @@ export default function SubNavigation({
             parentRef.current,
             buttonEl,
             currentListItems,
-            isListOpen,
+            e.key,
           );
           listDispatch(ListActionTypes.SET, nextItem);
           break;
@@ -131,6 +132,7 @@ export default function SubNavigation({
               buttonEl,
               currentListItems,
               isListOpen,
+              e.key,
             );
 
             listDispatch(ListActionTypes.SET, prevItem);
@@ -139,7 +141,6 @@ export default function SubNavigation({
               parentRef.current,
               buttonEl,
               currentListItems,
-              isSubListOpen,
               e.key,
             );
             listDispatch(ListActionTypes.SET, nextItem);
@@ -152,7 +153,6 @@ export default function SubNavigation({
       getNextElement,
       getPreviousElement,
       isListOpen,
-      isSubListOpen,
       listDispatch,
       parentRef,
     ],

@@ -84,6 +84,7 @@ export default function NavigationLink({
             linkEl,
             currentListItems,
             isListOpen,
+            e.key,
           );
 
           listDispatch(ListActionTypes.SET, prevItem);
@@ -93,7 +94,7 @@ export default function NavigationLink({
             parentEl,
             linkEl,
             currentListItems,
-            isListOpen,
+            e.key,
           );
           listDispatch(ListActionTypes.SET, nextItem);
           break;
@@ -115,7 +116,6 @@ export default function NavigationLink({
               parentEl,
               linkEl,
               currentListItems,
-              isListOpen,
               e.key,
             );
             listDispatch(ListActionTypes.SET, nextItem);
