@@ -88,6 +88,23 @@ export default function NavigationProvider({ children, value }): JSX.Element {
   const _getLastElementByParent = useCallback(
     (navObject: NavigationContextStoredValueProps): FocusableElement => {
       /* istanbul ignore next */
+      const { storedList = [] } = navObject;
+      const lastIndex = storedList.length - 1;
+      /* istanbul ignore if */
+      if (storedList[lastIndex].type === "button") {
+        return _getLastElementByParent(
+          _getNavObjectByParent(storedList[lastIndex]),
+        );
+      } else {
+        return storedList[lastIndex];
+      }
+    },
+    [_getNavObjectByParent],
+  );
+
+  const _getLastElementOpenByParent = useCallback(
+    (navObject: NavigationContextStoredValueProps): FocusableElement => {
+      /* istanbul ignore next */
       const { isListOpen, storedList = [], storedParentEl } = navObject;
       const lastIndex = storedList.length - 1;
 
@@ -95,7 +112,7 @@ export default function NavigationProvider({ children, value }): JSX.Element {
         if (storedList[lastIndex].type === "button") {
           const currentObj = storedList[lastIndex];
           const currentNavObject = _getNavObjectByParent(currentObj);
-          return _getLastElementByParent(currentNavObject);
+          return _getLastElementOpenByParent(currentNavObject);
         } else {
           return storedList[lastIndex];
         }
@@ -246,13 +263,25 @@ export default function NavigationProvider({ children, value }): JSX.Element {
         );
 
         if (focusableEl.type === "button") {
-          const { isListOpen, storedList } = _getNavObjectByParent(focusableEl);
+          const currentNavObject = _getNavObjectByParent(focusableEl);
+          const { isListOpen, storedList } = currentNavObject;
           const isSubListOpen = isListOpen;
           /* istanbul ignore next */
           const subNavigation = storedList || [];
 
           if (isSubListOpen && subNavigation.length > 0) {
             nextFocusableElement = subNavigation[0];
+          }
+          if (
+            !isSubListOpen &&
+            currentFocusedList.indexOf(focusableEl) ===
+              currentFocusedList.length - 1 &&
+            currentKey === "Tab"
+          ) {
+            nextFocusableElement = getFocusableElement(
+              _getLastElementByParent(currentNavObject),
+              "next",
+            ) as FocusableElement;
           }
         } else {
           // focusableEl.type !== "button";
@@ -262,10 +291,12 @@ export default function NavigationProvider({ children, value }): JSX.Element {
                 lastElement,
                 "next",
               ) as FocusableElement;
-            } else if (!isTopRow) {
-              nextFocusableElement = _getTopParent(
-                parentNavObject,
-              ) as FocusableElement;
+            } else {
+              if (!isTopRow) {
+                nextFocusableElement = _getTopParent(
+                  parentNavObject,
+                ) as FocusableElement;
+              }
             }
           }
         }
@@ -306,7 +337,7 @@ export default function NavigationProvider({ children, value }): JSX.Element {
               const parentNavObj = _getNavObjectByParent(
                 prevFocusableElement as FocusableElement,
               );
-              prevFocusableElement = _getLastElementByParent(parentNavObj);
+              prevFocusableElement = _getLastElementOpenByParent(parentNavObj);
             }
           }
 
@@ -328,7 +359,7 @@ export default function NavigationProvider({ children, value }): JSX.Element {
         return prevFocusableElement;
       },
       [
-        _getLastElementByParent,
+        _getLastElementOpenByParent,
         _getNavObjectByParent,
         getNavigationArray,
         _isTopRow,

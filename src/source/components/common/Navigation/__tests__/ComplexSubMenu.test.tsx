@@ -261,7 +261,7 @@ describe("Multiple SubMenu Navigation", () => {
     expect(communityButton).toHaveFocus();
   });
 
-  it.skip("should move from a closed subnav button at the end and it's parent's next sibling", async () => {
+  it("should move from a closed subnav button at the end and it's parent's next sibling", async () => {
     const { getByRole, getByTestId } = renderNavigation(reqProps);
     const storiesButton = getByRole("button", {
       name: "Stories and Commentary sub menu",
