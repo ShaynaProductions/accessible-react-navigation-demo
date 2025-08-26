@@ -8,8 +8,8 @@ export interface NavigationContextStoredValueProps {
 }
 
 export interface NavigationContextReturnValueProps {
-  _getNavObjectContainingElement: (
-    focusableEl: FocusableElement,
+  getNavObjectByParent: (
+    parentElement: HTMLButtonElement | null,
   ) => NavigationContextStoredValueProps;
   getFirstChildElement: (
     parentEl: HTMLButtonElement | null,
@@ -29,7 +29,11 @@ export interface NavigationContextReturnValueProps {
   ) => FocusableElement;
   getNavigationArray: () => NavigationContextStoredValueProps[];
   getSubNavigation: (parentEl) => NavigationContextStoredValueProps[];
-  isTopRow: (parentEl: HTMLButtonElement | null) => boolean;
+  handleFocusableFocus: (
+    focusableEl: FocusableElement,
+    closeOpenSiblings: (focusableEl: FocusableElement) => void,
+  ) => void;
+  // isTopRow: (parentEl: HTMLButtonElement | null) => boolean;
   registerNavItem: (
     navList: FocusableElement[],
     parentEl: HTMLButtonElement | null,

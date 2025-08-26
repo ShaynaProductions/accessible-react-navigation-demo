@@ -1,4 +1,3 @@
-/* istanbul ignore file */
 "use client";
 
 import { use, useCallback } from "react";
@@ -10,22 +9,25 @@ import { FocusableElement } from "@/source/components/common/Navigation/Navigati
 export default function useNavigation(): NavigationHookProps {
   const navigationContextObj = use(NavigationContext);
 
-  const { _getNavObjectContainingElement, getNavigationArray, isTopRow } =
+  const { getNavObjectByParent, getNavigationArray, isTopRow } =
     returnTrueElementOrUndefined(!!navigationContextObj, navigationContextObj);
 
-  const closeOpenSiblings = useCallback(() => {
-    const childList: FocusableElement[] = getNavigationArray()[0].storedList;
+  const closeOpenSiblings = useCallback(
+    (currentlyFocusedEl) => {
+      const childList: FocusableElement[] = getNavigationArray()[0].storedList;
 
-    for (const childEl of childList) {
-      if (childEl.type === "button") {
-        const { isListOpen, dispatchChildClose } =
-          _getNavObjectContainingElement(childEl);
-        if (isListOpen && dispatchChildClose) {
-          dispatchChildClose(childEl);
+      for (const childEl of childList) {
+        if (childEl !== currentlyFocusedEl && childEl.type === "button") {
+          const { isListOpen, dispatchChildClose } =
+            getNavObjectByParent(childEl);
+          if (isListOpen && dispatchChildClose) {
+            dispatchChildClose(childEl);
+          }
         }
       }
-    }
-  }, [_getNavObjectContainingElement, getNavigationArray]);
+    },
+    [getNavObjectByParent, getNavigationArray],
+  );
 
   return { closeOpenSiblings, isTopRow };
 }

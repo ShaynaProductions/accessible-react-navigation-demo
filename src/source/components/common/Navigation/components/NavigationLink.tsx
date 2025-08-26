@@ -5,6 +5,7 @@ import { usePrevious } from "@/source/hooks";
 import { returnTrueElementOrUndefined } from "@/source/utilities";
 
 import { FocusableElement, NavigationItemProps } from "../NavigationTypes";
+import { useNavigation } from "../hooks";
 import { NavigationContext, NavListContext } from "../providers";
 import { Keys, ListActionTypes } from "../utilities";
 
@@ -17,14 +18,19 @@ export default function NavigationLink({
   const navigationContextObject = use(NavigationContext);
   const navListContextObject = use(NavListContext);
 
-  const { getNextElement, getPreviousElement, registerNavItem } =
-    returnTrueElementOrUndefined(
-      !!navigationContextObject,
-      navigationContextObject,
-    );
+  const {
+    getNextElement,
+    getPreviousElement,
+    handleFocusableFocus,
+    registerNavItem,
+  } = returnTrueElementOrUndefined(
+    !!navigationContextObject,
+    navigationContextObject,
+  );
 
   const { currentListItems, isListOpen, listDispatch, parentRef } =
     returnTrueElementOrUndefined(!!navListContextObject, navListContextObject);
+  const { closeOpenSiblings } = useNavigation();
 
   const linkRef = useRef<FocusableElement>(null);
   const prevLinkRef = usePrevious(linkRef);
@@ -39,12 +45,9 @@ export default function NavigationLink({
     registerNavItem(currentListItems, parentRef.current);
   }, [currentListItems, parentRef, registerNavItem]);
 
-  // const handleFocus = useCallback(() => {
-  //   const parentEl = parentRef.current as HTMLButtonElement | null;
-  //   if (isTopRow(parentEl)) {
-  //     // closeOpenSiblings();
-  //   }
-  // }, [/*closeOpenSiblings,*/ isTopRow, parentRef]);
+  const handleFocus = useCallback(() => {
+    handleFocusableFocus(linkRef.current, closeOpenSiblings);
+  }, [closeOpenSiblings, handleFocusableFocus]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
@@ -135,6 +138,7 @@ export default function NavigationLink({
 
   const linkProps = {
     ...rest,
+    onFocus: handleFocus,
     ref: linkRef as unknown as React.RefObject<HTMLAnchorElement>,
   };
   return (

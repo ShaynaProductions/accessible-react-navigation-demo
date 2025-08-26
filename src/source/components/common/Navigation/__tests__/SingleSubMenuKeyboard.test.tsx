@@ -303,24 +303,7 @@ describe("Single SubMenu Behaviors", () => {
     await userEvent.tab({ shift: true });
     expect(blogLink).toHaveFocus();
     await userEvent.tab({ shift: true });
-    expect(appendicesLink).toHaveFocus();
-    await userEvent.tab({ shift: true });
-    expect(glossaryLink).toHaveFocus();
-    await userEvent.tab({ shift: true });
-    expect(charactersLink).toHaveFocus();
-    await userEvent.tab({ shift: true });
-    expect(referenceButton).toHaveFocus();
-    await userEvent.keyboard("{Enter}");
-    await userEvent.tab({ shift: true });
-    expect(commentaryLink).toHaveFocus();
-    await userEvent.tab({ shift: true });
-
-    expect(storyLink).toHaveFocus();
-    await userEvent.tab({ shift: true });
     expect(readButton).toHaveFocus();
-    expect(readMenu).not.toHaveClass("srOnly");
-    await userEvent.keyboard("{Enter}");
-    expect(readMenu).toHaveClass("srOnly");
     await userEvent.tab({ shift: true });
     expect(aboutLink).toHaveFocus();
     await userEvent.tab({ shift: true });

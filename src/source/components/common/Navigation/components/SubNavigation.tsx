@@ -13,6 +13,7 @@ import {
   NavListContext,
 } from "../providers";
 import { Keys, ListActionTypes } from "../utilities";
+import { useNavigation } from "../hooks";
 
 export default function SubNavigation({
   children,
@@ -27,6 +28,7 @@ export default function SubNavigation({
     getNextElement,
     getPreviousElement,
     getSubNavigation,
+    handleFocusableFocus,
     registerSubNav,
     setIsListOpen,
     setListItems,
@@ -37,6 +39,8 @@ export default function SubNavigation({
 
   const { currentListItems, isListOpen, listDispatch, parentRef } =
     returnTrueElementOrUndefined(!!navListContextObject, navListContextObject);
+
+  const { closeOpenSiblings } = useNavigation();
 
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const [isSubListOpen, setIsSubListOpen] = useState(false);
@@ -76,6 +80,10 @@ export default function SubNavigation({
   useEffect(() => {
     setListItems(currentListItems, parentRef.current);
   }, [currentListItems, parentRef, setListItems]);
+
+  const handleFocus = useCallback(() => {
+    handleFocusableFocus(buttonRef.current, closeOpenSiblings);
+  }, [handleFocusableFocus, closeOpenSiblings]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
@@ -171,6 +179,7 @@ export default function SubNavigation({
     "aria-expanded": true,
     "aria-label": `${label} sub menu`,
     cx: returnTrueElementOrUndefined(isSubListOpen, "expanded"),
+    onFocus: handleFocus,
     ref: buttonRef,
     testId: testId,
   };
