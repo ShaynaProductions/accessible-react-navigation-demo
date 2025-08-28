@@ -14,6 +14,7 @@ export interface NavigationContextReturnValueProps {
   getFirstChildElement: (
     parentEl: HTMLButtonElement | null,
   ) => FocusableElement;
+  getLastChildInRow: (index: number) => FocusableElement;
   getNextElement: (
     parentEl: HTMLButtonElement | null,
     focusableEl: FocusableElement,

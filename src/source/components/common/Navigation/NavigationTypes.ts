@@ -25,3 +25,9 @@ export interface NavigationItemProps extends BaseProps {
 export interface SubNavigationProps extends Omit<NavigationItemProps, "href"> {
   children: React.ReactNode;
 }
+
+export interface NavigationWrapperProps extends Omit<BaseProps, "testid"> {
+  children: React.ReactNode;
+  label: string;
+  ref?: React.RefObject<HTMLButtonElement> | null;
+}

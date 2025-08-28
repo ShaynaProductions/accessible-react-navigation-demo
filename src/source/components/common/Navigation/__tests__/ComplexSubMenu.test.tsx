@@ -329,9 +329,24 @@ describe("Closing SubMenus", () => {
     expect(storiesMenu).toHaveClass("srOnly");
   });
 
-  // it.skip("should close all submenus and send focus to the last item in the top row when Escape is pushed.", async () => {
-  //   const { getByRole, getByTestId } = renderNavigation(reqProps);
-  // });
+  it("should close all submenus and send focus to the last item in the top row when Escape is pushed.", async () => {
+    const { getByRole, getByTestId } = renderNavigation(reqProps);
+
+    const referenceButton = getByRole("button", { name: "Reference sub menu" });
+    const referenceMenu = getByTestId(
+      `${TEST_ID}-reference-menu-reference-menu-list`,
+    );
+    const characterLink = getByRole("link", { name: "Characters" });
+    const aboutButton = getByRole("button", { name: "About sub menu" });
+
+    await userEvent.pointer({ target: referenceButton, keys: "[MouseLeft]" });
+    expect(referenceMenu).not.toHaveClass("srOnly");
+    await userEvent.keyboard("{ArrowDown}");
+    await userEvent.keyboard("{ArrowDown}");
+    expect(characterLink).toHaveFocus();
+    await userEvent.keyboard("{Escape}");
+    expect(aboutButton).toHaveFocus();
+  });
   // it.skip("should close all submenus when there is a click outside the component.", async () => {
   //   const { getByRole, getByTestId } = renderNavigation(reqProps);
   // });

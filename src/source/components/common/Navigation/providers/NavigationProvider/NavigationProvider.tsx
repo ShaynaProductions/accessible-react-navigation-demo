@@ -249,9 +249,16 @@ export default function NavigationProvider({ children, value }): JSX.Element {
   const getFirstChildElement: NavigationContextReturnValueProps["getFirstChildElement"] =
     (parentEl) => {
       const parentIndex = _getNavigationIndex(parentEl);
-
+      /* istanbul ignore else */
       const currentList = getNavigationArray()[parentIndex].storedList || [];
       return currentList[0];
+    };
+
+  const getLastChildInRow: NavigationContextReturnValueProps["getLastChildInRow"] =
+    (index: number) => {
+      /* istanbul ignore next */
+      const currentList = getNavigationArray()[index].storedList || [];
+      return currentList[currentList.length - 1];
     };
 
   const getNextElement: NavigationContextReturnValueProps["getNextElement"] =
@@ -470,6 +477,7 @@ export default function NavigationProvider({ children, value }): JSX.Element {
       value={{
         getNavObjectByParent,
         getFirstChildElement,
+        getLastChildInRow,
         getNavigationArray,
         getNextElement,
         getPreviousElement,
