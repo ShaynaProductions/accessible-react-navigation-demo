@@ -298,6 +298,44 @@ describe("Multiple SubMenu Navigation", () => {
     await userEvent.tab();
     expect(endButton).toHaveFocus();
   });
+
+  it("should move from out of component to the last child on the top row if it is a button.", async () => {
+    const { getByRole } = renderNavigation(reqProps);
+
+    const aboutLink = getByRole("button", { name: "About sub menu" });
+    const endButton = getByRole("button", { name: endButtonLabel });
+
+    await userEvent.pointer({ target: endButton, keys: "[MouseLeft]" });
+    expect(endButton).toHaveFocus();
+    await userEvent.tab({ shift: true });
+    expect(aboutLink).toHaveFocus();
+  });
+
+  it("should move out of component if the last child is a link and any open menus should be closed.", async () => {
+    const { getByRole, getByTestId } = renderNavigation(reqProps);
+
+    const aboutLink = getByRole("button", { name: "About sub menu" });
+    const donateLink = getByRole("link", { name: "Donate" });
+    const aboutMenu = getByTestId(`${TEST_ID}-about-menu-about-menu-list`);
+    const endButton = getByRole("button", { name: endButtonLabel });
+
+    await userEvent.pointer({ target: endButton, keys: "[MouseLeft]" });
+    expect(endButton).toHaveFocus();
+    await userEvent.tab({ shift: true });
+    expect(aboutLink).toHaveFocus();
+    expect(aboutMenu).toHaveClass("srOnly");
+    await userEvent.keyboard("{Enter}");
+    expect(aboutMenu).not.toHaveClass("srOnly");
+    await userEvent.tab();
+    await userEvent.tab();
+    await userEvent.tab();
+    await userEvent.tab();
+    await userEvent.tab();
+    expect(donateLink).toHaveFocus();
+    await userEvent.tab();
+    expect(endButton).toHaveFocus();
+    expect(aboutMenu).toHaveClass("srOnly");
+  });
 });
 
 describe("Closing SubMenus", () => {

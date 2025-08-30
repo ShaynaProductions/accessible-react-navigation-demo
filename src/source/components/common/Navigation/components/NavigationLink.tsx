@@ -19,6 +19,7 @@ export default function NavigationLink({
   const navListContextObject = use(NavListContext);
 
   const {
+    getLastTopElement,
     getNextElement,
     getPreviousElement,
     handleFocusableFocus,
@@ -47,7 +48,19 @@ export default function NavigationLink({
 
   const handleFocus = useCallback(() => {
     handleFocusableFocus(linkRef.current, closeOpenSiblings);
-  }, [closeOpenSiblings, handleFocusableFocus]);
+    const returnEl: FocusableElement | undefined = getLastTopElement(
+      linkRef.current,
+    );
+
+    if (returnEl) {
+      listDispatch(ListActionTypes.SET, returnEl);
+    }
+  }, [
+    closeOpenSiblings,
+    getLastTopElement,
+    handleFocusableFocus,
+    listDispatch,
+  ]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
