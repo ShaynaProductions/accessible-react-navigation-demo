@@ -349,6 +349,12 @@ export default function NavigationProvider({ children, value }): JSX.Element {
             ) as FocusableElement;
             setComponentActive(false);
           }
+          if (currentKey === "ArrowRight" && isTopRow) {
+            nextFocusableElement = _getNextElementInRow(
+              focusableEl,
+              currentFocusedList,
+            );
+          }
         } else {
           // focusableEl.type !== "button";
           if (focusableEl === lastElement) {

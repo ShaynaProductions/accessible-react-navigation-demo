@@ -336,6 +336,25 @@ describe("Multiple SubMenu Navigation", () => {
     expect(endButton).toHaveFocus();
     expect(aboutMenu).toHaveClass("srOnly");
   });
+
+  it("should move through the first row on right Arrow regardless of open subnav", async () => {
+    const { getByRole, getByTestId } = renderNavigation(reqProps);
+
+    const communityButton = getByRole("button", { name: "Community sub menu" });
+    const communityMenu = getByTestId(
+      `${TEST_ID}-community-menu-community-menu-list`,
+    );
+    const storiesButton = getByRole("button", {
+      name: "Stories and Commentary sub menu",
+    });
+
+    await userEvent.pointer({ target: communityButton, keys: "[MouseLeft]" });
+    expect(communityButton).toHaveFocus();
+    expect(communityMenu).not.toHaveClass("srOnly");
+    await userEvent.keyboard("{ArrowRight}");
+    expect(storiesButton).toHaveFocus();
+    expect(communityMenu).toHaveClass("srOnly");
+  });
 });
 
 describe("Closing SubMenus", () => {
