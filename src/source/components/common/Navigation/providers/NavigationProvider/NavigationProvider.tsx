@@ -257,6 +257,46 @@ export default function NavigationProvider({ children, value }): JSX.Element {
   );
 
   /* ---------- Public ------------------*/
+  const closeOpenSiblings = useCallback(
+    (currentlyFocusedEl) => {
+      /* istanbul ignore next */
+      const childList: FocusableElement[] =
+        getNavigationArray()[0].storedList || [];
+
+      for (const childEl of childList) {
+        if (childEl !== currentlyFocusedEl && childEl.type === "button") {
+          const { isListOpen, dispatchChildClose } = getNavObjectByParent(
+            childEl as HTMLButtonElement,
+          );
+          if (isListOpen && dispatchChildClose) {
+            dispatchChildClose(childEl as HTMLButtonElement);
+          }
+        }
+      }
+    },
+    [getNavObjectByParent, getNavigationArray],
+  );
+  const closeAll = useCallback(() => {
+    const childList: FocusableElement[] =
+      getNavigationArray()[0].storedList || [];
+
+    for (const childEl of childList) {
+      if (childEl.type === "button") {
+        const { isListOpen, dispatchChildClose } = getNavObjectByParent(
+          childEl as HTMLButtonElement,
+        );
+        if (isListOpen && dispatchChildClose) {
+          dispatchChildClose(childEl as HTMLButtonElement);
+        }
+      }
+    }
+  }, [getNavObjectByParent, getNavigationArray]);
+
+  const handleClickAwayClose = useCallback(() => {
+    closeAll();
+    setComponentActive(false);
+  }, [closeAll]);
+
   /* istanbul ignore next */
   const getFirstChildElement: NavigationContextReturnValueProps["getFirstChildElement"] =
     (parentEl) => {
@@ -540,6 +580,7 @@ export default function NavigationProvider({ children, value }): JSX.Element {
     <NavigationContext.Provider
       value={{
         componentActive,
+        closeOpenSiblings,
         getNavObjectByParent,
         getFirstChildElement,
         getIsFirstOrLastItem,
@@ -549,6 +590,7 @@ export default function NavigationProvider({ children, value }): JSX.Element {
         getNextElement,
         getPreviousElement,
         getSubNavigation,
+        handleClickAwayClose,
         handleFocusableFocus,
         registerNavItem,
         registerSubNav,

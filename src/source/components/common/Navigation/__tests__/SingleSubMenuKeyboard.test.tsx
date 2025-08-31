@@ -7,6 +7,7 @@ import {
   NavigationProps,
   transformNavigation,
 } from "@/source/components";
+import React from "react";
 
 const jsonObj = fs.readFileSync(
   "public/__static__/SimpleStructureWithSubNav.json",
@@ -18,13 +19,19 @@ const TEST_ID = "navigation";
 const endButtonLabel = "Focusable End";
 const frontButtonLabel = "Focusable Front";
 
-const renderNavigation = ({ children, label, ...rest }: NavigationProps) => {
+const renderNavigation = (
+  { children, label, ...rest }: NavigationProps,
+  ref?: React.RefObject<HTMLButtonElement | null>,
+  MobileNavigation?,
+) => {
+  const parentEl = ref?.current || null;
   return render(
     <Box cx="simple">
+      {MobileNavigation && <MobileNavigation />}
       <Button id="front" testId={`${TEST_ID}-front`}>
         {frontButtonLabel}
       </Button>
-      <Navigation label={label} testId={TEST_ID} {...rest}>
+      <Navigation parentEl={parentEl} label={label} testId={TEST_ID} {...rest}>
         {children}
       </Navigation>
       <Button id="button-end" testId={`${TEST_ID}-end`}>
@@ -33,6 +40,7 @@ const renderNavigation = ({ children, label, ...rest }: NavigationProps) => {
     </Box>,
   );
 };
+
 describe("Single SubMenu Navigation Next Down Arrow", () => {
   const reqProps = {
     children: transformNavigation(nav.navigation, TEST_ID),
@@ -306,6 +314,33 @@ describe("Single SubMenu Behaviors", () => {
     await userEvent.tab({ shift: true });
     expect(readButton).toHaveFocus();
     await userEvent.tab({ shift: true });
+    expect(aboutLink).toHaveFocus();
+  });
+
+  it.skip("should place focus on the top level button if the button is passed through to the component", async () => {
+    let frontRef;
+
+    const MobileButton = () => {
+      frontRef = React.useRef<HTMLButtonElement | null>(null);
+      return (
+        <Button id="mobile" ref={frontRef}>
+          Mobile
+        </Button>
+      );
+    };
+
+    const { getByRole, getByTestId } = renderNavigation(
+      reqProps,
+      frontRef,
+      MobileButton,
+    );
+    const frontButton = getByRole("button", { name: frontButtonLabel });
+    const mobileButton = getByRole("button", { name: "Mobile" });
+    const aboutLink = getByRole("link", { name: "About" });
+    const readButton = getByRole("button", { name: "Read sub menu" });
+    await userEvent.pointer({ target: frontButton, keys: "[MouseLeft]" });
+    expect(frontButton).toHaveFocus();
+    userEvent.tab();
     expect(aboutLink).toHaveFocus();
   });
 });

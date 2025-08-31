@@ -9,19 +9,19 @@ export default function Navigation({
   children,
   id,
   orientation = "vertical",
-  parentRef,
+  parentEl = null,
   testId,
   ...rest
 }: NavigationProps) {
   return (
     <NavigationProvider
       value={{
-        storedParentEl: parentRef?.current || null,
+        storedParentEl: parentEl,
         storedList: [],
         isListOpen: true,
       }}
     >
-      <NavigationWrapper {...rest}>
+      <NavigationWrapper parentEl={parentEl} {...rest}>
         <NavigationList
           id={id}
           isOpen={true}

@@ -5,7 +5,6 @@ import { usePrevious } from "@/source/hooks";
 import { returnTrueElementOrUndefined } from "@/source/utilities";
 
 import { FocusableElement, NavigationItemProps } from "../NavigationTypes";
-import { useNavigation } from "../hooks";
 import { NavigationContext, NavListContext } from "../providers";
 import { Keys, ListActionTypes } from "../utilities";
 
@@ -19,6 +18,7 @@ export default function NavigationLink({
   const navListContextObject = use(NavListContext);
 
   const {
+    closeOpenSiblings,
     getLastTopElement,
     getNextElement,
     getPreviousElement,
@@ -31,7 +31,6 @@ export default function NavigationLink({
 
   const { currentListItems, isListOpen, listDispatch, parentRef } =
     returnTrueElementOrUndefined(!!navListContextObject, navListContextObject);
-  const { closeOpenSiblings } = useNavigation();
 
   const linkRef = useRef<FocusableElement>(null);
   const prevLinkRef = usePrevious(linkRef);

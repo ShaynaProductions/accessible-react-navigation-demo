@@ -10,6 +10,8 @@ export interface NavigationContextStoredValueProps {
 export interface NavigationContextReturnValueProps {
   componentActive: boolean;
   setComponentActive: (componentActive: boolean) => void;
+  closeOpenSiblings: (currentlyFocusedEl: FocusableElement) => void;
+  handleClickAwayClose: (parentEl: HTMLButtonElement | null) => void;
   getNavObjectByParent: (
     parentElement: HTMLButtonElement | null,
   ) => NavigationContextStoredValueProps;

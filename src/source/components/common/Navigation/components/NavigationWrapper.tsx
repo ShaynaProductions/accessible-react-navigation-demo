@@ -1,6 +1,9 @@
 import { use, useCallback } from "react";
 
-import { returnTrueElementOrUndefined } from "@/source/utilities";
+import {
+  ClickAwayListener,
+  returnTrueElementOrUndefined,
+} from "@/source/utilities";
 import { NavigationWrapperProps } from "../NavigationTypes";
 import { NavigationContext } from "../providers";
 
@@ -8,27 +11,37 @@ export default function NavigationWrapper({
   children,
   cx,
   label,
+  parentEl,
   ...rest
 }: NavigationWrapperProps) {
   const navigationContextObject = use(NavigationContext);
-  const { getLastChildInRow } = returnTrueElementOrUndefined(
-    !!navigationContextObject,
-    navigationContextObject,
-  );
+  const { getLastChildInRow, handleClickAwayClose } =
+    returnTrueElementOrUndefined(
+      !!navigationContextObject,
+      navigationContextObject,
+    );
+
+  const handleClickAway = useCallback(() => {
+    handleClickAwayClose();
+  }, [handleClickAwayClose]);
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLElement>) => {
       switch (event.key) {
         case "Escape":
-          const nextFocus = getLastChildInRow(0);
-          nextFocus.focus();
+          if (parentEl) {
+            parentEl.focus();
+          } else {
+            const nextFocus = getLastChildInRow(0);
+            nextFocus.focus();
+          }
           break;
       }
     },
-    [getLastChildInRow],
+    [getLastChildInRow, parentEl],
   );
   return (
-    <>
+    <ClickAwayListener onClickAway={handleClickAway}>
       <nav
         aria-label={label}
         className={cx}
@@ -37,6 +50,6 @@ export default function NavigationWrapper({
       >
         {children}
       </nav>
-    </>
+    </ClickAwayListener>
   );
 }

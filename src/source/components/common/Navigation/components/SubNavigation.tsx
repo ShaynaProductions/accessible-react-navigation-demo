@@ -13,7 +13,6 @@ import {
   NavListContext,
 } from "../providers";
 import { Keys, ListActionTypes } from "../utilities";
-import { useNavigation } from "../hooks";
 
 export default function SubNavigation({
   children,
@@ -25,6 +24,7 @@ export default function SubNavigation({
   const navListContextObject = use(NavListContext);
 
   const {
+    closeOpenSiblings,
     getNextElement,
     getPreviousElement,
     getSubNavigation,
@@ -39,8 +39,6 @@ export default function SubNavigation({
 
   const { currentListItems, isListOpen, listDispatch, parentRef } =
     returnTrueElementOrUndefined(!!navListContextObject, navListContextObject);
-
-  const { closeOpenSiblings } = useNavigation();
 
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const [isSubListOpen, setIsSubListOpen] = useState(false);
