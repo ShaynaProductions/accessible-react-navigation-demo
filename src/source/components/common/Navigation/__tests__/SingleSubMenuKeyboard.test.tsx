@@ -329,15 +329,14 @@ describe("Single SubMenu Behaviors", () => {
       );
     };
 
-    const { getByRole, getByTestId } = renderNavigation(
-      reqProps,
-      frontRef,
-      MobileButton,
-    );
+    const { getByRole } = renderNavigation(reqProps, frontRef, MobileButton);
     const frontButton = getByRole("button", { name: frontButtonLabel });
     const mobileButton = getByRole("button", { name: "Mobile" });
     const aboutLink = getByRole("link", { name: "About" });
     const readButton = getByRole("button", { name: "Read sub menu" });
+
+    expect(mobileButton).toBeInTheDocument();
+    expect(readButton).toBeInTheDocument();
     await userEvent.pointer({ target: frontButton, keys: "[MouseLeft]" });
     expect(frontButton).toHaveFocus();
     userEvent.tab();
