@@ -7,6 +7,7 @@ import { returnTrueElementOrUndefined } from "@/source/utilities";
 import { FocusableElement, NavigationItemProps } from "../NavigationTypes";
 import { NavigationContext, NavListContext } from "../providers";
 import { Keys, ListActionTypes } from "../utilities";
+import { useNavigation } from "../hooks";
 
 export default function NavigationLink({
   cx,
@@ -20,11 +21,12 @@ export default function NavigationLink({
   const {
     closeOpenSiblings,
     getLastTopElement,
-    getNextElement,
+    getNextByLink,
     getPreviousElement,
-    handleFocusableFocus,
-    registerNavItem,
-  } = returnTrueElementOrUndefined(
+    handleNavItemFocus,
+  } = useNavigation();
+
+  const { registerNavItem } = returnTrueElementOrUndefined(
     !!navigationContextObject,
     navigationContextObject,
   );
@@ -46,7 +48,12 @@ export default function NavigationLink({
   }, [currentListItems, parentRef, registerNavItem]);
 
   const handleFocus = useCallback(() => {
-    handleFocusableFocus(linkRef.current, closeOpenSiblings);
+    if (!!linkRef) {
+      handleNavItemFocus(
+        linkRef.current as FocusableElement,
+        closeOpenSiblings,
+      );
+    }
     const returnEl: FocusableElement | undefined = getLastTopElement(
       linkRef.current,
     );
@@ -54,12 +61,7 @@ export default function NavigationLink({
     if (returnEl) {
       listDispatch(ListActionTypes.SET, returnEl);
     }
-  }, [
-    closeOpenSiblings,
-    getLastTopElement,
-    handleFocusableFocus,
-    listDispatch,
-  ]);
+  }, [closeOpenSiblings, getLastTopElement, handleNavItemFocus, listDispatch]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
@@ -105,7 +107,7 @@ export default function NavigationLink({
           listDispatch(ListActionTypes.SET, prevItem);
           break;
         case Keys.DOWN:
-          const nextItem = getNextElement(
+          const nextItem = getNextByLink(
             parentEl,
             linkEl,
             currentListItems,
@@ -127,7 +129,7 @@ export default function NavigationLink({
             listDispatch(ListActionTypes.SET, prevItem);
           } else {
             // Follows Keys.Down
-            const nextItem = getNextElement(
+            const nextItem = getNextByLink(
               parentEl,
               linkEl,
               currentListItems,
@@ -140,7 +142,7 @@ export default function NavigationLink({
     },
     [
       currentListItems,
-      getNextElement,
+      getNextByLink,
       getPreviousElement,
       isListOpen,
       listDispatch,

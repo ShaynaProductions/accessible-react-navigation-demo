@@ -1,11 +1,8 @@
 import { use, useCallback } from "react";
 
-import {
-  ClickAwayListener,
-  returnTrueElementOrUndefined,
-} from "@/source/utilities";
+import { ClickAwayListener } from "@/source/utilities";
 import { NavigationWrapperProps } from "../NavigationTypes";
-import { NavigationContext } from "../providers";
+import { useNavigation } from "../hooks";
 
 export default function NavigationWrapper({
   children,
@@ -14,12 +11,7 @@ export default function NavigationWrapper({
   parentEl,
   ...rest
 }: NavigationWrapperProps) {
-  const navigationContextObject = use(NavigationContext);
-  const { getLastChildInRow, handleClickAwayClose } =
-    returnTrueElementOrUndefined(
-      !!navigationContextObject,
-      navigationContextObject,
-    );
+  const { getLastChildInRow, handleClickAwayClose } = useNavigation();
 
   const handleClickAway = useCallback(() => {
     handleClickAwayClose();

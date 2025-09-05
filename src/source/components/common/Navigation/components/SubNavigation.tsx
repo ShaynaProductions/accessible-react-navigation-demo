@@ -13,6 +13,7 @@ import {
   NavListContext,
 } from "../providers";
 import { Keys, ListActionTypes } from "../utilities";
+import { useNavigation } from "../hooks";
 
 export default function SubNavigation({
   children,
@@ -22,20 +23,19 @@ export default function SubNavigation({
 }: SubNavigationProps) {
   const navigationContextObject = use(NavigationContext);
   const navListContextObject = use(NavListContext);
-
   const {
     closeOpenSiblings,
-    getNextElement,
+    getNextByButton,
     getPreviousElement,
     getSubNavigation,
-    handleFocusableFocus,
-    registerSubNav,
-    setIsListOpen,
-    setListItems,
-  } = returnTrueElementOrUndefined(
-    !!navigationContextObject,
-    navigationContextObject,
-  );
+    handleNavItemFocus,
+  } = useNavigation();
+
+  const { registerSubNav, setIsListOpen, setListItems } =
+    returnTrueElementOrUndefined(
+      !!navigationContextObject,
+      navigationContextObject,
+    );
 
   const { currentListItems, isListOpen, listDispatch, parentRef } =
     returnTrueElementOrUndefined(!!navListContextObject, navListContextObject);
@@ -80,8 +80,13 @@ export default function SubNavigation({
   }, [currentListItems, parentRef, setListItems]);
 
   const handleFocus = useCallback(() => {
-    handleFocusableFocus(buttonRef.current, closeOpenSiblings);
-  }, [handleFocusableFocus, closeOpenSiblings]);
+    if (!!buttonRef) {
+      handleNavItemFocus(
+        buttonRef.current as FocusableElement,
+        closeOpenSiblings,
+      );
+    }
+  }, [handleNavItemFocus, closeOpenSiblings]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
@@ -122,7 +127,7 @@ export default function SubNavigation({
           break;
         case Keys.RIGHT:
         case Keys.DOWN:
-          const nextItem = getNextElement(
+          const nextItem = getNextByButton(
             parentRef.current,
             buttonEl,
             currentListItems,
@@ -143,7 +148,7 @@ export default function SubNavigation({
 
             listDispatch(ListActionTypes.SET, prevItem);
           } else {
-            const nextItem = getNextElement(
+            const nextItem = getNextByButton(
               parentRef.current,
               buttonEl,
               currentListItems,
@@ -156,7 +161,7 @@ export default function SubNavigation({
     },
     [
       currentListItems,
-      getNextElement,
+      getNextByButton,
       getPreviousElement,
       isListOpen,
       listDispatch,
