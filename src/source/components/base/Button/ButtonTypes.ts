@@ -1,5 +1,6 @@
 import { ButtonProps as RacButtonProps } from "react-aria-components";
 import { BaseProps } from "@/source/types";
+import React from "react";
 
 export interface ButtonProps extends BaseProps, RacButtonProps {
   isPressed?: boolean;

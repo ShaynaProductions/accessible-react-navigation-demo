@@ -1,3 +1,5 @@
+import React from "react";
+
 export type Orientation = "horizontal" | "vertical";
 /* istanbul ignore next */
 const emptySymbol = Symbol("EmptyObject type");

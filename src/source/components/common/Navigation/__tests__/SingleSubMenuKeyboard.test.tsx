@@ -339,7 +339,7 @@ describe("Single SubMenu Behaviors", () => {
     expect(readButton).toBeInTheDocument();
     await userEvent.pointer({ target: frontButton, keys: "[MouseLeft]" });
     expect(frontButton).toHaveFocus();
-    userEvent.tab();
+    await userEvent.tab();
     expect(aboutLink).toHaveFocus();
   });
 });
