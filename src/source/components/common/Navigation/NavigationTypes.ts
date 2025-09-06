@@ -8,7 +8,7 @@ export interface NavigationProps extends BaseProps {
   children: React.ReactNode;
   label: string;
   orientation?: "horizontal" | "vertical";
-  parentRef?: React.RefObject<HTMLButtonElement | null>;
+  parentEl?: HTMLButtonElement | null;
 }
 
 export interface NavigationListProps extends BaseProps, ListProps {
@@ -24,4 +24,10 @@ export interface NavigationItemProps extends BaseProps {
 
 export interface SubNavigationProps extends Omit<NavigationItemProps, "href"> {
   children: React.ReactNode;
+}
+
+export interface NavigationWrapperProps extends Omit<BaseProps, "testid"> {
+  children: React.ReactNode;
+  label: string;
+  parentEl?: HTMLButtonElement | null;
 }

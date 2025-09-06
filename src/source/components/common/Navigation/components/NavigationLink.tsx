@@ -7,6 +7,7 @@ import { returnTrueElementOrUndefined } from "@/source/utilities";
 import { FocusableElement, NavigationItemProps } from "../NavigationTypes";
 import { NavigationContext, NavListContext } from "../providers";
 import { Keys, ListActionTypes } from "../utilities";
+import { useNavigation } from "../hooks";
 
 export default function NavigationLink({
   cx,
@@ -17,11 +18,18 @@ export default function NavigationLink({
   const navigationContextObject = use(NavigationContext);
   const navListContextObject = use(NavListContext);
 
-  const { getNextElement, getPreviousElement, registerNavItem } =
-    returnTrueElementOrUndefined(
-      !!navigationContextObject,
-      navigationContextObject,
-    );
+  const {
+    closeOpenSiblings,
+    getLastTopElement,
+    getNextByLink,
+    getPreviousElement,
+    handleNavItemFocus,
+  } = useNavigation();
+
+  const { registerNavItem } = returnTrueElementOrUndefined(
+    !!navigationContextObject,
+    navigationContextObject,
+  );
 
   const { currentListItems, isListOpen, listDispatch, parentRef } =
     returnTrueElementOrUndefined(!!navListContextObject, navListContextObject);
@@ -39,12 +47,22 @@ export default function NavigationLink({
     registerNavItem(currentListItems, parentRef.current);
   }, [currentListItems, parentRef, registerNavItem]);
 
-  // const handleFocus = useCallback(() => {
-  //   const parentEl = parentRef.current as HTMLButtonElement | null;
-  //   if (isTopRow(parentEl)) {
-  //     // closeOpenSiblings();
-  //   }
-  // }, [/*closeOpenSiblings,*/ isTopRow, parentRef]);
+  const handleFocus = useCallback(() => {
+    /* istanbul ignore else */
+    if (!!linkRef) {
+      handleNavItemFocus(
+        linkRef.current as FocusableElement,
+        closeOpenSiblings,
+      );
+    }
+    const returnEl: FocusableElement | undefined = getLastTopElement(
+      linkRef.current,
+    );
+
+    if (returnEl) {
+      listDispatch(ListActionTypes.SET, returnEl);
+    }
+  }, [closeOpenSiblings, getLastTopElement, handleNavItemFocus, listDispatch]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
@@ -90,7 +108,7 @@ export default function NavigationLink({
           listDispatch(ListActionTypes.SET, prevItem);
           break;
         case Keys.DOWN:
-          const nextItem = getNextElement(
+          const nextItem = getNextByLink(
             parentEl,
             linkEl,
             currentListItems,
@@ -112,7 +130,7 @@ export default function NavigationLink({
             listDispatch(ListActionTypes.SET, prevItem);
           } else {
             // Follows Keys.Down
-            const nextItem = getNextElement(
+            const nextItem = getNextByLink(
               parentEl,
               linkEl,
               currentListItems,
@@ -125,7 +143,7 @@ export default function NavigationLink({
     },
     [
       currentListItems,
-      getNextElement,
+      getNextByLink,
       getPreviousElement,
       isListOpen,
       listDispatch,
@@ -135,6 +153,7 @@ export default function NavigationLink({
 
   const linkProps = {
     ...rest,
+    onFocus: handleFocus,
     ref: linkRef as unknown as React.RefObject<HTMLAnchorElement>,
   };
   return (
