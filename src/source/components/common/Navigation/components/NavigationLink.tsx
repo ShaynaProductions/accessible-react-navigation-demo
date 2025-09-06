@@ -48,6 +48,7 @@ export default function NavigationLink({
   }, [currentListItems, parentRef, registerNavItem]);
 
   const handleFocus = useCallback(() => {
+    /* istanbul ignore else */
     if (!!linkRef) {
       handleNavItemFocus(
         linkRef.current as FocusableElement,

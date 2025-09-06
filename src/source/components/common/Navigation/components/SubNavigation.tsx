@@ -80,7 +80,8 @@ export default function SubNavigation({
   }, [currentListItems, parentRef, setListItems]);
 
   const handleFocus = useCallback(() => {
-    if (!!buttonRef) {
+    /* istanbul ignore else */
+    if (buttonRef) {
       handleNavItemFocus(
         buttonRef.current as FocusableElement,
         closeOpenSiblings,

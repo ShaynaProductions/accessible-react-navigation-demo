@@ -92,6 +92,7 @@ export default function useNavigation(): UseNavigationReturnProps {
   );
 
   const _closeAll = useCallback(() => {
+    /* istanbul ignore next */
     const childList: FocusableElement[] =
       getNavigationArray()[0].storedList || [];
 

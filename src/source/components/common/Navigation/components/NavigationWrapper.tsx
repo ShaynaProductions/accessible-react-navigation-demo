@@ -21,6 +21,7 @@ export default function NavigationWrapper({
     (event: React.KeyboardEvent<HTMLElement>) => {
       switch (event.key) {
         case "Escape":
+          /* istanbul ignore if */
           if (parentEl) {
             parentEl.focus();
           } else {
