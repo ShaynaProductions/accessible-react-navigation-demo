@@ -1,2 +1,3 @@
-export * from "./FooterView"
-export * from "./HeaderView"
+export * from "./Footer";
+export * from "./Header" ;
+export * from "./pages";

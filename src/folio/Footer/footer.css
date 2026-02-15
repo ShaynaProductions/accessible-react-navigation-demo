@@ -1,0 +1,5 @@
+@layer main {
+    footer {
+        padding-top: calc(var(--sp-px) * 16);
+    }
+}

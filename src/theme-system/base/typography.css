@@ -1,4 +1,4 @@
-@layer base {
+@layer system {
     :root {
         --paragraph-margin:calc(var(--sp-px) * 8) 0;
     }
