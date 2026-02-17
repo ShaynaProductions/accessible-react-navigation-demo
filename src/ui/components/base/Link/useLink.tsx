@@ -1,9 +1,8 @@
 "use client";
-import { sanitizeUrl } from "@braintree/sanitize-url";
-
 import { Icon, Text } from "@/ui/components";
 import { NewWindowIcon } from "@/ui/svg";
 import { UseLinkProps } from "./LinkTypes";
+import { sanitizeUrl } from "@/ui/utilities";
 
 export default function useLink() {
   const getIsTargetSpecific: UseLinkProps["GetIsTargetSpecificTypes"] = (
@@ -24,10 +23,9 @@ export default function useLink() {
     }
   };
   const getNewTab: UseLinkProps["GetNewTabTypes"] = (
+    newTabText,
     suppressNewIcon,
-    label,
   ) => {
-    const newTabText = label || "opens in a new tab";
 
     const iconProps = {
       IconComponent: NewWindowIcon,

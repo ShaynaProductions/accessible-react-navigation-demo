@@ -1,5 +1,4 @@
 import {
-  Box,
   DefinitionDetail,
   DefinitionList,
   DefinitionTerm,
@@ -9,7 +8,7 @@ import {
 
 export const LatestRelease = () => {
   return (
-                                                            <>
+    <>
       <Heading headingLevel={3}>Accessible Base Components</Heading>
       <DefinitionList>
         <DefinitionTerm>Article</DefinitionTerm>
@@ -38,6 +37,6 @@ export const LatestRelease = () => {
           </Link>
         </DefinitionDetail>
       </DefinitionList>
-  </>
-  )
-}
+    </>
+  );
+};

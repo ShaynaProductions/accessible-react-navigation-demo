@@ -1,4 +1,4 @@
-import React from "react";
+import React, { AriaRole } from "react";
 import { BaseProps } from "@/ui/types";
 
 export interface BoxProps extends BaseProps, React.HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
@@ -35,5 +35,5 @@ export interface BoxProps extends BaseProps, React.HTMLAttributes<HTMLDivElement
   /**
    * When certain roles may not be passed through aria (like alert)
    */
-  role?: string;
+  role?: AriaRole;
 }

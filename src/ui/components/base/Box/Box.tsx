@@ -1,4 +1,4 @@
-import React, { JSX } from "react";
+import React, { AriaRole, JSX } from "react";
 import classNames from "classnames";
 import { BoxProps } from "./BoxTypes";
 
@@ -15,8 +15,9 @@ export default function Box(props: BoxProps): JSX.Element | undefined {
     const ariaLabelledby = props["aria-labelledby"];
     const ariaLabel = props["aria-label"];
     const ariaRole = props["aria-role"];
+    const excludedRoles: AriaRole[] = ["presentation", "none"];
 
-    // If role or aria role doesnt exist, then no aria can be passed.
+    // If the role or aria role doesn't exist or has no meaning, then no aria can be passed.
     if (!role && !ariaRole) {
       const ariaFound = Object.fromEntries(
         Object.entries(props).filter(([key]) => key.startsWith("aria-")),
@@ -28,6 +29,8 @@ export default function Box(props: BoxProps): JSX.Element | undefined {
         proceed = false;
       }
     } else if (!label && !ariaLabel && !ariaLabelledby) {
+      /* istanbul ignore else */
+      if(!excludedRoles.includes(role as AriaRole) && !excludedRoles.includes(ariaRole as AriaRole) )
       console.error(
         "Dev Error: (Box) - Must pass label, aria-label or aria-labelledby when a role is set.",
       );

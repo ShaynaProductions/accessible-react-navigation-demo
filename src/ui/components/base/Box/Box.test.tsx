@@ -75,8 +75,7 @@ describe("<Box />", () => {
   })
 
   it("should render when a role and label are defined", () => {
-    const logSpy = jest.spyOn(console, "error");
-    const optProps ={role: "note", label:"note"};
+     const optProps ={role: "note", label:"note"};
 
     const { getByRole } = renderBox(optProps)  ;
     const component =getByRole("note");
@@ -85,7 +84,6 @@ describe("<Box />", () => {
     });
 
   it("should render when a role and aria-label are defined", () => {
-    const logSpy = jest.spyOn(console, "error");
     const optProps ={role: "note", "aria-label":"note"};
 
     const { getByRole } = renderBox(optProps)  ;

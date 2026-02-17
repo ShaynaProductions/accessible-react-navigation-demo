@@ -8,8 +8,8 @@ export interface UseLinkProps {
   GetIsTargetSpecificTypes: (linkTarget: string) => boolean;
   GetLinkTargetTypes: (openInNewTab?: boolean, target?: string) => string;
   GetNewTabTypes: (
+    newTabText: string,
     suppressNewIcon?: boolean,
-    label?: string,
   ) => React.JSX.Element;
   GetSafeHrefTypes: (url?: string) => string | void;
 }
@@ -27,30 +27,12 @@ export interface LinkProps
    *  URL for link.  May be (native) HTML or router (client)
    */
   href: string;
-  /**
-   * default (undefined). When true sets data-focused
-   */
-  isFocused?: boolean;
 
   /**
-   * default (undefined). When true sets data-hovered
+   * label for new tab.  If not passed through, a default will be used.
    */
-  isHovered?: boolean;
-  /**
-   *
-   * @param e: MouseEvent => void
-   */
-  onMouseEnter?: (e: React.MouseEvent<Element, MouseEvent>) => void;
-  /**
-   *
-   * @param e: MouseEvent => void
-   */
-  onMouseLeave?: (e: React.MouseEvent<Element, MouseEvent>) => void;
-  /**
-   *
-   * @param e: KeyboardEvent => void
-   */
-  onKeyDown?: (e: React.KeyboardEvent) => void;
+  newTabText?: string;
+
   /**
    *  default: (undefined). When true sends link to a new tab.
    */

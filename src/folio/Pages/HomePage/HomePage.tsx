@@ -1,9 +1,5 @@
 "use client";
-import {
-  Box, Heading,
-  Link,
-  Text,
-} from "@/ui/components";
+import { Box, Heading, Link, Text } from "@/ui/components";
 import { LatestRelease } from "@/folio/pages/HomePage/sections";
 
 export function HomePage() {
@@ -19,9 +15,10 @@ export function HomePage() {
           .
         </Text>
       </Box>
+
       <Box cx="latest-release">
         <Heading headingLevel={2}>Latest Release</Heading>
-      <LatestRelease />
+        <LatestRelease />
       </Box>
     </Box>
   );

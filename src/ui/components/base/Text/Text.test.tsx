@@ -14,7 +14,7 @@ const renderText = (optProps: TextProps) => {
 
 describe("<Text />", () => {
   it("should be WCAG compliant as a Phrase control", async () => {
-    /* Conforms to Text AC 2 */
+    /* Conforms to Text AC 1 */
     const optProps = { isInline: true };
     const { container } = renderText(optProps);
 
@@ -24,7 +24,7 @@ describe("<Text />", () => {
   });
 
   it("should be WCAG compliant as a Flow control", async () => {
-    /* Conforms to Text AC 2 */
+    /* Conforms to Text AC 1 */
     const optProps = {};
     const { container } = renderText(optProps);
 
@@ -34,7 +34,7 @@ describe("<Text />", () => {
   });
 
   it("should load as inline", () => {
-    /* Conforms to Text AC 2 */
+    /* Conforms to Text AC 1 */
     const optProps = { isInline: true };
     const { getByTestId } = renderText(optProps);
 
@@ -42,7 +42,7 @@ describe("<Text />", () => {
   });
 
   it("should be visually hidden when isHidden is true", () => {
-    /* Conforms to Text AC 1 */
+    /* Conforms to Text AC 2 */
     const optProps = { isHidden: true };
     const { container } = renderText(optProps);
 
