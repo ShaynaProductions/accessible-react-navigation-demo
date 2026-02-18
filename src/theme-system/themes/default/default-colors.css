@@ -1,27 +1,23 @@
-@layer base-theme {
-    :root {
-       --default-background: var(--gray-1);
-        --default-background-focused: var(--purple-3);
-        --default-background-hovered: var(--purple-3);
-        --default-background-pressed: var(--gray-2);
+@layer default-theme {
+  :root {
+    --default-background: var(--gray-1);
+    --default-background-disabled: var(--gray-3);
+    --default-background-interactive: var(--purple-3);
+    --default-background-pressed: var(--gray-2);
 
-        --default-border-color: var(--gray-7);
+    --default-border-color: var(--gray-7);
 
-        --default-color: var(--purple-11);
-        --default-color-disabled: var(--gray-7);
-        --default-color-focused: var(--default-color);
-        --default-color-hovered: var(--default-color);
-        --default-color-invalid: var(--red-5);
-        --default-color-pressed: var(--purple-12);
-        --default-color-required: var(--default-color);
-        --default-color-selected: var(--purple-12);
+    --default-color: var(--purple-11);
+    --default-color-disabled: var(--gray-7);
+    --default-color-interactive: var(--default-color);
+    --default-color-invalid: var(--red-5);
+    --default-color-pressed: var(--purple-12);
+    --default-color-required: var(--default-color);
+    --default-color-selected: var(--purple-12);
 
-
-        --default-text-color: var(--gray-12);
-        --default-text-color-disabled: var(--gray-8);
-        --default-text-color-focused: var(--default-text-color);
-        --default-text-color-hovered: var(--default-text-color);
-        --default-text-color-pressed: var(--purple-12);
-
-    }
+    --default-text-color: var(--gray-12);
+    --default-text-color-disabled: var(--gray-8);
+    --default-text-color-interactive: var(--default-text-color);
+    --default-text-color-pressed: var(--purple-12);
+  }
 }

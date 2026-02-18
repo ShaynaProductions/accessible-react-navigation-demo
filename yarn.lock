@@ -463,13 +463,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@csstools/css-calc@npm:^3.0.0":
-  version: 3.0.1
-  resolution: "@csstools/css-calc@npm:3.0.1"
+"@csstools/css-calc@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "@csstools/css-calc@npm:3.1.1"
   peerDependencies:
     "@csstools/css-parser-algorithms": ^4.0.0
     "@csstools/css-tokenizer": ^4.0.0
-  checksum: 10/1234fd2387eb455cfac95922849cb0b0f694b4e4d41ace6d7713814e2a3ff510d7f312f84fc4acf9a3adaab944204ebb7eb8f010742eea97b5b45f852a3b8eca
+  checksum: 10/faa3aa2736b20757ceafd76e3d2841e8726ec9e7ae78e387684eb462aba73d533ba384039338685c3a52196196300ccdfecb051e59864b1d3b457fe927b7f53b
   languageName: node
   linkType: hard
 
@@ -3971,7 +3971,7 @@ __metadata:
     "@types/node": "npm:^25.2.2"
     "@types/react": "npm:^19.2.13"
     "@types/react-dom": "npm:^19.2.3"
-    babel-plugin-react-compiler: "npm:1.0.0"
+    babel-plugin-react-compiler: "npm:^1.0.0"
     classnames: "npm:^2.5.1"
     eslint: "npm:^9.39.2"
     eslint-config-next: "npm:^16.1.6"
@@ -3993,6 +3993,7 @@ __metadata:
     react-dom: "npm:^19.2.4"
     react-icons: "npm:^5.5.0"
     stylelint: "npm:^17.2.0"
+    stylelint-config-standard: "npm:^40.0.0"
     ts-jest: "npm:29.4.6"
     ts-node: "npm:10.9.2"
     typescript: "npm:5.9.3"
@@ -4047,14 +4048,14 @@ __metadata:
   linkType: hard
 
 "ajv@npm:^8.0.1":
-  version: 8.17.1
-  resolution: "ajv@npm:8.17.1"
+  version: 8.18.0
+  resolution: "ajv@npm:8.18.0"
   dependencies:
     fast-deep-equal: "npm:^3.1.3"
     fast-uri: "npm:^3.0.1"
     json-schema-traverse: "npm:^1.0.0"
     require-from-string: "npm:^2.0.2"
-  checksum: 10/ee3c62162c953e91986c838f004132b6a253d700f1e51253b99791e2dbfdb39161bc950ebdc2f156f8568035bb5ed8be7bd78289cd9ecbf3381fe8f5b82e3f33
+  checksum: 10/bfed9de827a2b27c6d4084324eda76a4e32bdde27410b3e9b81d06e6f8f5c78370fc6b93fe1d869f1939ff1d7c4ae8896960995acb8425e3e9288c8884247c48
   languageName: node
   linkType: hard
 
@@ -4364,7 +4365,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-plugin-react-compiler@npm:1.0.0":
+"babel-plugin-react-compiler@npm:^1.0.0":
   version: 1.0.0
   resolution: "babel-plugin-react-compiler@npm:1.0.0"
   dependencies:
@@ -9204,7 +9205,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"string-width@npm:^8.1.0":
+"string-width@npm:^8.1.1":
   version: 8.1.1
   resolution: "string-width@npm:8.1.1"
   dependencies:
@@ -9365,11 +9366,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylelint@npm:^17.2.0":
-  version: 17.2.0
-  resolution: "stylelint@npm:17.2.0"
+"stylelint-config-recommended@npm:^18.0.0":
+  version: 18.0.0
+  resolution: "stylelint-config-recommended@npm:18.0.0"
+  peerDependencies:
+    stylelint: ^17.0.0
+  checksum: 10/7fadaca52bcd4522f5c053fc0b3722f4ade02682bcac26055b7814e9ba99bd7cef6b82c166e6d7ad8cbe1d27d9da2736f48b644a270fa51d93f8255a63e92fcc
+  languageName: node
+  linkType: hard
+
+"stylelint-config-standard@npm:^40.0.0":
+  version: 40.0.0
+  resolution: "stylelint-config-standard@npm:40.0.0"
   dependencies:
-    "@csstools/css-calc": "npm:^3.0.0"
+    stylelint-config-recommended: "npm:^18.0.0"
+  peerDependencies:
+    stylelint: ^17.0.0
+  checksum: 10/837a4443ff109591e46aa195a342a569e17459947e3e14984a5da05a01291fbaceb16747f7b4a2ce7bf9c83159bbaab9d6d757fdc4b4d32bb7bb2d91d5261cdf
+  languageName: node
+  linkType: hard
+
+"stylelint@npm:^17.2.0":
+  version: 17.3.0
+  resolution: "stylelint@npm:17.3.0"
+  dependencies:
+    "@csstools/css-calc": "npm:^3.1.1"
     "@csstools/css-parser-algorithms": "npm:^4.0.0"
     "@csstools/css-syntax-patches-for-csstree": "npm:^1.0.26"
     "@csstools/css-tokenizer": "npm:^4.0.0"
@@ -9403,14 +9424,14 @@ __metadata:
     postcss-safe-parser: "npm:^7.0.1"
     postcss-selector-parser: "npm:^7.1.1"
     postcss-value-parser: "npm:^4.2.0"
-    string-width: "npm:^8.1.0"
+    string-width: "npm:^8.1.1"
     supports-hyperlinks: "npm:^4.4.0"
     svg-tags: "npm:^1.0.0"
     table: "npm:^6.9.0"
     write-file-atomic: "npm:^7.0.0"
   bin:
     stylelint: bin/stylelint.mjs
-  checksum: 10/9a7e5ddc004b74bc14f3def96876057d9edb0f7b53a5d24770e7f42f29df982a61efd34b7750377a26b566c2095658d461f8f080b1441c7b9b24913061fb0430
+  checksum: 10/4c3ac18bb93c2cfcc29970d94de348342b8cc4773369ffc96c46b81731d6eff6c609d241ddeefdb9a0ed5e88bd0cccab4ea7dc3a2be2b7fba7c931ad93f81f8b
   languageName: node
   linkType: hard
 

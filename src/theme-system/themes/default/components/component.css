@@ -12,12 +12,10 @@
         --component-link-focus-outline: calc(var(--sp-px) * 2);
         --component-link-outline-offset: calc(var(--sp-px) * 4);
         --component-link-background: transparent;
-        --component-link-background-focused: var(--default-background-focused);
-        --component-link-background-hovered: var(--default-background-pressed);
+        --component-link-background-interactive: var(--default-background-interactive);
         --component-link-color: var(--default-text-color);
         --component-link-color-disabled: var(--default-text-color-disabled);
-        --component-link-color-focused: var(--default-text-color-focused);
-        --component-link-color-hovered: var(--default-text-color-hovered);
+        --component-link-color-interactive: var(--default-text-color-interactive);
         --component-link-color-pressed: var(--default-text-color-pressed);
         --component-link-fill: var(--component-link-color);
         --component-link-visited: var(--default-text-color);
@@ -41,34 +39,28 @@
         /* Default - Solid */
         --button-background: var(--purple-2);
         --button-background-disabled: var(--gray-3);
-        --button-background-focused: var(--purple-3);
-        --button-background-hovered: var(--purple-3);
+        --button-background-interactive: var(--purple-3);
         --button-background-pressed: var(--purple-4);
 
         --button-border-color: var(--gray-5);
         --button-border-color-disabled: var(--gray-3);
-        --button-border-color-focused: var(--gray-9);
-        --button-border-color-hovered: var(--button-border-color);
+        --button-border-color-interactive: var(--gray-9);
         --button-border-color-pressed: var(--button-border-color);
 
         --button-color: var(--gray-1);
         --button-color-disabled: var(--gray-10);
-        --button-color-focused: var(--purple-11);
-        --button-color-hovered: var(--gray-10);
+        --button-color-interactive: var(--purple-11);
         --button-color-pressed: var(--gray-11);
 
         --button-fill: var(--purple-12);
         --button-fill-disabled: var(--button-color-disabled);
-        --button-fill-focused: var( --button-color-focused);
-        --button-fill-hovered: var(--button-color-hovered);
+        --button-fill-interactive: var( --button-color-interactive);
         --button-fill-pressed: var(--button-color-pressed);
 
       
         /* Ghost  */
         --button-ghost-background: transparent;
         --button-ghost-border: transparent;
-        --button-ghost-color: var(--purple-12);
-        --button-ghost-fill: var(--purple-12);
 
     }
 
