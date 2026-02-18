@@ -28,17 +28,13 @@
 
             cursor: default;
         }
-        &:hover , &[data-hover="true"] {
-            --component-link-background: var(--component-link-background-hovered);
-            --component-link-color: var(--component-link-color-hovered);
-            --component-link-fill: var(--component-link-color-hovered);
+       &:focus, &:hover {
+            --component-link-background: var(--component-link-background-interactive);
+            --component-link-color: var(--component-link-color-interactive);
+            --component-link-fill: var(--component-link-color-interactive);
         }
 
-        &:focus,&[data-focus="true"] {
-            --component-link-background: var(--component-link-background-focused);
-            --component-link-color: var(--component-link-color-focused);
-            --component-link-fill: var(--component-link-color-focused);
-
+       &:focus-visible {
             border-radius: var(--component-border-radius);
             outline: var(--component-link-focus-outline) solid var(--focus-outline-color);
             outline-offset: var(--component-link-outline-offset);
@@ -54,7 +50,7 @@
             padding-left: var(--side-padding);
             padding-right: var(--side-padding);
             vertical-align: middle;
-            width: calc(var(--sp-px) * (var(--component-item-size) + 4));
+            width: calc(var(--sp-px) * (var(--component-item-size)));
 
         }
 

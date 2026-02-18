@@ -68,12 +68,17 @@ export function Components({ cx, headingLevel }: ComponentsProps): JSX.Element {
 
   return (
     <>
-    <Text cx="instructions">All of the examples and components in this page are created with the same base components used in Navigation. Expand a section to read about the component.</Text>
+      <Text cx="instructions">
+        All of the examples and components in this page are created with the
+        same base components used in Navigation. Expand a section to read about
+        the component.
+      </Text>
       <List {...listProps}>
         <ListItem>
           <Button
             aria-expanded={textOpen}
             aria-controls="text"
+            cx="text"
             onPress={handleTextPress}
           >
             {textLabel}
@@ -96,6 +101,7 @@ export function Components({ cx, headingLevel }: ComponentsProps): JSX.Element {
           <Button
             aria-expanded={headingOpen}
             aria-controls="heading"
+            cx="heading"
             onPress={handleHeadingPress}
           >
             {headingLabel}
@@ -118,6 +124,7 @@ export function Components({ cx, headingLevel }: ComponentsProps): JSX.Element {
           <Button
             aria-expanded={listOpen}
             aria-controls="list"
+            cx="list"
             onPress={handleListPress}
           >
             {listLabel}{" "}
@@ -141,6 +148,7 @@ export function Components({ cx, headingLevel }: ComponentsProps): JSX.Element {
           <Button
             aria-expanded={linkOpen}
             aria-controls="link"
+            cx="link"
             onPress={handleLinkPress}
           >
             {linkLabel}{" "}
@@ -186,6 +194,7 @@ export function Components({ cx, headingLevel }: ComponentsProps): JSX.Element {
           <Button
             aria-expanded={buttonOpen}
             aria-controls="button"
+            cx="button"
             onPress={handleButtonPress}
           >
             {buttonLabel}{" "}
@@ -238,6 +247,7 @@ export function Components({ cx, headingLevel }: ComponentsProps): JSX.Element {
             </Box>
           )}
         </ListItem>
-      </List>    </>
+      </List>{" "}
+    </>
   );
 }

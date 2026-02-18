@@ -13,6 +13,9 @@
         & p {
           padding-left: calc(var(--sp-px) * 24);
         }
+          & a {
+              text-decoration: underline;
+          }
       }
     }
 
@@ -44,26 +47,41 @@
     }
 
     li div {
-      &.link {
-        background-color: var(--purple-3);
-      }
-
-      &.button {
-        background-color: var(--purple-4);
-      }
-
-      &.heading {
-        background-color: var(--purple-2);
-      }
-
-      &.list {
-        background-color: var(--purple-5);
-      }
-
+        --component-link-background-interactive: var(--purple-1);
       &.text {
         background-color: var(--purple-1);
       }
-    }
+      &.heading {
+        background-color: var(--purple-2);
+      }
+      &.list {
+        background-color: var(--purple-3);
+      }
+      &.link {
+        background-color: var(--purple-4);
+          & a{
+
+              color: var(--purple-12);
+              text-decoration-color: var(--purple-12);
+              & > svg {
+                  fill: var(--purple-12);
+              }
+          }
+      }
+
+      &.button {
+        background-color: var(--purple-5);
+          color: var(--purple-12);
+          & a{
+              color: var(--purple-12);
+              text-decoration: var(--purple-12);
+              & > svg {
+                  fill: var(--purple-12);
+              }
+          }
+      }
+      }
+    
 
     li button {
       --button-border-radius: 0;
@@ -85,9 +103,29 @@
         rotate: 90deg;
       }
 
-      &:hover {
-        background: var(--purple-3);
-        border-color: var(--purple-4);
+      /*&:hover,*/
+      /*&:focus {*/
+      /*  --background: var(--purple-3);*/
+      /*  border-color: var(--purple-4);*/
+      /*}*/
+
+      &.text[aria-expanded="true"] {
+        --button-background: var(--purple-1);
+      }
+      &.heading[aria-expanded="true"] {
+        --button-background: var(--purple-2);
+      }
+      &.list[aria-expanded="true"] {
+        --button-background: var(--purple-3);
+        --button-color: var(--purple-12);
+      }
+      &.link[aria-expanded="true"] {
+        --button-background: var(--purple-4);
+          --button-color: var(--purple-12);
+      }
+      &.button[aria-expanded="true"] {
+          --button-background: var(--purple-5);
+          --button-color: var(--purple-12);
       }
     }
   }

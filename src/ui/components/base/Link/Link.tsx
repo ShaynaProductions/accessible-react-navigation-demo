@@ -1,7 +1,5 @@
 "use client";
-import React, {
-  JSX,
-} from "react";
+import React, { JSX } from "react";
 import { default as NextLink } from "next/link";
 
 import { LinkProps } from "./LinkTypes";
@@ -25,7 +23,7 @@ export function Link({
   const linkTarget = getLinkTarget(openInNewTab, target);
   const isTargetSpecific = getIsTargetSpecific(linkTarget);
   const willOpenInNewTab = openInNewTab || isTargetSpecific;
-  const newTab = getNewTab(newTabText,!!suppressNewIcon || !!target);
+  const newTab = getNewTab(newTabText, !!suppressNewIcon || !!target);
 
   const linkProps = {
     ...rest,

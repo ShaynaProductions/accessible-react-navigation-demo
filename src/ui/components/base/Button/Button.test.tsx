@@ -1,6 +1,5 @@
 import React, { act } from "react";
 import { axe, render, userEvent } from "@/test";
-
 import Button from "./Button";
 import { ButtonProps } from "./ButtonTypes";
 
