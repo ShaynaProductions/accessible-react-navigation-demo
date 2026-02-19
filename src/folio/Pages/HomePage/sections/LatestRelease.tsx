@@ -9,7 +9,7 @@ import {
 export const LatestRelease = () => {
   return (
     <>
-      <Heading headingLevel={3}>Accessible Base Components</Heading>
+      <Heading headingLevel={3}>Structure and Transformation</Heading>
       <DefinitionList>
         <DefinitionTerm>Article</DefinitionTerm>
         <DefinitionDetail>

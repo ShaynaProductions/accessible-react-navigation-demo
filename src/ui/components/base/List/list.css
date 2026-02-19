@@ -1,13 +1,20 @@
 @layer base-component {
   :root {
+    --list-type: disc;
     ul {
       padding: 0;
       list-style: none;
+      &.display {
+        margin-inline-start: calc(var(--sp-px) * 40);
+        list-style-type: var(--list-type);
+        list-style-position: outside;
+      }
     }
     ol {
       list-style: decimal;
     }
-    ul, ol {
+    ul,
+    ol {
       margin: 0;
       display: flex;
       border-width: var(--component-border-width);

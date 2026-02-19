@@ -69,7 +69,9 @@
 
 /* Grouping content
  * ========================================================================== */
-
+    :where(dl), :where(dt), :where(dd), :where(ol), :where(ul){
+        margin-inline-start: 0;
+    }
 /**
  * Remove the margin on nested lists in Chrome, Edge, and Safari.
  */
