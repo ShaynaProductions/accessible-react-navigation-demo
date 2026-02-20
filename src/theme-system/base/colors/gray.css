@@ -1,19 +1,7 @@
 @layer system {
     /* hsl(213, 0%, 5%)*/
     :root {
-        --gray-1-alpha: var(--default-alpha);
-        --gray-2-alpha: var(--default-alpha);
-        --gray-3-alpha: var(--default-alpha);
-        --gray-4-alpha: var(--default-alpha);
-        --gray-5-alpha: var(--default-alpha);
-        --gray-6-alpha: var(--default-alpha);
-        --gray-7-alpha: var(--default-alpha);
-        --gray-8-alpha: var(--default-alpha);
-        --gray-9-alpha: var(--default-alpha);
-        --gray-10-alpha: var(--default-alpha);
-        --gray-11-alpha: var(--default-alpha);
-        --gray-12-alpha: var(--default-alpha);
-        
+               
         --raw-gray-1: 213, 0%, 98%;
         --raw-gray-2: 213, 0%, 90%;
         --raw-gray-3: 213, 0%, 80%;

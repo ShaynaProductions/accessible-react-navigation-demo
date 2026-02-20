@@ -1,0 +1,88 @@
+@layer main {
+  .example {
+    border-width: var(--component-border-width);
+    border-style: solid;
+    border-color: var(--component-border-color);
+    margin-bottom: calc(var(--sp-px) * 32);
+    & nav {
+      padding: calc(var(--sp-px) * 16) 0;
+      position: relative;
+      & > ul > li {
+        font-weight: 500;
+        &:has(button) {
+          min-width: calc(var(--sp-px) * 120);
+          max-width: 100%;
+        }
+
+        &:has(a[href]) {
+          min-width: calc(var(--sp-px) * 70);
+          max-width: 100%;
+        }
+      }
+
+      & li {
+        --button-color: var(--purple-12);
+        font-weight: normal;
+        padding-left: calc(var(--sp-px) * 16);
+        padding-top: calc(var(--sp-px) * 8);
+      }
+
+      & button {
+        --button-background: var(--button-ghost-background);
+        --button-border-color: var(--button-ghost-border);
+        --button-padding: calc(var(--sp-px) * 4);
+
+        & svg {
+          padding-left: calc(var(--sp-px) * 8);
+          stroke: var(--button-color);
+          stroke-width: calc(var(--sp-px) * 2);
+        }
+      }
+
+      & a[href] {
+        color: var(--button-color);
+        border-width: var(--theme-border-width);
+        padding: calc(var(--sp-px) * 4);
+        position: relative;
+        text-decoration: none;
+        top: calc(var(--sp-px) * 4);
+
+        &[aria-current="page"] {
+          border-style: dotted;
+        }
+      }
+    }
+    /*example.complex*/
+    &.complex {
+      margin-top: calc(var(--sp-px) * 16);
+
+      & [data-orientation="horizontal"] li > ul {
+        background-color: var(--component-background);
+        border-color: var(--component-border-color);
+        border-style: solid;
+        border-width: calc(var(--sp-px) * 1);
+        padding-bottom: calc(var(--sp-px) * 8);
+        padding-right: calc(var(--sp-px) * 8);
+        position: absolute;
+        top: calc(var(--sp-px) * (64));
+        z-index: 3;
+          & ul {
+              border-color: transparent;
+              position: relative;
+              top: unset;
+          }
+      }
+    }
+    /*example.simple*/
+    &.simple {
+      padding: calc(var(--sp-px) * 16);
+      margin-top: calc(var(--sp-px) * 16);
+
+      & li {
+        &:has(a[href]) {
+          padding-bottom: calc(var(--sp-px) * 16);
+        }
+      }
+    }
+  }
+}
