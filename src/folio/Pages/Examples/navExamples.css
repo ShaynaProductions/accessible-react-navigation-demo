@@ -41,7 +41,7 @@
 
       & a[href] {
         color: var(--button-color);
-        border-width: var(--default-border-width);
+        border-width: var(--theme-border-width);
         padding: calc(var(--sp-px) * 4);
         position: relative;
         text-decoration: none;

@@ -1,9 +1,9 @@
 @layer default-theme {
     :root {
-        --component-background: var(--default-background);
-        --component-border-width: var(--default-border-width);
-        --component-border-radius: var(--default-border-radius);
-        --component-border-color: var(--default-border-color);
+        --component-background: var(--theme-background);
+        --component-border-width: var(--theme-border-width);
+        --component-border-radius: var(--theme-border-radius);
+        --component-border-color: var(--theme-border-color);
         --component-ease:var(--theme-ease);
         --component-text-size: var(--theme-text-size);
         --component-item-size: var(--component-text-size);

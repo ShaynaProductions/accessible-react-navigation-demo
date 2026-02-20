@@ -13,7 +13,7 @@
 
         /* Appearance */
         cursor: pointer;
-        transition: all var(--default-ease) ease-in-out;
+        transition: all var(--theme-ease) ease-in-out;
 
         /* Colors */
         background-color: var(--component-link-background);
