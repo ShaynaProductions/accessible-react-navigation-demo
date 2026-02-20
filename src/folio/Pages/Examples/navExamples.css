@@ -66,6 +66,11 @@
         position: absolute;
         top: calc(var(--sp-px) * (64));
         z-index: 3;
+          & ul {
+              border-color: transparent;
+              position: relative;
+              top: unset;
+          }
       }
     }
     /*example.simple*/
