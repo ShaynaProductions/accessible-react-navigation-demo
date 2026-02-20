@@ -7,7 +7,6 @@
 
         & button[aria-expanded="true"] svg {
             rotate: 90deg;
-            animation: rotation 2s linear;
         }
     }
 }
