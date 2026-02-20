@@ -3,8 +3,8 @@
         --component-border-width: var(--default-border-width);
         --component-border-radius: var(--default-border-radius);
         --component-border-color: var(--default-border-color);
-        --component-ease:var(--default-ease);
-        --component-text-size: var(--default-text-size);
+        --component-ease:var(--theme-ease);
+        --component-text-size: var(--theme-text-size);
         --component-item-size: var(--component-text-size);
 
         /* Links */
@@ -12,19 +12,19 @@
         --component-link-focus-outline: calc(var(--sp-px) * 2);
         --component-link-outline-offset: calc(var(--sp-px) * 4);
         --component-link-background: transparent;
-        --component-link-background-interactive: var(--default-background-interactive);
-        --component-link-color: var(--default-text-color);
-        --component-link-color-disabled: var(--default-text-color-disabled);
-        --component-link-color-interactive: var(--default-text-color-interactive);
-        --component-link-color-pressed: var(--default-text-color-pressed);
+        --component-link-background-interactive: var(--theme-background-interactive);
+        --component-link-color: var(--theme-text-color);
+        --component-link-color-disabled: var(--theme-text-color-disabled);
+        --component-link-color-interactive: var(--theme-text-color-interactive);
+        --component-link-color-pressed: var(--theme-text-color-pressed);
         --component-link-fill: var(--component-link-color);
-        --component-link-visited: var(--default-text-color);
+        --component-link-visited: var(--theme-text-color);
 
-        --component-text-color: var(--default-text-color);
+        --component-text-color: var(--theme-text-color);
 
-        --svg-color: var(--default-color);
-        --svg-fill: var(--default-color);
-        --svg-stroke: var(--default-color);
+        --svg-color: var(--theme-color);
+        --svg-fill: var(--theme-color);
+        --svg-stroke: var(--theme-color);
 
         /* Button*/
         /* Common widths and spacing */
@@ -36,7 +36,7 @@
         --button-line-height: 1.4;
         --button-letter-spacing: normal;
 
-        /* Default - Solid */
+        /* theme - Solid */
         --button-background: var(--purple-2);
         --button-background-disabled: var(--gray-3);
         --button-background-interactive: var(--purple-3);
