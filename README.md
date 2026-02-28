@@ -28,3 +28,4 @@ Each published article is linked, and where appropriate, examples will refer to 
 3. [Spacing Considerations in Accessible Design](https://dev.to/shaynaproductions/spacing-considerations-in-accessible-design-3gi)
 4. [Foundational Accessibility Begins with Base Components](https://dev.to/shaynaproductions/foundational-accessibility-begins-with-the-base-components-4f5p)
 5. [Theming in the modern age](https://dev.to/shaynaproductions/theming-in-the-modern-age-1je5)
+6. [Structure and Transformation](https://dev.to/shaynaproductions/structure-and-transformation-first-steps-in-navigation-implementation-248)

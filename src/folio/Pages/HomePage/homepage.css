@@ -1,76 +1,102 @@
 @layer main {
-  #home-page {
-    width: 100%;
-    padding: 0 calc(var(--sp-px) * 16);
-    display: flex;
-    flex-direction: column;
+    /* Layouts */
+    #home-page {
+        display: flex;
+        flex-direction: column;
+        padding: 0 calc(var(--sp-px) * 16);
+        & h2 {
+            color: var(--purple-10);
+        }
+        & .intro {
+            & p {
+                line-height: calc(var(--sp-px) * 28);
+                color: var(--purple-12);
+            }
+        }
 
-    & > div {
-      h2 {
-        color: var(--purple-10);
-      }
+        & .example-section {
+            padding-left: calc(var(--sp-px) * (16 * 2));
+            padding-bottom: calc(var(--sp-px) * (16 * 2));
+        }
 
-      p {
-        color: var(--purple-12);
-      }
+        & .latest-release,
+        & .prev-releases {
+            display: flex;
+            flex-direction: column;
+
+            & li {
+                clear: both;
+            }
+            & dl {
+                --dt-width: calc(var(--sp-px) * (16 * 8));
+                float: left;
+                width: 100%;
+            }
+            & dt {
+                clear: left;
+                color: var(--purple-9);
+                display: inline-block;
+                float: left;
+                font-weight: bold;
+                padding-right: calc(var(--sp-px) * (12));
+                padding-top: calc(var(--sp-px) * (4));
+                text-align: right;
+                width: var(--dt-width);
+                &:after {
+                    content: ":";
+                }
+            }
+            & dd {
+                display: inline-block;
+                float: left;
+                position: relative;
+                top: calc(var(--sp-px) * 3);
+
+                &:has(span) {
+                    text-align: left;
+                }
+                &:has(span:not(:first-child)) {
+                    clear: left;
+                }
+            }
+        }
+
+        & .prev-releases {
+            & ol li {
+                padding-left: calc(var(--sp-px) * (16 * 1));
+
+                &::marker {
+                    font-weight: bold;
+                }
+            }
+            & dt {
+                padding-right: calc(var(--sp-px) * 4);
+            }
+
+            & dd {
+                top: calc(var(--sp-px) * 3);
+                padding-bottom: calc(var(--sp-px) * 4);
+                & a[href] {
+                    padding-left: calc(var(--sp-px) * 8);
+                    position: relative;
+                    top: calc(var(--sp-px) * 1);
+                }
+                & + dd {
+                    clear: left;
+                    padding-left: calc(var(--dt-width));
+                }
+                & span {
+                    display: inline-block;
+                    font-weight: bold;
+                    vertical-align: middle;
+                    width: calc(var(--sp-px) * (16 * 7));
+                    text-align: right;
+                    &:after {
+                        content: ":";
+                        font-weight: normal;
+                    }
+                }
+            }
+        }
     }
-      & .intro {
-          & p {
-              line-height: calc(var(--sp-px) * 28);
-          }
-      }
-
-      & .latest-release {
-          width: 100%;
-          margin-top: calc(var(--sp-px) * 16);
-
-          & ul {
-              margin-top: calc(var(--sp-px) * 16);
-              display: flex;
-              flex-direction: row;
-              flex-wrap: wrap;
-              align-content: space-evenly;
-              justify-content: space-between;
-              padding-left: calc(var(--sp-px) * 24);
-
-              & li {
-                  font-size: calc(var(--sp-px) * 18);
-
-                  &:nth-child(even) {
-                      padding-right: calc(var(--sp-px) * 24);
-                  }
-
-              }
-          }
-
-          & dl {
-              --dt-width: calc(var(--sp-px) * (8 * 16));
-              font-size: calc(var(--sp-px) * 16);
-              margin-bottom: calc(var(--sp-px) * 16);
-
-              & dt {
-                  color: var(--purple-8);
-                  display: inline-block;
-                  font-weight: bolder;
-                  padding-right: calc(var(--sp-px) * 8);
-                  text-align: right;
-                  vertical-align: top;
-                  width: var(--dt-width);
-
-                  &:after {
-                      content: ":";
-                  }
-              }
-
-              & dd {
-                  vertical-align: bottom;
-                  display: inline-block;
-                  margin-inline-start: 0;
-                  width: calc(100% - var(--dt-width));
-                  margin-bottom: calc(var(--sp-px) * 8);
-
-              }
-          }
-      }
-  }
 }
