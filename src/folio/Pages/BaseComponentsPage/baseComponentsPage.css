@@ -1,146 +1,162 @@
 @layer main {
-  #base-components {
-      @media screen and (max-width: 769px){
-      & > ul.general {
-          flex-wrap: wrap;
-      }
-  }
-    & > ul.general {
-      display: flex;
-      width: 100%;
-      list-style: inside;
-
-      & li {
-        padding-left: calc(var(--sp-px) * 16);
-        padding-bottom: calc(var(--sp-px) * 16);
-
-        & p {
-          padding-left: calc(var(--sp-px) * 24);
-        }
-          & a {
-              text-decoration: underline;
-          }
-      }
-    }
-
-    & > ul:not(.general) {
-      display: flex;
-        gap: calc(var(--sp-px) * 16);
-      position: relative;
-      flex-wrap: wrap ;
-      list-style: none;
-
-      & > li {
-        padding: 0 calc(var(--sp-px) * 16);
-        width: 47%;
-      }
-
-      & > li div {
-        border-width: calc(var(--sp-px) * 8);
-        padding: calc(var(--sp-px) * 32);
-        /*margin-bottom: calc(var(--sp-px) * 2);*/
-        mask: radial-gradient(
-            calc(var(--sp-px) * 21) at 50% calc(var(--sp-px) * 21),
-            #0000 calc(100% - var(--sp-px) * 1),
-            #000
-          )
-          50% calc(-1 * var(--sp-px) * 21) / calc(var(--sp-px) * 38.85) 100%;
-      }
-    }
-
-    p.instructions {
-      margin-bottom: calc(var(--sp-px) * 24);
-    }
-
-    li div {
-        --component-link-background-interactive: var(--purple-1);
-      &.text {
-        background-color: var(--purple-1);
-      }
-      &.heading {
-        background-color: var(--purple-2);
-      }
-      &.list {
-        background-color: var(--purple-3);
-      }
-      &.link {
-        background-color: var(--purple-4);
-          & a{
-
-              color: var(--purple-12);
-              text-decoration-color: var(--purple-12);
-              & > svg {
-                  fill: var(--purple-12);
-              }
-          }
-      }
-
-      &.button {
-        background-color: var(--purple-5);
-          color: var(--purple-12);
-          & a{
-              color: var(--purple-12);
-              text-decoration: var(--purple-12);
-              & > svg {
-                  fill: var(--purple-12);
-              }
-          }
-      }
-      }
-    
-
-    li button {
-      --button-border-radius: 0;
-      --button-background: var(--button-ghost-background);
-      --button-border-color: var(--button-ghost-border);
-      --button-color: var(--purple-9);
-      border-bottom-color: var(--purple-9);
-      font-weight: bold;
-      justify-content: left;
-      width: 100%;
-
-      & svg {
-        left: calc(var(--sp-px) * 8);
-        position: relative;
-        fill: var(--purple-9);
-      }
-
-      &[aria-expanded="true"] svg {
-        rotate: 90deg;
-      }
-
-
-      &.text[aria-expanded="true"] {
-        --button-background: var(--purple-1);
-      }
-      &.heading[aria-expanded="true"] {
-        --button-background: var(--purple-2);
-      }
-      &.list[aria-expanded="true"] {
-        --button-background: var(--purple-3);
-        --button-color: var(--purple-12);
-      }
-      &.link[aria-expanded="true"] {
-        --button-background: var(--purple-4);
-          --button-color: var(--purple-12);
-      }
-      &.button[aria-expanded="true"] {
-          --button-background: var(--purple-5);
-          --button-color: var(--purple-12);
-      }
-    }
-  }
-
-  @media screen and (max-width: 767px) {
     #base-components {
-      & > ul:not(.general) {
-        & > li,
-        & > li div {
-          display: block;
-          width: 95%;
-          margin-left: 2.5%;
+        & > ul.general {
+            align-items: flex-start;
+            column-gap: calc(var(--sp-px) * 16);
+            display: flex;
+            flex-direction: row;
+            list-style: inside;
+            width: 100%;
+
+            & li {
+                border-width: var(--component-border-width);
+                border-style: solid;
+                border-color: transparent transparent transparent var(--purple-3);
+                list-style: none;
+                padding-left: calc(var(--sp-px) * 16);
+                padding-bottom: calc(var(--sp-px) * 16);
+                width: 30%;
+                &:first-child {
+                    border-left-color: transparent;
+                }
+
+                & a {
+                    text-decoration: underline;
+                }
+            }
         }
-      }
+
+        & > ul:not(.general) {
+            display: flex;
+            gap: calc(var(--sp-px) * 16);
+            position: relative;
+            flex-wrap: wrap;
+            list-style: none;
+
+            & > li {
+                padding: 0 calc(var(--sp-px) * 16);
+                width: 47%;
+            }
+
+            & > li div {
+                border-width: calc(var(--sp-px) * 8);
+                padding: calc(var(--sp-px) * 32);
+                mask: radial-gradient(
+                        calc(var(--sp-px) * 21) at 50% calc(var(--sp-px) * 21),
+                        #0000 calc(100% - var(--sp-px) * 1),
+                        #000
+                )
+                50% calc(-1 * var(--sp-px) * 21) / calc(var(--sp-px) * 38.85) 100%;
+            }
+        }
+
+        & p.instructions {
+            margin-bottom: calc(var(--sp-px) * 24);
+        }
+
+        & li div {
+            --component-link-background-interactive: var(--purple-1);
+            &.text {
+                background-color: var(--purple-1);
+            }
+            &.heading {
+                background-color: var(--purple-2);
+            }
+            &.list {
+                background-color: var(--purple-3);
+            }
+            &.link {
+                background-color: var(--purple-4);
+                & a {
+                    color: var(--purple-12);
+                    text-decoration-color: var(--purple-12);
+                    & > svg {
+                        fill: var(--purple-12);
+                    }
+                }
+            }
+
+            &.button {
+                background-color: var(--purple-5);
+                color: var(--purple-12);
+                & a {
+                    color: var(--purple-12);
+                    text-decoration: var(--purple-12);
+                    & > svg {
+                        fill: var(--purple-12);
+                    }
+                }
+            }
+        }
+
+        & li button {
+            --button-border-radius: 0;
+            --button-background: transparent;
+            border-color: transparent;
+            color: var(--purple-9);
+            border-bottom-color: var(--purple-9);
+            font-weight: bold;
+            justify-content: left;
+            width: 100%;
+
+            & svg {
+                left: calc(var(--sp-px) * 8);
+                position: relative;
+                fill: var(--purple-9);
+            }
+
+            &[aria-expanded="true"] svg {
+                rotate: 90deg;
+            }
+
+            &.text[aria-expanded="true"] {
+                --button-background: var(--purple-1);
+            }
+            &.heading[aria-expanded="true"] {
+                --button-background: var(--purple-2);
+            }
+            &.list[aria-expanded="true"] {
+                --button-background: var(--purple-3);
+                --button-color: var(--purple-12);
+            }
+            &.link[aria-expanded="true"] {
+                --button-background: var(--purple-4);
+                --button-color: var(--purple-12);
+            }
+            &.button[aria-expanded="true"] {
+                --button-background: var(--purple-5);
+                --button-color: var(--purple-12);
+            }
+        }
     }
-  }
+
+    @media screen and (max-width: 767px) {
+        #base-components {
+            & > ul:not(.general) {
+                & > li,
+                & > li div {
+                    display: block;
+                    width: 95%;
+                    margin-left: 2.5%;
+                }
+            }
+            & > ul.general {
+                flex-direction: column;
+                gap: 16px;
+                & li {
+                    display: flex;
+                    border-color: var(--purple-3) transparent transparent transparent;
+                    gap: 16px;
+                    padding: calc(var(--sp-px) * 16);
+
+                    list-style: none;
+                    width: 100%;
+                    &:last-child {
+                        border-bottom-color: var(--purple-3);
+                    }
+                }
+            }
+        }
+    }
 }
+
