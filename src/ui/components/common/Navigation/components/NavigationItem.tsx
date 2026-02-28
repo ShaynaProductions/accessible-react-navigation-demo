@@ -9,9 +9,10 @@ import {
 } from "@/ui/components";
 import { usePathname } from "@/ui/hooks";
 import { Keys, returnTrueElementOrUndefined } from "@/ui/utilities";
-import { useNavigationList } from "../hooks";
+import { useNavigation, useNavigationList } from "../hooks";
 import { handleCommonKeyDown, type FocusableElementType } from "../utilities";
 import type { NavigationItemProps } from "./NavigationTypes";
+import { usePrevious } from "@mantine/hooks";
 
 export default function NavigationItem({
   cx,
@@ -21,17 +22,23 @@ export default function NavigationItem({
   ...rest
 }: NavigationItemProps): JSX.Element {
   const {
+    currentListItems,
+    parentEl,
     registerItemInCurrentList,
     setFirstFocus,
     setLastFocus,
     setNextFocus,
     setPreviousFocus,
   } = useNavigationList();
+
+  const { registerItemInNavigationArray } = useNavigation();
   const currentPath = usePathname();
 
   const pageURL = href.substring(0, 2) === "/#" ? currentPath + href : href;
 
   const linkRef = useRef<HTMLAnchorElement>(null);
+
+  const prevCurrentListItems = usePrevious(currentListItems);
 
   useEffect(() => {
     /* istanbul ignore else */
@@ -39,6 +46,23 @@ export default function NavigationItem({
       registerItemInCurrentList(linkRef.current);
     }
   }, [linkRef, registerItemInCurrentList]);
+
+  useEffect(() => {
+    /* istanbul ignore else */
+    if (
+      linkRef.current !== null &&
+      currentListItems !== prevCurrentListItems &&
+      currentListItems.length > 0
+    ) {
+      registerItemInNavigationArray(currentListItems, parentEl);
+    }
+  }, [
+    currentListItems,
+    linkRef,
+    parentEl,
+    prevCurrentListItems,
+    registerItemInNavigationArray,
+  ]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     const linkEl = linkRef.current as FocusableElementType;

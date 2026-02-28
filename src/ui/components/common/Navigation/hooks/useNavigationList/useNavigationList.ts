@@ -10,13 +10,14 @@ import type {
 
 export function useNavigationList(): UseNavigationListReturnProps {
   const navigationListContextObj = use(NavigationListContext);
-  const { getCurrentListItems, registerItemInCurrentList } =
+  const { getCurrentListItems,getParentEl, registerItemInCurrentList } =
     returnTrueElementOrUndefined(
       !!navigationListContextObj,
       navigationListContextObj,
     );
 
   const currentListItems: FocusableElementType[] = getCurrentListItems();
+  const parentEl = getParentEl();
 
   const _getCurrentIndex: UseNavigationListInternalProps["_getCurrentIndex"] =
     useCallback(
@@ -64,6 +65,7 @@ export function useNavigationList(): UseNavigationListReturnProps {
 
   return {
     currentListItems,
+    parentEl,
     registerItemInCurrentList,
     setFirstFocus,
     setLastFocus,

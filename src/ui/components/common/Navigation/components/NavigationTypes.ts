@@ -1,6 +1,7 @@
 import React from "react";
 import type { BaseProps, Orientation } from "@/ui/types";
 import type { LinkProps, ListProps } from "@/ui/components";
+import type { ControllingElementType } from "../utilities";
 
 export interface NavigationProps extends BaseProps {
   /**
@@ -48,6 +49,10 @@ export interface NavigationListProps extends ListProps {
    * is List visible and operable
    */
   isOpen: boolean;
+  /**
+   * ParentRef: Button Element or null
+   */
+  parentRef: React.RefObject<ControllingElementType>;
 }
 
 export interface SubNavigationProps extends Omit<NavigationItemProps, "href"> {

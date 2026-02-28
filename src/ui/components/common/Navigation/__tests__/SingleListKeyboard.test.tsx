@@ -144,7 +144,7 @@ describe("Navigation through single list of buttons", () => {
       buttonListObj,
       optProps,
     );
-    const { communityButton, referenceButton } = getMultipleButtonsTestElements(
+    const { communityButton, communityList, referenceButton } = getMultipleButtonsTestElements(
       getByRole,
       getByTestId,
       TEST_ID,
@@ -157,6 +157,11 @@ describe("Navigation through single list of buttons", () => {
     expect(referenceButton).toHaveFocus();
     await userEvent.keyboard("{Home}");
     expect(communityButton).toHaveFocus();
+    expect(communityList).toHaveClass("srOnly");
+    await userEvent.keyboard("{Enter}");
+    expect(communityList).not.toHaveClass("srOnly");
+    await userEvent.keyboard("{Enter}");
+    expect(communityList).toHaveClass("srOnly");
   });
 
   it("should take user to the last item in the list when End Key is pressed", async () => {

@@ -1,4 +1,4 @@
-import { FocusableElementType } from "../../utilities";
+import { ControllingElementType, FocusableElementType } from "../../utilities";
 
 export interface UseNavigationListInternalProps {
   _getCurrentIndex: (focusedElement: FocusableElementType) => number;
@@ -6,6 +6,7 @@ export interface UseNavigationListInternalProps {
 
 export interface UseNavigationListReturnProps {
   currentListItems: FocusableElementType[];
+  parentEl: ControllingElementType;
   registerItemInCurrentList: (focusableEl: FocusableElementType) => void;
   setFirstFocus: () => void;
   setLastFocus: () => void;
