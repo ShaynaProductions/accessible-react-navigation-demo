@@ -1,0 +1,47 @@
+@layer theme-theme {
+    :root {
+        --theme-ease: 50ms;
+        --theme-border-radius: calc(var(--sp-px) * 3);
+        --theme-border-width: calc(var(--sp-px) * 1);
+        --theme-divider-style: solid;
+        --theme-text-size: calc(var(--sp-px) * 16);
+        --theme-alpha: 100;
+        --const-wide-margin-offset: calc((100vw - (1281px - var(--sizing-base))) / 2);
+
+        --theme-box-shadow:  calc(var(--sp-px) * 2) 0 calc(var(--sp-px) * 8)calc(var(--sp-px) * 4) var(--gray-shadow);
+
+        --focus-outline-color: var(--theme-border-color)   ;
+        --focus-outline-offset: calc(var(--sp-px) * 4);
+        --focus-outline-border-radius: calc(var(--sp-px) * 2);
+        --focus-outline: calc(var(--sp-px) * 2) solid;
+    }
+
+    body {
+        box-sizing: border-box;
+        margin: 0;
+        max-width: 1280px;
+        padding: calc(var(--sp-px) * 8) calc(var(--sp-px) * 32);
+
+        font-family:  system-ui, sans-serif;
+        line-height: 1.5;
+
+        border-radius: var(--theme-border-radius);
+        border-style: solid;
+        border-width: 0;
+
+        background-color: var(--theme-background);
+        border-color: transparent;
+        color: var( --theme-text-color);
+    }
+
+    @media screen and (min-width: 1281px) {
+
+        body {
+            margin-left: var(--const-wide-margin-offset);
+            margin-right: var(--const-wide-margin-offset);
+        }
+
+    }
+
+}
+

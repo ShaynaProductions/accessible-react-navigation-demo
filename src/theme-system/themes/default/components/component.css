@@ -1,0 +1,68 @@
+@layer default-theme {
+    :root {
+        --component-background: var(--theme-background);
+        --component-border-width: var(--theme-border-width);
+        --component-border-radius: var(--theme-border-radius);
+        --component-border-color: var(--theme-border-color);
+        --component-ease:var(--theme-ease);
+        --component-text-size: var(--theme-text-size);
+        --component-item-size: var(--component-text-size);
+
+        /* Links */
+        --component-link-border-radius: calc(var(--sp-px) * 4);
+        --component-link-focus-outline: calc(var(--sp-px) * 2);
+        --component-link-outline-offset: calc(var(--sp-px) * 4);
+        --component-link-background: transparent;
+        --component-link-background-interactive: var(--theme-background-interactive);
+        --component-link-color: var(--theme-text-color);
+        --component-link-color-disabled: var(--theme-text-color-disabled);
+        --component-link-color-interactive: var(--theme-text-color-interactive);
+        --component-link-color-pressed: var(--theme-text-color-pressed);
+        --component-link-fill: var(--component-link-color);
+        --component-link-visited: var(--theme-text-color);
+
+        --component-text-color: var(--theme-text-color);
+
+        --svg-color: var(--theme-color);
+        --svg-fill: var(--theme-color);
+        --svg-stroke: var(--theme-color);
+
+        /* Button*/
+        /* Common widths and spacing */
+        --button-padding: calc(var(--sp-px) * 4) calc(var(--sp-px) * 12);
+        --button-border-radius: calc(var(--sp-px) * 8);
+        --button-border-width: calc(var(--sp-px) * 2);
+        --button-font-size: inherit;
+        --button-font-weight: 500;
+        --button-line-height: 1.4;
+        --button-letter-spacing: normal;
+
+        /* theme - Solid */
+        --button-background: var(--purple-2);
+        --button-background-disabled: var(--gray-3);
+        --button-background-interactive: var(--purple-3);
+        --button-background-pressed: var(--purple-4);
+
+        --button-border-color: var(--gray-5);
+        --button-border-color-disabled: var(--gray-3);
+        --button-border-color-interactive: var(--gray-9);
+        --button-border-color-pressed: var(--button-border-color);
+
+        --button-color: var(--gray-12);
+        --button-color-disabled: var(--gray-10);
+        --button-color-interactive: var(--purple-11);
+        --button-color-pressed: var(--gray-11);
+
+        --button-fill: var(--purple-12);
+        --button-fill-disabled: var(--button-color-disabled);
+        --button-fill-interactive: var( --button-color-interactive);
+        --button-fill-pressed: var(--button-color-pressed);
+
+      
+        /* Ghost  */
+        --button-ghost-background: transparent;
+        --button-ghost-border: transparent;
+
+    }
+
+}
