@@ -1,35 +1,37 @@
+"use client";
 import {
   DefinitionDetail,
   DefinitionList,
   DefinitionTerm,
   Heading,
   Link,
-  Text
+  Text,
 } from "@/ui/components";
 
 export const LatestRelease = () => {
   return (
     <>
-      <Heading headingLevel={3}>Single List Keyboard Handling</Heading>
+      <Heading headingLevel={3}>Parent Provider Implementation</Heading>
       <DefinitionList>
         <DefinitionTerm>Articles</DefinitionTerm>
         <DefinitionDetail>
           <Text isInline>Development</Text>
           <Link
-            href="https://dev.to/shaynaproductions/single-list-keyboard-handling-254g"
+            href="https://dev.to/shaynaproductions/are-you-my-parent-scaffolding-in-the-architecture-necessary-for-keyboard-handling-between-23dg"
             openInNewTab={true}
           >
-            Single List Keyboard Handling
+            Are You My Parent?: Scaffolding in the architecture necessary for
+            keyboard handling between components.
           </Link>
           <br />
         </DefinitionDetail>
         <DefinitionDetail>
-          <Text isInline={true}>Design</Text>
+          <Text isInline>Design</Text>
           <Link
-            href="https://dev.to/shaynaproductions/laying-it-all-out-2a8e"
+            href="https://dev.to/shaynaproductions/laying-it-all-out-on-the-vertical-23b3"
             openInNewTab={true}
           >
-            Laying it all Out
+            Laying it all out on the vertical
           </Link>
           <br />
         </DefinitionDetail>
@@ -37,10 +39,10 @@ export const LatestRelease = () => {
         <DefinitionTerm>Release</DefinitionTerm>
         <DefinitionDetail>
           <Link
-            href="https://github.com/ShaynaProductions/accessible-react-navigation-demo/releases/tag/v0.4.0"
+            href="https://github.com/ShaynaProductions/accessible-react-navigation-demo/releases/tag/v0.5.0"
             openInNewTab={true}
           >
-            Implementing Single List Keyboard Handling{" "}
+            Data and Provider Handling for Keyboarding Between Components.
           </Link>
         </DefinitionDetail>
       </DefinitionList>

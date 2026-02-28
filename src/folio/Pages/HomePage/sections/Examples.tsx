@@ -1,5 +1,12 @@
+"use client";
 import { Box, List, ListItem, Text } from "@/ui/components";
-import { MultipleListButtons, MultipleListLinkEnds, SingleList, StyledHorizontal } from "./";
+import {
+  MultipleListButtons,
+  MultipleListLinkEnds,
+  SingleList,
+  StyledHorizontal,
+  StyledVertical,
+} from "./";
 
 export const Examples = () => {
   return (
@@ -27,6 +34,9 @@ export const Examples = () => {
         </ListItem>
         <ListItem>
           <StyledHorizontal />
+        </ListItem>
+        <ListItem>
+          <StyledVertical />
         </ListItem>
       </List>
     </Box>

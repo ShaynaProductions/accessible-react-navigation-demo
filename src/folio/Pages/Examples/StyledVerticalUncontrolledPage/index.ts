@@ -1,0 +1,1 @@
+export { StyledVerticalUncontrolledPage } from "./StyledVerticalUncontrolledPage";

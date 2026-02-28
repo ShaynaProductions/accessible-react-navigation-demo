@@ -1,0 +1,87 @@
+@layer system-component {
+  nav.vertical-navigation {
+    /* Layout */
+    padding: calc(var(--sp-px) * 16);
+
+    /* Top Row nav > ul > li   */
+
+    & > ul {
+      & > li {
+        & > button,
+        & > a[href] {
+          padding-left: 0;
+          justify-content: flex-start;
+        }
+
+        /*sub navigation (not top row)*/
+
+        & > ul {
+          & li {
+            width: 100%;
+          }
+
+          & > li {
+            & button,
+            & a[href] {
+              flex-wrap: nowrap;
+              justify-content: flex-start;
+              padding-left: calc(var(--sp-px) * 16);
+            }
+          }
+
+          & ul {
+            & > li {
+              padding-left: calc(var(--sp-px) * 16);
+            }
+          }
+        }
+      }
+    }
+
+    & li {
+      & a[href] {
+        display: inline-block;
+      }
+      & button,
+      & a[href] {
+        background-color: transparent;
+        border-color: transparent;
+        border-radius: 0;
+        border-width: calc(var(--sp-px) * 2);
+        color: var(--component-text-color);
+        min-height: calc(var(--sp-px) * 16);
+        padding-top: calc(var(--sp-px) * 4);
+        padding-bottom: calc(var(--sp-px) * 4);
+        width: 100%;
+        text-align: left;
+      }
+    }
+
+    /* Appearance*/
+    & > ul {
+      & li:has(button) {
+        border-bottom-width: calc(var(--sp-px) * 2);
+        border-bottom-color: var(--component-border-color);
+        border-bottom-style: solid;
+        padding: calc(var(--sp-px) * 4) inherit;
+
+        &:has(button[aria-expanded="true"]) {
+          border-bottom-color: transparent;
+          & > button {
+            border-bottom-color: var(--component-border-color);
+          }
+        }
+      }
+
+      & button,
+      & a[href] {
+        font-weight: 400;
+      }
+
+      & > ul {
+        padding-top: calc(var(--sp-px) * 8);
+       
+      }
+    }
+  }
+}

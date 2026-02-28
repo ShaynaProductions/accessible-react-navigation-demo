@@ -5,6 +5,7 @@ import classNames from "classnames";
 import { List, type ListProps } from "@/ui/components";
 import {
   NavigationListProvider,
+  type NavigationListContextStoredValueProps,
 } from "../providers";
 import type { NavigationListProps } from "./NavigationTypes";
 
@@ -13,9 +14,12 @@ export default function NavigationList({
   cx,
   id,
   isOpen,
+  parentRef,
   ...rest
 }: NavigationListProps): JSX.Element {
-
+  const listContext: NavigationListContextStoredValueProps = {
+    parentRef: parentRef,
+  };
 
   const listProps: ListProps = {
     ...rest,
@@ -24,7 +28,7 @@ export default function NavigationList({
   };
 
   return (
-    <NavigationListProvider>
+    <NavigationListProvider value={listContext}>
       <List key={`list-$id`} {...listProps}>
         {children}
       </List>
