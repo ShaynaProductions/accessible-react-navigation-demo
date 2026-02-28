@@ -1,5 +1,5 @@
 import { Box, List, ListItem, Text } from "@/ui/components";
-import { MultipleListButtons, MultipleListLinkEnds, SingleList } from "./";
+import { MultipleListButtons, MultipleListLinkEnds, SingleList, StyledHorizontal } from "./";
 
 export const Examples = () => {
   return (
@@ -24,6 +24,9 @@ export const Examples = () => {
         </ListItem>
         <ListItem>
           <MultipleListLinkEnds />
+        </ListItem>
+        <ListItem>
+          <StyledHorizontal />
         </ListItem>
       </List>
     </Box>

@@ -1,44 +1,49 @@
 "use client";
 import {
-  Box,
   Heading,
   List,
   ListItem,
   Navigation,
   Text,
+  transformNavigation,
 } from "@/ui/components";
-import { transformNavigation } from "@/ui/components/common/Navigation/utilities";
 
-export function MultipleListButtonsPage({ data }) {
+export function StyledHorizontalUncontrolledPage({ data }) {
   const navigation = transformNavigation(data.navigationArray);
 
   return (
     <>
-      <Heading headingLevel={2}>Multiple List with Top Row Buttons</Heading>
+      <Heading headingLevel={2}>
+        Ready for Styling - Horizontal Navigation
+      </Heading>
       <Text>
-        An example showcasing multiple lists with the entire top row consisting
-        of buttons
+        An example showcasing layers of custom styling on a navigation omponent
+        comprised of multiple lists with the top row displaying links and
+        buttons.
       </Text>
 
-      <Box cx="example complex">
-        <Navigation
-          id="multiple-buttons-demo"
-          label="Multiple Lists with Top Buttons Demo"
-        >
-          {navigation}
-        </Navigation>
-      </Box>
+      <Navigation
+        cx="horizontal-navigation"
+        id="multiple-link-ends-demo"
+        label="Multiple Lists with Top Row Links and Buttons"
+      >
+        {navigation}
+      </Navigation>
 
       <Heading headingLevel={3}>
-        Currently Implemented - Single List Keyboard Handling Release
+        Currently Implemented - Single List Keyboard Release
       </Heading>
       <List cx="display">
+        <ListItem>
+          <strong>Current Styling</strong>: <br />
+          Includes basic layout.
+        </ListItem>
         <ListItem>
           The component is uncontrolled and the top list is open by default
         </ListItem>
         <ListItem>
           Buttons are fully implemented and can be toggled through pointer, or
-          Keyboard (Enter/Space). <br />
+          Keyboard (Enter/Space) <br />
           <strong>Note:</strong> Buttons must be closed manually at this time.
         </ListItem>
         <ListItem>

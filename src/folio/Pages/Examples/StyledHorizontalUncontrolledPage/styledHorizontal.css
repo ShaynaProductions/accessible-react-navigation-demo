@@ -1,0 +1,116 @@
+@layer system-component {
+  nav.horizontal-navigation {
+    /* Layout */
+    --min-list-width: var(--sp-px);
+    padding: calc(var(--sp-px) * 16) 0;
+
+    /* Top Row nav > ul > li */
+
+    & > ul {
+      align-items: normal;
+      justify-items: flex-start;
+      column-gap: calc(var(--sp-px) * 24);
+
+      & > li {
+        display: flex;
+        align-content: center;
+        align-items: center;
+        position: relative;
+
+        & > button,
+        & > a[href] {
+          padding-left: 0;
+        }
+
+        /* sub navigation (not top row) */
+
+        & > ul {
+          min-width: calc(var(--sp-px) * var(--min-list-width));
+          padding: 0;
+          position: absolute;
+          top: calc(var(--sp-px) * 36);
+          width: fit-content;
+          z-index: 3;
+
+          & li {
+            width: 100%;
+          }
+
+          & > li {
+            &:first-child {
+              padding-top: calc(var(--sp-px) * 8);
+            }
+
+            &:last-child {
+              padding-bottom: calc(var(--sp-px) * 8);
+            }
+
+            & button,
+            & a[href] {
+              display: flex;
+              flex-direction: row;
+              flex-wrap: nowrap;
+              justify-content: flex-start;
+              padding: calc(var(--sp-px) * 8) calc(var(--sp-px) * 16) 0
+                calc(var(--sp-px) * 8);
+            }
+          }
+
+          & ul {
+            padding: 0 calc(var(--sp-px) * 16) 0 0;
+            position: relative;
+
+            & > li {
+              padding-left: calc(var(--sp-px) * 16);
+            }
+          }
+        }
+      }
+    }
+    & > ul > ul{
+      gap: unset;
+    }
+    & li {
+      white-space: nowrap;
+
+      & button,
+      & a[href] {
+        background-color: transparent;
+        border-color: transparent;
+        border-radius: 0;
+        border-width: calc(var(--sp-px) * 1);
+        color: var(--component-text-color);
+        width: 100%;
+        text-align: left;
+      }
+    }
+
+    & > ul {
+      & > li {
+        & button,
+        & a[href] {
+          font-weight: 500;
+        }
+
+        & > ul {
+          background-color: var(--theme-background);
+          border-color: var(--component-border-color);
+          border-style: solid;
+          border-width: calc(var(--sp-px) * 1);
+          & button,
+          & a[href] {
+            font-weight: 400;
+          }
+
+          & ul {
+            border-color: transparent;
+          }
+
+          & > li {
+            font-weight: normal;
+          }
+        }
+      }
+    }
+  }
+}

@@ -4,3 +4,4 @@ export * from "./Examples";
 export * from "./MultipleListButtons";
 export * from "./MultipleListLinkEnds";
 export * from "./SingleList";
+export * from "./StyledHorizontal";

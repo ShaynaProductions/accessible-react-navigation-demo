@@ -31,7 +31,7 @@ export function MultipleListLinkEndsPage({ data }) {
         </Navigation>
       </Box>
       <Heading headingLevel={3}>
-        Currently Implemented - Structure/Transformation Release
+        Currently Implemented -  Single List Keyboard Handling Release
       </Heading>
       <List cx="display">
         <ListItem>
@@ -46,12 +46,13 @@ export function MultipleListLinkEndsPage({ data }) {
           Screen and Screen readers indicate when a sublist is open or closed.
         </ListItem>
         <ListItem>
-          Keyboard functionality is not yet implemented. <br />
-          <strong>Note:</strong> Keyboard functionality in the
-          Structure/Transformation release is limited to Tab and navigating with
-          the Tab key will currently cause the focus to disappear into any
-          hidden list. Use the Enter key to open a list and then Tab will
-          navigate through the now open list.
+          Keyboard functionality is partially implemented. <br />
+          <strong>Note:</strong> Keyboard functionality in the Single Keyboard
+          Handling release is limited.
+          <br />
+          The current implementation allows for the Home, End, right and left
+          arrow keys to navigate within a single list. Use the Tab Key to move
+          into an open sublist where the implemented keys will shift focus.
         </ListItem>
       </List>
     </>

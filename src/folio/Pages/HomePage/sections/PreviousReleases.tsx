@@ -58,6 +58,34 @@ export function PreviousReleases({ headingLevel }) {
               </Link>
             </DefinitionDetail>
           </DefinitionList>
+        </ListItem>{" "}
+        <ListItem>
+          <Heading headingLevel={headingLevel}>
+            Structure and Transformation
+          </Heading>
+          <DefinitionList>
+            <DefinitionTerm>Article</DefinitionTerm>
+            <DefinitionDetail>
+              <Link
+                href="https://dev.to/shaynaproductions/structure-and-transformation-first-steps-in-navigation-implementation-248"
+                openInNewTab={true}
+              >
+                Structure and Transformation: First Steps in Navigation
+                Implementation
+              </Link>
+              <br />
+            </DefinitionDetail>
+
+            <DefinitionTerm>Release</DefinitionTerm>
+            <DefinitionDetail>
+              <Link
+                href="https://github.com/ShaynaProductions/accessible-react-navigation-demo/releases/tag/v0.3.0"
+                openInNewTab={true}
+              >
+                Struction and Transformation
+              </Link>
+            </DefinitionDetail>
+          </DefinitionList>
         </ListItem>
       </List>
     </>

@@ -3,6 +3,9 @@ import { JSX } from "react";
 import classNames from "classnames";
 
 import { List, type ListProps } from "@/ui/components";
+import {
+  NavigationListProvider,
+} from "../providers";
 import type { NavigationListProps } from "./NavigationTypes";
 
 export default function NavigationList({
@@ -12,6 +15,8 @@ export default function NavigationList({
   isOpen,
   ...rest
 }: NavigationListProps): JSX.Element {
+
+
   const listProps: ListProps = {
     ...rest,
     id,
@@ -19,8 +24,10 @@ export default function NavigationList({
   };
 
   return (
-    <List key={`list-$id`} {...listProps}>
-      {children}
-    </List>
+    <NavigationListProvider>
+      <List key={`list-$id`} {...listProps}>
+        {children}
+      </List>
+    </NavigationListProvider>
   );
 }
