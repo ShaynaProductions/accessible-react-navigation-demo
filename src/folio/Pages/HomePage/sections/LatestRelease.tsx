@@ -4,21 +4,32 @@ import {
   DefinitionTerm,
   Heading,
   Link,
+  Text
 } from "@/ui/components";
 
 export const LatestRelease = () => {
   return (
     <>
-      <Heading headingLevel={3}>Structure and Transformation</Heading>
+      <Heading headingLevel={3}>Single List Keyboard Handling</Heading>
       <DefinitionList>
-        <DefinitionTerm>Article</DefinitionTerm>
+        <DefinitionTerm>Articles</DefinitionTerm>
         <DefinitionDetail>
+          <Text isInline>Development</Text>
           <Link
-            href="hhttps://dev.to/shaynaproductions/structure-and-transformation-first-steps-in-navigation-implementation-248"
+            href="https://dev.to/shaynaproductions/single-list-keyboard-handling-254g"
             openInNewTab={true}
           >
-            Structure and Transformation: First Steps in Navigation
-            Implementation
+            Single List Keyboard Handling
+          </Link>
+          <br />
+        </DefinitionDetail>
+        <DefinitionDetail>
+          <Text isInline={true}>Design</Text>
+          <Link
+            href="https://dev.to/shaynaproductions/laying-it-all-out-2a8e"
+            openInNewTab={true}
+          >
+            Laying it all Out
           </Link>
           <br />
         </DefinitionDetail>
@@ -26,10 +37,10 @@ export const LatestRelease = () => {
         <DefinitionTerm>Release</DefinitionTerm>
         <DefinitionDetail>
           <Link
-            href="https://github.com/ShaynaProductions/accessible-react-navigation-demo/releases/tag/v0.3.0"
+            href="https://github.com/ShaynaProductions/accessible-react-navigation-demo/releases/tag/v0.4.0"
             openInNewTab={true}
           >
-            Struction and Transformation
+            Implementing Single List Keyboard Handling{" "}
           </Link>
         </DefinitionDetail>
       </DefinitionList>

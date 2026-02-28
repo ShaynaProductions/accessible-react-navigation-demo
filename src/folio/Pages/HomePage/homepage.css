@@ -61,7 +61,7 @@
             }
         }
 
-        & .prev-releases {
+        & .prev-releases, .latest-release {
             & ol li {
                 padding-left: calc(var(--sp-px) * (16 * 1));
 

@@ -1,5 +1,8 @@
 import React from "react";
 
+/* istanbul ignore next */
+const emptySymbol = Symbol("EmptyObject type");
+export type EmptyObject = { [emptySymbol]?: never };
 export type Orientation = "horizontal" | "vertical";
 
 export interface BaseProps {
