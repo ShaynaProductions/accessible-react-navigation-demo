@@ -1,0 +1,23 @@
+@layer theme-theme {
+  :root {
+    --theme-background: var(--gray-1);
+    --theme-background-disabled: var(--gray-3);
+    --theme-background-interactive: var(--purple-3);
+    --theme-background-pressed: var(--gray-2);
+
+    --theme-border-color: var(--gray-7);
+
+    --theme-color: var(--purple-11);
+    --theme-color-disabled: var(--gray-7);
+    --theme-color-interactive: var(--theme-color);
+    --theme-color-invalid: var(--red-5);
+    --theme-color-pressed: var(--purple-12);
+    --theme-color-required: var(--theme-color);
+    --theme-color-selected: var(--purple-12);
+
+    --theme-text-color: var(--gray-12);
+    --theme-text-color-disabled: var(--gray-8);
+    --theme-text-color-interactive: var(--theme-text-color);
+    --theme-text-color-pressed: var(--purple-12);
+  }
+}
