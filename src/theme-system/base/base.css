@@ -4,7 +4,7 @@
     --sp-px: calc(var(--sizing-base) * 0.0625);
     --shadow-opacity: 0.3;
     --overlay-opacity: 0.2;
-
+  }
     .srOnly {
       border: 0;
       clip: rect(1px, 1px, 1px, 1px);  /* 1 */
@@ -17,5 +17,5 @@
       width: 1px;
       white-space: nowrap !important; /* 3 */
     }
-  }
+
 }
