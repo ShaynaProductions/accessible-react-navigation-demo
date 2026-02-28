@@ -4,6 +4,7 @@
 
 /.idea/
 /.idea/workspace.xml
+.idea/workspace.xml
 /node_modules
 /.pnp
 .pnp.*
