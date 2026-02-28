@@ -4,13 +4,57 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e070f16-6ae9-4c14-83ee-43e8fe0ca332" name="Changes" comment="GitIgnore push first">
+    <list default="true" id="7e070f16-6ae9-4c14-83ee-43e8fe0ca332" name="Changes" comment="Adjust workspace.xml for project-specific configurations">
+      <change afterPath="$PROJECT_DIR$/src/app/examples/multiple-lists-buttons/page.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/examples/multiple-lists-buttons/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/examples/multiple-lists-link-ends/page.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/examples/multiple-lists-link-ends/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/examples/single-list/page.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/examples/single-list/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/folio/Pages/Examples/MultipleListButtonsPage/MultipleListButtons.test.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/folio/Pages/Examples/MultipleListButtonsPage/MultipleListButtonsPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/folio/Pages/Examples/MultipleListButtonsPage/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/folio/Pages/Examples/MultipleListLinkEndsPage/MultipleListLinkEnds.test.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/folio/Pages/Examples/MultipleListLinkEndsPage/MultipleListLinkEndsPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/folio/Pages/Examples/MultipleListLinkEndsPage/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/folio/Pages/Examples/SingleListPage/SingleListPage.test.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/folio/Pages/Examples/SingleListPage/SingleListPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/folio/Pages/Examples/SingleListPage/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/folio/Pages/Examples/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/folio/Pages/Examples/navExamples.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/folio/Pages/HomePage/sections/Examples.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/folio/Pages/HomePage/sections/MultipleListButtons.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/folio/Pages/HomePage/sections/MultipleListLinkEnds.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/folio/Pages/HomePage/sections/PreviousReleases.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/folio/Pages/HomePage/sections/SingleList.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/__static__/multiple-lists-buttons.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/__static__/multiple-lists-link-ends.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/__static__/single-list.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/components/common/Navigation/__tests__/Navigation.test.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/components/common/Navigation/components/Navigation.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/components/common/Navigation/components/NavigationItem.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/components/common/Navigation/components/NavigationList.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/components/common/Navigation/components/NavigationTypes.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/components/common/Navigation/components/SubNavigation.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/components/common/Navigation/components/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/components/common/Navigation/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/components/common/Navigation/navigation.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/components/common/Navigation/utilities/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/components/common/Navigation/utilities/transformNavigation/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/components/common/Navigation/utilities/transformNavigation/transformNavigation.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/components/common/common.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/components/common/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/folio/Pages/BaseComponentsPage/baseComponentsPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/folio/Pages/BaseComponentsPage/baseComponentsPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/folio/Pages/HomePage/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/folio/Pages/HomePage/HomePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/folio/Pages/HomePage/homepage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/folio/Pages/HomePage/homepage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/folio/Pages/HomePage/sections/LatestRelease.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/folio/Pages/HomePage/sections/LatestRelease.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/components/base/Button/button.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/components/base/Button/button.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/folio/Pages/HomePage/sections/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/folio/Pages/HomePage/sections/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/folio/Pages/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/folio/Pages/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/components/components.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/components/components.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/components/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/hooks/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/hooks/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,18 +64,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "ShaynaProductions"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ShaynaProductions&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/ShaynaProductions/accessible-react-navigation-demo.git",
-    "accountId": "eb9d8166-9a3c-4dba-ae50-b17dc0d258ab"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ShaynaProductions/accessible-react-navigation-demo.git&quot;,
+    &quot;accountId&quot;: &quot;eb9d8166-9a3c-4dba-ae50-b17dc0d258ab&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="AISelfReview" />
   </component>
@@ -53,7 +97,7 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "base-components",
+    "git-widget-placeholder": "Rebasing structure-transformation",
     "js.debugger.nextJs.config.created.client": "true",
     "js.debugger.nextJs.config.created.server": "true",
     "last_opened_file_path": "D:/source/accessible-react-navigation-demo/src/folio/Pages",

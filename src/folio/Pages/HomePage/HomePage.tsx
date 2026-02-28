@@ -1,6 +1,6 @@
 "use client";
 import { Box, Heading, Link, Text } from "@/ui/components";
-import { LatestRelease } from "./sections";
+import { Examples, LatestRelease, PreviousReleases } from "./sections";
 
 export function HomePage() {
   return (
@@ -19,6 +19,14 @@ export function HomePage() {
       <Box cx="latest-release">
         <Heading headingLevel={2}>Latest Release</Heading>
         <LatestRelease />
+      </Box>
+      <Box cx="examples">
+        <Heading headingLevel={2}>Examples</Heading>
+        <Examples />
+      </Box>
+      <Box cx="prev-releases">
+        <Heading headingLevel={2}>Previously Released</Heading>
+        <PreviousReleases headingLevel={3} />
       </Box>
     </Box>
   );
