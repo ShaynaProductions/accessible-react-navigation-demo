@@ -8,7 +8,11 @@ import {
   type ListItemProps,
 } from "@/ui/components";
 import { usePathname } from "@/ui/hooks";
-import { Keys, returnTrueElementOrUndefined } from "@/ui/utilities";
+import {
+  arraysEqual,
+  Keys,
+  returnTrueElementOrUndefined,
+} from "@/ui/utilities";
 import { useNavigation, useNavigationList } from "../hooks";
 import { handleCommonKeyDown, type FocusableElementType } from "../utilities";
 import type { NavigationItemProps } from "./NavigationTypes";
@@ -48,11 +52,12 @@ export default function NavigationItem({
   }, [linkRef, registerItemInCurrentList]);
 
   useEffect(() => {
+    const prevList = prevCurrentListItems || [];
     /* istanbul ignore else */
     if (
       linkRef.current !== null &&
-      currentListItems !== prevCurrentListItems &&
-      currentListItems.length > 0
+      currentListItems.length > 0 &&
+      !arraysEqual(currentListItems, prevList)
     ) {
       registerItemInNavigationArray(currentListItems, parentEl);
     }

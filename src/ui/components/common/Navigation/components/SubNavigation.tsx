@@ -20,7 +20,7 @@ import {
   type ListItemProps,
 } from "@/ui/components";
 import { ChevronRightIcon } from "@/ui/svg";
-import { Keys } from "@/ui/utilities";
+import { arraysEqual, Keys } from "@/ui/utilities";
 import { useNavigation, useNavigationList } from "../hooks";
 import {
   handleCommonKeyDown,
@@ -93,10 +93,11 @@ export default function SubNavigation({
   ]);
 
   useEffect(() => {
+    const prevList = prevCurrentListItems || [];
     if (
       buttonRef.current !== null &&
-      currentListItems !== prevCurrentListItems &&
-      currentListItems.length > 0
+      currentListItems.length > 0 &&
+      !arraysEqual(currentListItems, prevList)
     ) {
       registerItemInNavigationArray(currentListItems, parentEl);
     }
