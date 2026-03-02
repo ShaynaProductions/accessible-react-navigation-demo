@@ -1,10 +1,10 @@
 "use client";
 import { createContext, useCallback, useReducer, type JSX } from "react";
-import {
+import type { EmptyObject } from "@/ui/types";
+import type {
   NavigationContextReturnValueProps,
   NavigationObjectProps,
 } from "./NavigationProviderTypes";
-import { EmptyObject } from "@/ui/types";
 import { navigationReducer } from "./navigationReducer";
 
 export const NavigationContext = createContext<
@@ -36,6 +36,11 @@ export function NavigationProvider({ children, value }): JSX.Element {
       });
     }, []);
 
+  const getNavigationArray: NavigationContextReturnValueProps["getNavigationArray"] =
+    useCallback(() => {
+      return state.navigationArray;
+    }, [state.navigationArray]);
+
   const registerButtonAsParent: NavigationContextReturnValueProps["registerButtonAsParent"] =
     (isListOpen, parentEl) => {
       dispatch({ type: "SET_PARENT", parentEl, isListOpen });
@@ -49,6 +54,7 @@ export function NavigationProvider({ children, value }): JSX.Element {
   return (
     <NavigationContext.Provider
       value={{
+        getNavigationArray,
         registerButtonAsParent,
         registerItemInNavigationArray,
         setIsListOpen,

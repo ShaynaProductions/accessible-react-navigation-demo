@@ -7,7 +7,7 @@ import {
   type LinkProps,
   type ListItemProps,
 } from "@/ui/components";
-import { usePathname } from "@/ui/hooks";
+import { usePathname, usePrevious } from "@/ui/hooks";
 import {
   arraysEqual,
   Keys,
@@ -16,7 +16,6 @@ import {
 import { useNavigation, useNavigationList } from "../hooks";
 import { handleCommonKeyDown, type FocusableElementType } from "../utilities";
 import type { NavigationItemProps } from "./NavigationTypes";
-import { usePrevious } from "@mantine/hooks";
 
 export default function NavigationItem({
   cx,
@@ -33,9 +32,11 @@ export default function NavigationItem({
     setLastFocus,
     setNextFocus,
     setPreviousFocus,
+    shiftFocus,
   } = useNavigationList();
 
-  const { registerItemInNavigationArray } = useNavigation();
+  const { getNextByLink, getPreviousByLink, registerItemInNavigationArray } =
+    useNavigation();
   const currentPath = usePathname();
 
   const pageURL = href.substring(0, 2) === "/#" ? currentPath + href : href;
@@ -70,7 +71,7 @@ export default function NavigationItem({
   ]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    const linkEl = linkRef.current as FocusableElementType;
+    const linkEl = linkRef.current as HTMLAnchorElement;
 
     switch (e.key) {
       case Keys.HOME:
@@ -84,12 +85,25 @@ export default function NavigationItem({
 
     handleCommonKeyDown(
       e,
-      linkEl,
+      linkEl as HTMLAnchorElement,
       setFirstFocus,
       setLastFocus,
       setNextFocus,
       setPreviousFocus,
     );
+
+    let focusableEl: FocusableElementType | undefined;
+    switch (e.key) {
+      case Keys.UP:
+        focusableEl = getPreviousByLink(linkEl);
+        break;
+      case Keys.DOWN:
+        focusableEl = getNextByLink(linkEl);
+        break;
+    }
+    if (focusableEl) {
+      shiftFocus(focusableEl);
+    }
   };
 
   const listItemProps: Omit<ListItemProps, "children"> = {

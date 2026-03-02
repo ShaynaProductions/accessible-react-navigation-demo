@@ -19,20 +19,16 @@ import {
   type IconProps,
   type ListItemProps,
 } from "@/ui/components";
+import { usePrevious } from "@/ui/hooks";
 import { ChevronRightIcon } from "@/ui/svg";
 import { arraysEqual, Keys } from "@/ui/utilities";
 import { useNavigation, useNavigationList } from "../hooks";
-import {
-  handleCommonKeyDown,
-  type ControllingElementType,
-  type FocusableElementType,
-} from "../utilities";
+import { handleCommonKeyDown, type FocusableElementType } from "../utilities";
 import NavigationList from "./NavigationList";
 import type {
   NavigationListProps,
   SubNavigationProps,
 } from "./NavigationTypes";
-import { usePrevious } from "@mantine/hooks";
 
 export default function SubNavigation({
   children,
@@ -49,15 +45,18 @@ export default function SubNavigation({
     setLastFocus,
     setNextFocus,
     setPreviousFocus,
+    shiftFocus,
   } = useNavigationList();
 
   const {
+    getNextByButton,
+    getPreviousByButton,
     registerButtonAsParent,
     registerItemInNavigationArray,
     setIsListOpen,
   } = useNavigation();
 
-  const buttonRef = useRef<ControllingElementType>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const prevCurrentListItems = usePrevious(currentListItems);
 
   const [isSubListOpen, setIsSubListOpen] = useState<boolean>(false);
@@ -113,7 +112,7 @@ export default function SubNavigation({
   }, [buttonRef, setListWidth]);
 
   const handleKeyDown = (e: KeyboardEvent) => {
-    const buttonEl = buttonRef.current as FocusableElementType;
+    const buttonEl = buttonRef.current as HTMLButtonElement;
 
     switch (e.key) {
       case Keys.HOME:
@@ -132,6 +131,19 @@ export default function SubNavigation({
       setNextFocus,
       setPreviousFocus,
     );
+
+    let focusableEl: FocusableElementType | undefined;
+    switch (e.key) {
+      case Keys.UP:
+        focusableEl = getPreviousByButton(buttonEl);
+        break;
+      case Keys.DOWN:
+        focusableEl = getNextByButton(buttonEl, isSubListOpen);
+        break;
+    }
+    if (focusableEl) {
+      shiftFocus(focusableEl);
+    }
   };
 
   const handlePress = () => {
