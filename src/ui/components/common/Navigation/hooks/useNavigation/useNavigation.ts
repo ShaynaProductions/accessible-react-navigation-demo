@@ -62,26 +62,21 @@ export function useNavigation() {
       [getNavigationArray],
     );
 
-  const _isElementInTopRow: UseNavigationInternalTypes["_isElementInTopRow"] =
-    useCallback(
-      (focusedEl) => {
-        return _getIndexInTopRow(focusedEl) >= 0;
-      },
-      [_getIndexInTopRow],
-    );
+  const _isElementInTopRow: UseNavigationInternalTypes["_isElementInTopRow"] = (
+    focusedEl,
+  ) => {
+    return _getIndexInTopRow(focusedEl) >= 0;
+  };
 
-  const _getTopRowElement: UseNavigationInternalTypes["_getTopRowElement"] =
-    useCallback(
-      (focusedEl) => {
-        return _getRecursiveTopElementByElement(
-          focusedEl,
-          _getNavigationObjectByListElement,
-          _isElementInTopRow,
-        );
-        // }
-      },
-      [_getNavigationObjectByListElement, _isElementInTopRow],
+  const _getTopRowElement: UseNavigationInternalTypes["_getTopRowElement"] = (
+    focusedEl,
+  ) => {
+    return _getRecursiveTopElementByElement(
+      focusedEl,
+      _getNavigationObjectByListElement,
+      _isElementInTopRow,
     );
+  };
 
   const _getParentByElement: UseNavigationInternalTypes["_getParentByElement"] =
     (focusedEl) => {
@@ -111,10 +106,11 @@ export function useNavigation() {
     (focusedEl) => {
       const { storedList, storedParentEl } =
         _getNavigationObjectByListElement(focusedEl);
-      const isInTopRow = _isElementInTopRow(focusedEl);
 
       // default to previous item in list
       let focusableEl = _getPreviousElementInList(focusedEl, storedList);
+
+      const isInTopRow = _isElementInTopRow(focusedEl);
 
       // not on the top row and first child in its list.
       if (!isInTopRow && storedList.indexOf(focusedEl) === 0) {
@@ -141,9 +137,7 @@ export function useNavigation() {
       const { storedList: subNavigationList } = currentNavObject;
       // move into sublists first child
       /* istanbul ignore else */
-      if (subNavigationList.length > 0) {
-        focusableEl = subNavigationList[0];
-      }
+      focusableEl = subNavigationList[0];
     } else if (currentList.indexOf(buttonEl) === currentList.length - 1) {
       // last focusable element and sublist is collapsed. Set to parent;
       focusableEl = _getParentByElement(buttonEl) as FocusableElementType;
@@ -194,7 +188,7 @@ export function useNavigation() {
     linkEl,
   ) => {
     const isButton = (focusableEl) => {
-      return focusableEl?.tagName === "BUTTON";
+      return focusableEl?.type === "button";
     };
 
     let focusableEl = _getPreviousByElement(linkEl);

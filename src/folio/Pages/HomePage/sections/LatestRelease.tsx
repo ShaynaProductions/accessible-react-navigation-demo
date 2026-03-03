@@ -11,27 +11,16 @@ import {
 export const LatestRelease = () => {
   return (
     <>
-      <Heading headingLevel={3}>Parent Provider Implementation</Heading>
+      <Heading headingLevel={3}>Up and Down Arrow Key Implementation</Heading>
       <DefinitionList>
         <DefinitionTerm>Articles</DefinitionTerm>
         <DefinitionDetail>
           <Text isInline>Development</Text>
           <Link
-            href="https://dev.to/shaynaproductions/are-you-my-parent-scaffolding-in-the-architecture-necessary-for-keyboard-handling-between-23dg"
+            href="https://dev.to/shaynaproductions/the-ups-and-downs-of-keyboard-handling-80n"
             openInNewTab={true}
           >
-            Are You My Parent?: Scaffolding in the architecture necessary for
-            keyboard handling between components.
-          </Link>
-          <br />
-        </DefinitionDetail>
-        <DefinitionDetail>
-          <Text isInline>Design</Text>
-          <Link
-            href="https://dev.to/shaynaproductions/laying-it-all-out-on-the-vertical-23b3"
-            openInNewTab={true}
-          >
-            Laying it all out on the vertical
+            The Ups and Downs of Keyboard Handling
           </Link>
           <br />
         </DefinitionDetail>
@@ -39,10 +28,10 @@ export const LatestRelease = () => {
         <DefinitionTerm>Release</DefinitionTerm>
         <DefinitionDetail>
           <Link
-            href="https://github.com/ShaynaProductions/accessible-react-navigation-demo/releases/tag/v0.5.0"
+            href="https://github.com/ShaynaProductions/accessible-react-navigation-demo/releases/tag/v0.6.0"
             openInNewTab={true}
           >
-            Data and Provider Handling for Keyboarding Between Components.
+            Up and Down Key Implementation: Navigation Between Components
           </Link>
         </DefinitionDetail>
       </DefinitionList>
