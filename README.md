@@ -31,3 +31,4 @@ Each published article is linked, and where appropriate, examples will refer to 
 7. [Laying it all Out](https://dev.to/shaynaproductions/laying-it-all-out-2a8e)
 8. [Are You My Parent?: Scaffolding in the architecture necessary for keyboard handling between components.](https://dev.to/shaynaproductions/are-you-my-parent-scaffolding-in-the-architecture-necessary-for-keyboard-handling-between-23dg)
 9.  [Laying it all out on the vertical](https://dev.to/shaynaproductions/laying-it-all-out-on-the-vertical-23b3)
+10. [The Ups and Downs of Keyboard Handling](https://dev.to/shaynaproductions/the-ups-and-downs-of-keyboard-handling-80n)

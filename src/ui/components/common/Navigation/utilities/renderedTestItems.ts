@@ -65,3 +65,10 @@ export const getMultipleButtonsTestElements = (
     donateLink: getByRole("link", { name: "Donate navigation" }),
   };
 };
+
+export const getMultipleLinkTestElements = (getByRole) => {
+  return {
+    homeLink: getByRole("link", { name: "Home navigation" }),
+    contactLink: getByRole("link", { name: "Contact Us navigation" }),
+  };
+};

@@ -34,7 +34,8 @@ export function SingleListPage({ data }) {
         </Navigation>
       </Box>
       <Heading headingLevel={3}>
-        Currently Implemented - Single List Keyboard Handling Release
+        Currently Implemented - Up and Down Key Implementation: Navigation
+        Between Components
       </Heading>
       <List cx="display">
         <ListItem>The List is uncontrolled and open by default</ListItem>
@@ -42,8 +43,12 @@ export function SingleListPage({ data }) {
           The link representing the current Page (Single List Links) is
           identifiable through screen and screen reader.
         </ListItem>
-        <ListItem> Fully Navigable using the Home, End, Right and Left Arrow Keys, along
-          with Tab.</ListItem>
+        <ListItem>
+          {" "}
+          Fully Navigable using the Home, End, Right and Left Arrow Keys, along
+          with Tab. The Up and Down arrow keys will also work to navigate up and
+          down the list.
+        </ListItem>
       </List>
     </>
   );

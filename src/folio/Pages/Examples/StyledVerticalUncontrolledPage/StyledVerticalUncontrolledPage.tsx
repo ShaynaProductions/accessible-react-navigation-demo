@@ -32,7 +32,8 @@ export function StyledVerticalUncontrolledPage({ data }): JSX.Element {
       </Navigation>
 
       <Heading headingLevel={3}>
-        Currently Implemented - Parent Provider Release
+        Currently Implemented - Up and Down Key Implementation: Navigation
+        Between Components
       </Heading>
       <List cx="display">
         <ListItem>
@@ -51,13 +52,13 @@ export function StyledVerticalUncontrolledPage({ data }): JSX.Element {
           Screen and Screen readers indicate when a sublist is open or closed.
         </ListItem>
         <ListItem>
-          Keyboard functionality is partially implemented. <br />
-          <strong>Note:</strong> Keyboard functionality in the Single Keyboard
-          Handling release is limited.
+          Keyboard functionality is partially implemented.
           <br />
-          The current implementation allows for the Home, End, right and left
-          arrow keys to navigate within a single list. Use the Tab Key to move
-          into an open sublist where the implemented keys will shift focus.
+          The current implementation adds functionality for the up and down
+          arrow keys, allowing movement into and out of sub-lists, in addition
+          to the Home, End, right, and left arrow keys, which navigate within a
+          single list. Use the Down Key to move into an open sublist and use the
+          Up Key to navigate up through open and closed sublists.
         </ListItem>
       </List>
     </>

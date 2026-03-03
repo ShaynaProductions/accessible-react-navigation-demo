@@ -36,6 +36,7 @@ export interface NavigationObjectProps {
 }
 
 export interface NavigationContextReturnValueProps {
+  getNavigationArray: () => NavigationObjectProps[];
   registerItemInNavigationArray: (
     navigationList: FocusableElementType[],
     parentEl: ControllingElementType,
@@ -53,8 +54,3 @@ export interface NavigationContextReturnValueProps {
     parentEl: ControllingElementType,
   ) => void;
 }
-
-// export interface NavigationContextValueProps
-//   extends
-//     NavigationContextStoredValueProps,
-//     NavigationContextReturnValueProps {}
