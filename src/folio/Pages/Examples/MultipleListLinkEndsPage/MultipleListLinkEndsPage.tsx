@@ -57,7 +57,8 @@ export function MultipleListLinkEndsPage({ data }) {
           The current implementation adds functionality for the up and down
           arrow keys, allowing movement into and out of sub-lists, in addition
           to the Home, End, right, and left arrow keys, which navigate within a
-          single list. Use the Down Key to move into an open sublist.
+          single list. Use the Down Key to move into an open sublist and use the
+          Up Key to navigate up through open and closed sublists.
         </ListItem>
       </List>
     </>
