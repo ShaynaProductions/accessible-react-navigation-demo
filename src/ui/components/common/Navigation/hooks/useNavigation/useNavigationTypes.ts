@@ -16,6 +16,10 @@ export interface UseNavigationInternalTypes {
   ) => NavigationObjectProps;
   _getIndexInTopRow: (focusedEl: FocusableElementType) => number;
   _getFirstElementInIndexedList: (index: number) => FocusableElementType;
+  _getLastElementInIndexedList: (index: number) => FocusableElementType;
+  _getLastElementByParent: (
+    parentEl: ControllingElementType,
+  ) => FocusableElementType;
   _isElementInTopRow: (focusedEl: FocusableElementType) => boolean;
   _getTopRowElement: (focusedEl: FocusableElementType) => FocusableElementType;
   _getParentByElement: (
@@ -43,10 +47,23 @@ export interface UseNavigationReturnTypes {
   getNextByLink: (
     linkEl: HTMLAnchorElement,
   ) => FocusableElementType | undefined;
+  getNextByTabButton: (
+    buttonEl: HTMLButtonElement,
+    isSubListOpen: boolean,
+  ) => FocusableElementType | undefined;
+  getNextByTabLink: (
+    linkEl: HTMLAnchorElement,
+  ) => FocusableElementType | undefined;
   getPreviousByButton: (
     buttonEl: HTMLButtonElement,
   ) => FocusableElementType | undefined;
   getPreviousByLink: (
+    linkEl: HTMLAnchorElement,
+  ) => FocusableElementType | undefined;
+  getPreviousByTabButton: (
+    buttonEl: HTMLButtonElement,
+  ) => FocusableElementType | undefined;
+  getPreviousByTabLink: (
     linkEl: HTMLAnchorElement,
   ) => FocusableElementType | undefined;
   registerItemInNavigationArray: NavigationContextReturnValueProps["registerItemInNavigationArray"];

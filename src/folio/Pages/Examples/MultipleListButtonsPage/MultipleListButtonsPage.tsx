@@ -29,7 +29,7 @@ export function MultipleListButtonsPage({ data }) {
         </Navigation>
       </Box>
 
-      {/*<Heading headingLevel={3}>
+      <Heading headingLevel={3}>
         Currently Implemented - Up and Down Key Implementation: Navigation
         Between Components
       </Heading>
@@ -54,7 +54,7 @@ export function MultipleListButtonsPage({ data }) {
           single list. Use the Down Key to move into an open sublist and use the
           Up Key to navigate up through open and closed sublists.
         </ListItem>
-      </List>*/}
+      </List>
     </>
   );
 }

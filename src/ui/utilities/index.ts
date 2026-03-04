@@ -3,6 +3,7 @@ export { usePrevious } from "@mantine/hooks";
 
 export * from "./constants";
 export * from "./returnTrueElementOrUndefined";
+export * from "./getFocusableElementFromDOM";
 
 export const arraysEqual = (arr1, arr2) => {
   if (arr1.length !== arr2.length) return false;

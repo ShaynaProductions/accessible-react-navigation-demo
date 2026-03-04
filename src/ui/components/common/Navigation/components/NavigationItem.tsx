@@ -35,8 +35,13 @@ export default function NavigationItem({
     shiftFocus,
   } = useNavigationList();
 
-  const { getNextByLink, getPreviousByLink, registerItemInNavigationArray } =
-    useNavigation();
+  const {
+    getNextByLink,
+    getPreviousByLink,
+    getNextByTabLink,
+    getPreviousByTabLink,
+    registerItemInNavigationArray,
+  } = useNavigation();
   const currentPath = usePathname();
 
   const pageURL = href.substring(0, 2) === "/#" ? currentPath + href : href;
@@ -78,6 +83,7 @@ export default function NavigationItem({
       case Keys.END:
       case Keys.LEFT:
       case Keys.RIGHT:
+      case Keys.TAB:
         e.preventDefault();
         e.stopPropagation();
         break;
@@ -99,6 +105,13 @@ export default function NavigationItem({
         break;
       case Keys.DOWN:
         focusableEl = getNextByLink(linkEl);
+        break;
+      case Keys.TAB:
+        if (e.shiftKey) {
+          focusableEl = getPreviousByTabLink(linkEl);
+        } else {
+          focusableEl = getNextByTabLink(linkEl);
+        }
         break;
     }
     if (focusableEl) {
