@@ -143,7 +143,8 @@ describe("Navigation Keyboard Handling Tab", () => {
     const frontButton = getByRole("button", { name: frontButtonLabel });
     const endButton = getByRole("button", { name: endButtonLabel });
 
-    const { homeLink, contactLink } = getMultipleLinkTestElements(getByRole);
+    const { homeLink, contactInfoLink } =
+      getMultipleLinkTestElements(getByRole);
     const {
       communityButton,
       communityList,
@@ -166,7 +167,7 @@ describe("Navigation Keyboard Handling Tab", () => {
     await userEvent.tab();
     expect(aboutButton).toHaveFocus();
     await userEvent.tab();
-    expect(contactLink).toHaveFocus();
+    expect(contactInfoLink).toHaveFocus();
     await userEvent.tab();
     expect(endButton).toHaveFocus();
   });
@@ -215,7 +216,8 @@ describe("Navigation Keyboard Handling Tab", () => {
       referenceButton,
       referenceList,
     } = getMultipleButtonsTestElements(getByRole, getByTestId, TEST_ID);
-    const { homeLink, contactLink } = getMultipleLinkTestElements(getByRole);
+    const { homeLink, contactInfoLink } =
+      getMultipleLinkTestElements(getByRole);
 
     await userEvent.tab();
     expect(frontButton).toHaveFocus();
@@ -243,7 +245,7 @@ describe("Navigation Keyboard Handling Tab", () => {
     expect(referenceList).toHaveClass("srOnly");
     await userEvent.tab();
     await userEvent.tab();
-    expect(contactLink).toHaveFocus();
+    expect(contactInfoLink).toHaveFocus();
   });
 
   it("should move through sublists and siblings when sublists are open", async () => {
@@ -445,7 +447,8 @@ describe("Navigation Keyboard Handling Shift + Tab", () => {
     const frontButton = getByRole("button", { name: frontButtonLabel });
     const endButton = getByRole("button", { name: endButtonLabel });
 
-    const { homeLink, contactLink } = getMultipleLinkTestElements(getByRole);
+    const { homeLink, contactInfoLink } =
+      getMultipleLinkTestElements(getByRole);
     const {
       communityButton,
       communityList,
@@ -468,11 +471,11 @@ describe("Navigation Keyboard Handling Shift + Tab", () => {
     await userEvent.tab();
     expect(aboutButton).toHaveFocus();
     await userEvent.tab();
-    expect(contactLink).toHaveFocus();
+    expect(contactInfoLink).toHaveFocus();
     await userEvent.tab();
     expect(endButton).toHaveFocus();
     await userEvent.tab({ shift: true });
-    expect(contactLink).toHaveFocus();
+    expect(contactInfoLink).toHaveFocus();
 
     await userEvent.tab({ shift: true });
     expect(aboutButton).toHaveFocus();

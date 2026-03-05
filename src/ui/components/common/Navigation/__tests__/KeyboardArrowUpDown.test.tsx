@@ -138,7 +138,8 @@ describe("Navigation Keyboard Handling Down Arrow", () => {
   it("should move through the top row of buttons and links when lists are closed", async () => {
     const { getByTestId, getByRole } = renderNavigation(linkProps);
     const frontButton = getByRole("button", { name: frontButtonLabel });
-    const { homeLink, contactLink } = getMultipleLinkTestElements(getByRole);
+    const { homeLink, contactInfoLink } =
+      getMultipleLinkTestElements(getByRole);
     const {
       communityButton,
       communityList,
@@ -161,9 +162,9 @@ describe("Navigation Keyboard Handling Down Arrow", () => {
     await userEvent.keyboard("{ArrowDown}");
     expect(aboutButton).toHaveFocus();
     await userEvent.keyboard("{ArrowDown}");
-    expect(contactLink).toHaveFocus();
+    expect(contactInfoLink).toHaveFocus();
     await userEvent.keyboard("{ArrowDown}");
-    expect(contactLink).toHaveFocus();
+    expect(contactInfoLink).toHaveFocus();
   });
 
   it("should move to the first child when a list is open", async () => {
@@ -203,7 +204,8 @@ describe("Navigation Keyboard Handling Down Arrow", () => {
       findNextStoryButton,
       findNextStoryList,
     } = getMultipleButtonsTestElements(getByRole, getByTestId, TEST_ID);
-    const { homeLink, contactLink } = getMultipleLinkTestElements(getByRole);
+    const { homeLink, contactInfoLink } =
+      getMultipleLinkTestElements(getByRole);
 
     await userEvent.tab();
     expect(frontButton).toHaveFocus();
@@ -233,7 +235,7 @@ describe("Navigation Keyboard Handling Down Arrow", () => {
     await userEvent.keyboard("{ArrowDown}");
     await userEvent.keyboard("{ArrowDown}");
     await userEvent.keyboard("{ArrowDown}");
-    expect(contactLink).toHaveFocus();
+    expect(contactInfoLink).toHaveFocus();
   });
 
   it("should move through sublists and siblings when sublists are open", async () => {
@@ -428,7 +430,8 @@ describe("Navigation Keyboard Handling Up Arrow", () => {
     /* conforms to Up/Down Keyboard AC 9 */
     const { getByTestId, getByRole } = renderNavigation(linkProps);
     const frontButton = getByRole("button", { name: frontButtonLabel });
-    const { homeLink, contactLink } = getMultipleLinkTestElements(getByRole);
+    const { homeLink, contactInfoLink } =
+      getMultipleLinkTestElements(getByRole);
     const {
       communityButton,
       communityList,
@@ -451,9 +454,9 @@ describe("Navigation Keyboard Handling Up Arrow", () => {
     await userEvent.keyboard("{ArrowDown}");
     expect(aboutButton).toHaveFocus();
     await userEvent.keyboard("{ArrowDown}");
-    expect(contactLink).toHaveFocus();
+    expect(contactInfoLink).toHaveFocus();
     await userEvent.keyboard("{ArrowDown}");
-    expect(contactLink).toHaveFocus();
+    expect(contactInfoLink).toHaveFocus();
     await userEvent.keyboard("{ArrowUp}");
     expect(aboutButton).toHaveFocus();
     await userEvent.keyboard("{ArrowUp}");

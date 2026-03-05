@@ -70,6 +70,8 @@ export const getMultipleButtonsTestElements = (
 export const getMultipleLinkTestElements = (getByRole) => {
   return {
     homeLink: getByRole("link", { name: "Home navigation" }),
-    contactLink: getByRole("link", { name: "Contact Us navigation" }),
+    contactInfoLink: getByRole("link", {
+      name: "Contact Information navigation",
+    }),
   };
 };

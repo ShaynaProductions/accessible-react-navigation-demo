@@ -243,11 +243,11 @@ export function useNavigation() {
     let focusableEl = getNextByLink(linkEl);
 
     const isInTopRow = _isElementInTopRow(linkEl);
+    const { storedList } = _getNavigationObjectByListElement(linkEl);
 
     if (
       (isInTopRow && !focusableEl) ||
-      (!isInTopRow && _getLastElementInComponent()) /*||
-      (!isInTopRow && storedList.indexOf(linkEl) === storedList.length - 1)*/
+      (!isInTopRow && _getLastElementInComponent())
     ) {
       focusableEl = getFocusableElementFromDOM(
         linkEl,

@@ -6,7 +6,7 @@ import { transformNavigation } from "@/ui/components/common/Navigation/utilities
 const TEST_ID = "Navigation";
 
 jest.mock("next/navigation", () => ({
-  usePathname: () => "/#about-the-site",
+  usePathname: () => "/examples/multiple-lists-buttons",
 }));
 
 const renderNavigation = (
@@ -137,7 +137,7 @@ describe("<Navigation />", () => {
     /* conforms to Structure/Transformation AC 9 */
     const { getByRole } = renderNavigation("multiple-lists-link-ends", {});
     const currentLink = getByRole("link", {
-      name: "About the Site navigation",
+      name: "Basic Search navigation",
     });
     expect(currentLink).toBeInTheDocument();
     expect(currentLink).toHaveAttribute("aria-current", "page");
