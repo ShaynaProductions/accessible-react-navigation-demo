@@ -78,7 +78,7 @@ const singleListProps = {
 
 describe("Navigation Keyboard Handling Tab", () => {
   it("should move down the list when Tab is pressed", async () => {
-    /* conforms to Up/Down Keyboard AC 1 */
+    /* conforms to Tab Handling AC 1 / 2 */
     const { getByRole } = renderNavigation(singleListProps);
     const {
       homeLink,
@@ -110,7 +110,7 @@ describe("Navigation Keyboard Handling Tab", () => {
     expect(endButton).toHaveFocus();
   });
   it("should move down through the top row of buttons when lists are closed", async () => {
-    /* conforms to Up/Down Keyboard AC 1 */
+    /* conforms to Tab Handling AC 1 /2 */
     const { getByTestId, getByRole } = renderNavigation(buttonProps);
     const frontButton = getByRole("button", { name: frontButtonLabel });
     const endButton = getByRole("button", { name: endButtonLabel });
@@ -139,6 +139,7 @@ describe("Navigation Keyboard Handling Tab", () => {
   });
 
   it("should move through the top row of buttons and links when lists are closed", async () => {
+    /* conforms to Tab Handling AC 1 / 3 */
     const { getByTestId, getByRole } = renderNavigation(linkProps);
     const frontButton = getByRole("button", { name: frontButtonLabel });
     const endButton = getByRole("button", { name: endButtonLabel });
@@ -173,7 +174,7 @@ describe("Navigation Keyboard Handling Tab", () => {
   });
 
   it("should move to the first child when a list is open", async () => {
-    /* conforms to Up/Down Keyboard AC  2 / 3 */
+    /* conforms to Tab Handling AC 1 */
     const { getByTestId, getByRole } = renderNavigation(buttonProps);
     const frontButton = getByRole("button", { name: frontButtonLabel });
     const {
@@ -200,7 +201,7 @@ describe("Navigation Keyboard Handling Tab", () => {
   });
 
   it("should move to siblings when sublists are closed", async () => {
-    /* conforms to Up/Down Keyboard AC 5 */
+    /* conforms to Tab Handling AC 1 /4 */
     const { getByTestId, getByRole } = renderNavigation(linkProps);
     const frontButton = getByRole("button", { name: frontButtonLabel });
     const {
@@ -249,7 +250,7 @@ describe("Navigation Keyboard Handling Tab", () => {
   });
 
   it("should move through sublists and siblings when sublists are open", async () => {
-    /* conforms to Up/Down Keyboard AC 3 / 5/ 6 / 7 */
+    /* conforms to Tab Handling AC 1 */
     const { getByTestId, getByRole } = renderNavigation(buttonProps);
     const frontButton = getByRole("button", { name: frontButtonLabel });
     const {
@@ -307,7 +308,7 @@ describe("Navigation Keyboard Handling Tab", () => {
 
 describe("Navigation Keyboard Handling Shift + Tab", () => {
   it("should move up the list when shift+Tab is pressed", async () => {
-    /* conforms to Up/Down Keyboard AC  */
+    /* conforms to Tab Handling AC 1 /2 */
     const { getByRole } = renderNavigation(singleListProps);
 
     const frontButton = getByRole("button", { name: frontButtonLabel });
@@ -348,7 +349,7 @@ describe("Navigation Keyboard Handling Shift + Tab", () => {
   });
 
   it("should move up through sublists and focus on Parent when in a sublist", async () => {
-    /* conforms to Up/Down Keyboard AC 8  */
+    /* conforms to Tab Handling AC 1 */
     const { getByTestId, getByRole } = renderNavigation(buttonProps);
     const frontButton = getByRole("button", { name: frontButtonLabel });
     const { communityButton, communityList, blogLink, forumLink } =
@@ -374,7 +375,7 @@ describe("Navigation Keyboard Handling Shift + Tab", () => {
   });
 
   it("should move up through siblings and sublists when they are open", async () => {
-    /* conforms to Up/Down Keyboard AC  10 */
+    /* conforms to Tab Handling AC  1 */
     const { getByTestId, getByRole } = renderNavigation(buttonProps);
     const frontButton = getByRole("button", { name: frontButtonLabel });
     const {
@@ -442,7 +443,7 @@ describe("Navigation Keyboard Handling Shift + Tab", () => {
   });
 
   it("should move back through the top row of buttons and links when lists are closed", async () => {
-    /* conforms to Up/Down Keyboard AC 9 */
+    /* conforms to Tab Handling AC 1 / 2 */
     const { getByTestId, getByRole } = renderNavigation(linkProps);
     const frontButton = getByRole("button", { name: frontButtonLabel });
     const endButton = getByRole("button", { name: endButtonLabel });

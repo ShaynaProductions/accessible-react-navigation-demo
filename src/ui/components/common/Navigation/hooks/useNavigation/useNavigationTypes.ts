@@ -26,6 +26,7 @@ export interface UseNavigationInternalTypes {
     focusedEl: FocusableElementType,
   ) => ControllingElementType;
   _isLastElementInCurrentList: (focusedEl: FocusableElementType) => boolean;
+  _isLastElementInTopList: (focusedEl: FocusableElementType) => boolean;
   _getNextElementInList: (
     focusedEl: FocusableElementType,
     currentList: FocusableElementType[],

@@ -30,8 +30,7 @@ export function MultipleListButtonsPage({ data }) {
       </Box>
 
       <Heading headingLevel={3}>
-        Currently Implemented - Up and Down Key Implementation: Navigation
-        Between Components
+        Currently Implemented - Tab Handling: Navigation Between Components
       </Heading>
       <List cx="display">
         <ListItem>
@@ -46,13 +45,14 @@ export function MultipleListButtonsPage({ data }) {
           Screen and Screen readers indicate when a sublist is open or closed.
         </ListItem>
         <ListItem>
-          Keyboard functionality is partially implemented.
+          Navigation Keyboard functionality is fully implemented.
           <br />
-          The current implementation adds functionality for the up and down
-          arrow keys, allowing movement into and out of sub-lists, in addition
-          to the Home, End, right, and left arrow keys, which navigate within a
-          single list. Use the Down Key to move into an open sublist and use the
-          Up Key to navigate up through open and closed sublists.
+          The current implementation adds functionality for the Tab and
+          Shift+Tab arrow keys, allowing movement into and out of sub-lists, in
+          addition to the Home, End, right, and left arrow keys, which navigate
+          within a single list. Use the Down or Tab Key to move into an open
+          sublist and use the Up or Shift+Tab Key to navigate up through open
+          and closed sublists.
         </ListItem>
       </List>
     </>

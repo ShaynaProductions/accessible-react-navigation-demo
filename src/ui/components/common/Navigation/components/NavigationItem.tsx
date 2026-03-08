@@ -124,10 +124,7 @@ export default function NavigationItem({
     id: id,
   };
   const linkProps: Omit<LinkProps, "children"> = {
-    "aria-current": returnTrueElementOrUndefined(
-      currentPath === pageURL,
-      "page",
-    ),
+    "aria-current": returnTrueElementOrUndefined(currentPath === href, "page"),
     "aria-label": `${label} navigation`,
     href: pageURL,
     onKeyDown: handleKeyDown,
