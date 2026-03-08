@@ -3,6 +3,11 @@ import { BaseProps } from "@/ui/types";
 
 export interface TextProps extends BaseProps, RacTextProps {
   /**
+   * The children of the component.
+   */
+  children?: React.ReactNode;
+
+  /**
    * default false - Hidden visually only, available in DOM to screen readers
    */
   isHidden?: boolean; /**

@@ -7,7 +7,7 @@
   {
     "label": "Community",
     "id": "community-menu",
-    "href": "/#community",
+    "href": "",
     "menu": [
       {
         "label": "Musings",
@@ -24,7 +24,7 @@
   {
     "label": "Tales",
     "id": "tales-menu",
-    "href": "#",
+    "href": "",
     "menu": [
       {
         "label": "Search",
@@ -34,7 +34,7 @@
           {
             "label": "Basic Search",
             "id": "basic-search",
-            "href": "/#basicsearch"
+            "href": "/examples/multiple-lists-buttons"
           },
           {
             "label": "Advanced Search",
@@ -56,7 +56,7 @@
       {
         "label": "Find Your Next Story",
         "id": "find-next-story",
-        "href": "/#",
+        "href": "",
         "menu": [
           {
             "label": "By Storyteller",
@@ -75,17 +75,17 @@
   {
     "label": "Reference",
     "id": "reference-menu",
-    "href": "#",
+    "href": "",
     "menu": [
       {
         "label": "Appendices",
         "id": "appendices",
-        "href": "/#appendices"
+        "href": "/examples/styled-horizontal-uncontrolled"
       },
       {
         "label": "Characters",
         "id": "characters",
-        "href": "/#characters"
+        "href": "/examples/multiple-lists-link-ends"
       },
       {
         "label": "Glossary",
@@ -97,12 +97,17 @@
   {
     "label": "About",
     "id": "about-menu",
-    "href": "#",
+    "href": "",
     "menu": [
       {
         "label": "About the Site",
         "id": "about-the-site",
         "href": "/#about-the-site"
+      },
+      {
+        "label": "Contact Us",
+        "id": "contact-us",
+        "href": "/#contact-us"
       },
       {
         "label": "Privacy Policy",
@@ -122,8 +127,8 @@
     ]
   },
   {
-    "label": "Contact Us",
-    "id": "contact-us",
-    "href": "/#contact-us"
+    "label": "Contact Information",
+    "id": "contact",
+    "href": "/#contact"
   }
 ]

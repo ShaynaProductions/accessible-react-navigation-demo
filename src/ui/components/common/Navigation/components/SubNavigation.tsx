@@ -50,7 +50,9 @@ export default function SubNavigation({
 
   const {
     getNextByButton,
+    getNextByTabButton,
     getPreviousByButton,
+    getPreviousByTabButton,
     registerButtonAsParent,
     registerItemInNavigationArray,
     setIsListOpen,
@@ -119,6 +121,7 @@ export default function SubNavigation({
       case Keys.END:
       case Keys.LEFT:
       case Keys.RIGHT:
+      case Keys.TAB:
         e.preventDefault();
         break;
     }
@@ -140,6 +143,12 @@ export default function SubNavigation({
       case Keys.DOWN:
         focusableEl = getNextByButton(buttonEl, isSubListOpen);
         break;
+      case Keys.TAB:
+        if (e.shiftKey) {
+          focusableEl = getPreviousByTabButton(buttonEl);
+        } else {
+          focusableEl = getNextByTabButton(buttonEl, isSubListOpen);
+        }
     }
     if (focusableEl) {
       shiftFocus(focusableEl);

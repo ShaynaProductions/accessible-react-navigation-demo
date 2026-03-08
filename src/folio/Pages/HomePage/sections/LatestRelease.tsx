@@ -11,16 +11,26 @@ import {
 export const LatestRelease = () => {
   return (
     <>
-      <Heading headingLevel={3}>Up and Down Arrow Key Implementation</Heading>
+      <Heading headingLevel={3}>Tab and Shift+Tab Handling</Heading>
       <DefinitionList>
         <DefinitionTerm>Articles</DefinitionTerm>
         <DefinitionDetail>
           <Text isInline>Development</Text>
           <Link
-            href="https://dev.to/shaynaproductions/the-ups-and-downs-of-keyboard-handling-80n"
+            href="https://dev.to/shaynaproductions/navigating-with-tabs-17gj"
             openInNewTab={true}
           >
-            The Ups and Downs of Keyboard Handling
+            Navigating with Tabs
+          </Link>
+          <br />
+        </DefinitionDetail>
+        <DefinitionDetail>
+          <Text isInline>Design</Text>
+          <Link
+            href="https://dev.to/shaynaproductions/styling-and-color-cjo"
+            openInNewTab={true}
+          >
+            Styling and Color
           </Link>
           <br />
         </DefinitionDetail>
@@ -28,10 +38,10 @@ export const LatestRelease = () => {
         <DefinitionTerm>Release</DefinitionTerm>
         <DefinitionDetail>
           <Link
-            href="https://github.com/ShaynaProductions/accessible-react-navigation-demo/releases/tag/v0.6.0"
+            href="https://github.com/ShaynaProductions/accessible-react-navigation-demo/releases/tag/v0.7.0"
             openInNewTab={true}
           >
-            Up and Down Key Implementation: Navigation Between Components
+            Adding Tab Navigation Capabilities
           </Link>
         </DefinitionDetail>
       </DefinitionList>

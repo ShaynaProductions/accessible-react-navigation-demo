@@ -1,12 +1,18 @@
 "use client";
 import { use, useCallback } from "react";
-import { returnTrueElementOrUndefined } from "@/ui/utilities";
+import {
+  getFocusableElementFromDOM,
+  returnTrueElementOrUndefined,
+} from "@/ui/utilities";
 import { NavigationContext } from "../../providers/";
 import type {
   ControllingElementType,
   FocusableElementType,
 } from "../../utilities";
-import { _getRecursiveTopElementByElement } from "./hookFunctions";
+import {
+  _getRecursiveLastElementByParent,
+  _getRecursiveTopElementByElement,
+} from "./hookFunctions";
 import type {
   UseNavigationInternalTypes,
   UseNavigationReturnTypes,
@@ -62,6 +68,15 @@ export function useNavigation() {
       [getNavigationArray],
     );
 
+  const _getLastElementByParent: UseNavigationInternalTypes["_getLastElementByParent"] =
+    (parentEl) => {
+      return _getRecursiveLastElementByParent(
+        parentEl,
+        _getNavigationObjectByListElement,
+        _getNavigationObjectByParent,
+      );
+    };
+
   const _isElementInTopRow: UseNavigationInternalTypes["_isElementInTopRow"] = (
     focusedEl,
   ) => {
@@ -88,6 +103,15 @@ export function useNavigation() {
     (focusedEl) => {
       const { storedList } = _getNavigationObjectByListElement(focusedEl);
       return storedList.indexOf(focusedEl) === storedList.length - 1;
+    };
+
+  const _isLastElementInTopList: UseNavigationInternalTypes["_isLastElementInTopList"] =
+    (focusedEl) => {
+      const topRowParent = _getTopRowElement(focusedEl);
+      const lastListElement = _getLastElementByParent(
+        topRowParent as ControllingElementType,
+      );
+      return focusedEl === lastListElement;
     };
 
   const _getNextElementInList: UseNavigationInternalTypes["_getNextElementInList"] =
@@ -178,6 +202,49 @@ export function useNavigation() {
     return focusableEl;
   };
 
+  const getNextByTabButton: UseNavigationReturnTypes["getNextByTabButton"] = (
+    buttonEl,
+    isSubListOpen,
+  ) => {
+    let focusableEl = getNextByButton(buttonEl, isSubListOpen);
+
+    const { storedList } = _getNavigationObjectByListElement(buttonEl);
+
+    if (
+      !isSubListOpen &&
+      storedList.indexOf(buttonEl) === storedList.length - 1
+    ) {
+      const lastEl = _getLastElementByParent(buttonEl);
+
+      focusableEl = getFocusableElementFromDOM(
+        lastEl,
+        "next",
+      ) as FocusableElementType;
+    }
+
+    return focusableEl;
+  };
+
+  const getNextByTabLink: UseNavigationReturnTypes["getNextByTabLink"] = (
+    linkEl,
+  ) => {
+    let focusableEl = getNextByLink(linkEl);
+
+    const isInTopRow = _isElementInTopRow(linkEl);
+
+    if (
+      (isInTopRow && !focusableEl) ||
+      (!isInTopRow && _isLastElementInTopList(linkEl))
+    ) {
+      focusableEl = getFocusableElementFromDOM(
+        linkEl,
+        "next",
+      ) as FocusableElementType;
+    }
+
+    return focusableEl;
+  };
+
   const getPreviousByButton: UseNavigationReturnTypes["getPreviousByButton"] = (
     buttonEl,
   ) => {
@@ -187,11 +254,11 @@ export function useNavigation() {
   const getPreviousByLink: UseNavigationReturnTypes["getPreviousByLink"] = (
     linkEl,
   ) => {
-    const isButton = (focusableEl) => {
+    const isButton = (focusableEl: FocusableElementType) => {
       return focusableEl?.type === "button";
     };
 
-    let focusableEl = _getPreviousByElement(linkEl);
+    let focusableEl = _getPreviousByElement(linkEl) as FocusableElementType;
     if (isButton(focusableEl)) {
       const { isSubListOpen, storedList } = _getNavigationObjectByParent(
         focusableEl as ControllingElementType,
@@ -203,11 +270,47 @@ export function useNavigation() {
     return focusableEl;
   };
 
+  const getPreviousByTabButton: UseNavigationReturnTypes["getPreviousByTabButton"] =
+    (buttonEl) => {
+      let focusableEl = getPreviousByButton(buttonEl);
+      if (_isElementInTopRow(buttonEl)) {
+        const { storedList } = _getNavigationObjectByListElement(buttonEl);
+        if (storedList.indexOf(buttonEl) === 0) {
+          focusableEl = getFocusableElementFromDOM(
+            buttonEl,
+            "prev",
+          ) as FocusableElementType;
+        }
+      }
+      return focusableEl;
+    };
+
+  const getPreviousByTabLink: UseNavigationReturnTypes["getPreviousByTabLink"] =
+    (linkEl) => {
+      let focusableEl = getPreviousByLink(linkEl);
+      if (_isElementInTopRow(linkEl)) {
+        const { storedList } = _getNavigationObjectByListElement(linkEl);
+        if (storedList.indexOf(linkEl) === 0) {
+          focusableEl = getFocusableElementFromDOM(
+            linkEl,
+            "prev",
+          ) as FocusableElementType;
+        } else {
+          focusableEl = _getPreviousElementInList(linkEl, storedList);
+        }
+      }
+      return focusableEl;
+    };
+
   return {
     getNextByButton,
     getNextByLink,
+    getNextByTabButton,
+    getNextByTabLink,
     getPreviousByButton,
     getPreviousByLink,
+    getPreviousByTabButton,
+    getPreviousByTabLink,
     registerItemInNavigationArray,
     registerButtonAsParent,
     setIsListOpen,

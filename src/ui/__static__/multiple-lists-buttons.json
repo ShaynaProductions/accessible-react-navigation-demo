@@ -29,7 +29,7 @@
           {
             "label": "Basic Search",
             "id": "basic-search",
-            "href": "/#basicsearch"
+            "href": "/examples/multiple-lists-buttons"
           },
           {
             "label": "Advanced Search",
@@ -75,12 +75,12 @@
       {
         "label": "Appendices",
         "id": "appendices",
-        "href": "/#appendices"
+        "href": "/examples/styled-horizontal-uncontrolled"
       },
       {
         "label": "Characters",
         "id": "characters",
-        "href": "/#characters"
+        "href": "/examples/multiple-lists-link-ends"
       },
       {
         "label": "Glossary",

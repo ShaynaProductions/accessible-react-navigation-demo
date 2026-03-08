@@ -36,6 +36,7 @@ export const getMultipleButtonsTestElements = (
       name: "Tales subnavigation",
     }),
     referenceButton: getByRole("button", { name: "Reference subnavigation" }),
+    referenceList: getByTestId(`${testId}-reference-menu-list`),
     aboutButton: getByRole("button", { name: "About subnavigation" }),
     storiesList: getByTestId(`${testId}-tales-menu-list`),
     searchButton: getByRole("button", { name: "Search subnavigation" }),
@@ -69,6 +70,8 @@ export const getMultipleButtonsTestElements = (
 export const getMultipleLinkTestElements = (getByRole) => {
   return {
     homeLink: getByRole("link", { name: "Home navigation" }),
-    contactLink: getByRole("link", { name: "Contact Us navigation" }),
+    contactInfoLink: getByRole("link", {
+      name: "Contact Information navigation",
+    }),
   };
 };
