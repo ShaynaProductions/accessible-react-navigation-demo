@@ -40,6 +40,7 @@ export default function NavigationItem({
     getPreviousByLink,
     getNextByTabLink,
     getPreviousByTabLink,
+    handleLinkFocus,
     registerItemInNavigationArray,
   } = useNavigation();
   const currentPath = usePathname();
@@ -52,7 +53,7 @@ export default function NavigationItem({
 
   useEffect(() => {
     /* istanbul ignore else */
-    if (linkRef.current !== null) {
+    if (linkRef.current) {
       registerItemInCurrentList(linkRef.current);
     }
   }, [linkRef, registerItemInCurrentList]);
@@ -61,7 +62,7 @@ export default function NavigationItem({
     const prevList = prevCurrentListItems || [];
     /* istanbul ignore else */
     if (
-      linkRef.current !== null &&
+      linkRef.current &&
       currentListItems.length > 0 &&
       !arraysEqual(currentListItems, prevList)
     ) {
@@ -74,6 +75,14 @@ export default function NavigationItem({
     prevCurrentListItems,
     registerItemInNavigationArray,
   ]);
+
+  const handleFocus = () => {
+    const linkEl = linkRef.current;
+    const focusableEl = handleLinkFocus(linkEl);
+    if (!!focusableEl && focusableEl !== linkEl) {
+      shiftFocus(focusableEl);
+    }
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     const linkEl = linkRef.current as HTMLAnchorElement;
@@ -127,6 +136,7 @@ export default function NavigationItem({
     "aria-current": returnTrueElementOrUndefined(currentPath === href, "page"),
     "aria-label": `${label} navigation`,
     href: pageURL,
+    onFocus: handleFocus,
     onKeyDown: handleKeyDown,
     ref: linkRef,
     ...rest,

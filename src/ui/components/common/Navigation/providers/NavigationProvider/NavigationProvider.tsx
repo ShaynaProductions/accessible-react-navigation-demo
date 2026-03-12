@@ -1,8 +1,15 @@
 "use client";
-import { createContext, useCallback, useReducer, type JSX } from "react";
+import {
+  createContext,
+  useCallback,
+  useReducer,
+  type JSX,
+  useRef,
+} from "react";
 import type { EmptyObject } from "@/ui/types";
 import type {
   NavigationContextReturnValueProps,
+  NavigationInternalProps,
   NavigationObjectProps,
 } from "./NavigationProviderTypes";
 import { navigationReducer } from "./navigationReducer";
@@ -36,14 +43,23 @@ export function NavigationProvider({ children, value }): JSX.Element {
       });
     }, []);
 
+  const _dispatchSubListCloseByParent: NavigationInternalProps["_dispatchSubListCloseByParent"] =
+    useRef(new Map());
+
   const getNavigationArray: NavigationContextReturnValueProps["getNavigationArray"] =
     useCallback(() => {
-      return state.navigationArray;
+      return state.navigationArray.map((obj) => ({
+        ...obj,
+        dispatchSubListClose: _dispatchSubListCloseByParent.current.get(
+          obj.storedParentEl,
+        ),
+      }));
     }, [state.navigationArray]);
 
   const registerButtonAsParent: NavigationContextReturnValueProps["registerButtonAsParent"] =
-    (isListOpen, parentEl) => {
+    (isListOpen, parentEl, dispatchSubListClose) => {
       dispatch({ type: "SET_PARENT", parentEl, isListOpen });
+      _dispatchSubListCloseByParent.current.set(parentEl, dispatchSubListClose);
     };
 
   const registerItemInNavigationArray: NavigationContextReturnValueProps["registerItemInNavigationArray"] =

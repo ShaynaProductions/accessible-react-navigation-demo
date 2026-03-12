@@ -2,6 +2,7 @@ import { render, userEvent } from "@/test";
 import fs from "fs";
 import { Box, Button, Navigation, transformNavigation } from "@/ui/components";
 import {
+  getCommonTestElements,
   getMultipleButtonsTestElements,
   getMultipleLinkTestElements,
   getSingleListTestElements,
@@ -252,7 +253,11 @@ describe("Navigation Keyboard Handling Tab", () => {
   it("should move through sublists and siblings when sublists are open", async () => {
     /* conforms to Tab Handling AC 1 */
     const { getByTestId, getByRole } = renderNavigation(buttonProps);
-    const frontButton = getByRole("button", { name: frontButtonLabel });
+    const { frontButton } = getCommonTestElements(
+      getByRole,
+      frontButtonLabel,
+      endButtonLabel,
+    );
     const {
       communityButton,
       storiesButton,
@@ -351,7 +356,11 @@ describe("Navigation Keyboard Handling Shift + Tab", () => {
   it("should move up through sublists and focus on Parent when in a sublist", async () => {
     /* conforms to Tab Handling AC 1 */
     const { getByTestId, getByRole } = renderNavigation(buttonProps);
-    const frontButton = getByRole("button", { name: frontButtonLabel });
+    const { frontButton } = getCommonTestElements(
+      getByRole,
+      frontButtonLabel,
+      endButtonLabel,
+    );
     const { communityButton, communityList, blogLink, forumLink } =
       getMultipleButtonsTestElements(getByRole, getByTestId, TEST_ID);
 
@@ -377,7 +386,11 @@ describe("Navigation Keyboard Handling Shift + Tab", () => {
   it("should move up through siblings and sublists when they are open", async () => {
     /* conforms to Tab Handling AC  1 */
     const { getByTestId, getByRole } = renderNavigation(buttonProps);
-    const frontButton = getByRole("button", { name: frontButtonLabel });
+    const { frontButton } = getCommonTestElements(
+      getByRole,
+      frontButtonLabel,
+      endButtonLabel,
+    );
     const {
       communityButton,
       storiesButton,
@@ -445,8 +458,11 @@ describe("Navigation Keyboard Handling Shift + Tab", () => {
   it("should move back through the top row of buttons and links when lists are closed", async () => {
     /* conforms to Tab Handling AC 1 / 2 */
     const { getByTestId, getByRole } = renderNavigation(linkProps);
-    const frontButton = getByRole("button", { name: frontButtonLabel });
-    const endButton = getByRole("button", { name: endButtonLabel });
+    const { frontButton, endButton } = getCommonTestElements(
+      getByRole,
+      frontButtonLabel,
+      endButtonLabel,
+    );
 
     const { homeLink, contactInfoLink } =
       getMultipleLinkTestElements(getByRole);
@@ -490,5 +506,37 @@ describe("Navigation Keyboard Handling Shift + Tab", () => {
     expect(homeLink).toHaveFocus();
     await userEvent.tab({ shift: true });
     expect(frontButton).toHaveFocus();
+  });
+  it("should move from end to last element in the top row when Shift+Tab is used", async () => {
+    /* conforms to Focus and Closing Foundation Release AC 1 */
+    const { getByTestId, getByRole } = renderNavigation(buttonProps);
+    const { frontButton, endButton } = getCommonTestElements(
+      getByRole,
+      frontButtonLabel,
+      endButtonLabel,
+    );
+    const {
+      communityButton,
+      communityList,
+      storiesButton,
+      referenceButton,
+      aboutButton,
+    } = getMultipleButtonsTestElements(getByRole, getByTestId, TEST_ID);
+
+    await userEvent.tab();
+    expect(frontButton).toHaveFocus();
+    await userEvent.tab();
+    expect(communityButton).toHaveFocus();
+    expect(communityList).toHaveClass("srOnly");
+    await userEvent.tab();
+    expect(storiesButton).toHaveFocus();
+    await userEvent.tab();
+    expect(referenceButton).toHaveFocus();
+    await userEvent.tab();
+    expect(aboutButton).toHaveFocus();
+    await userEvent.tab();
+    expect(endButton).toHaveFocus();
+    await userEvent.tab({ shift: true });
+    expect(aboutButton).toHaveFocus();
   });
 });

@@ -20,11 +20,16 @@ export interface UseNavigationInternalTypes {
   _getLastElementByParent: (
     parentEl: ControllingElementType,
   ) => FocusableElementType;
+  _getLastElementInComponent: () => FocusableElementType;
+  _getLastElementInTopRow: (
+    focusedEl: FocusableElementType,
+  ) => FocusableElementType | undefined;
   _isElementInTopRow: (focusedEl: FocusableElementType) => boolean;
   _getTopRowElement: (focusedEl: FocusableElementType) => FocusableElementType;
   _getParentByElement: (
     focusedEl: FocusableElementType,
   ) => ControllingElementType;
+  _isLastElementInComponent: (focusedEl: FocusableElementType) => boolean;
   _isLastElementInCurrentList: (focusedEl: FocusableElementType) => boolean;
   _isLastElementInTopList: (focusedEl: FocusableElementType) => boolean;
   _getNextElementInList: (
@@ -67,6 +72,7 @@ export interface UseNavigationReturnTypes {
   getPreviousByTabLink: (
     linkEl: HTMLAnchorElement,
   ) => FocusableElementType | undefined;
+  handleLinkFocus;
   registerItemInNavigationArray: NavigationContextReturnValueProps["registerItemInNavigationArray"];
   registerButtonAsParent: NavigationContextReturnValueProps["registerButtonAsParent"];
   setIsListOpen: NavigationContextReturnValueProps["setIsListOpen"];

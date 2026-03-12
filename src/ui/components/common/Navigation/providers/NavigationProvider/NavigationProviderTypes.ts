@@ -30,9 +30,16 @@ export type NavigationAction =
     };
 
 export interface NavigationObjectProps {
+  dispatchSubListClose?: VoidFunction;
+  isSubListOpen: boolean;
   storedList: FocusableElementType[];
   storedParentEl: ControllingElementType;
-  isSubListOpen: boolean;
+}
+
+export interface NavigationInternalProps {
+  _dispatchSubListCloseByParent: React.RefObject<
+    Map<ControllingElementType, VoidFunction>
+  >;
 }
 
 export interface NavigationContextReturnValueProps {
@@ -44,6 +51,7 @@ export interface NavigationContextReturnValueProps {
   registerButtonAsParent: (
     isListOpen: boolean,
     parentEl: ControllingElementType,
+    dispatchSubListClose: VoidFunction,
   ) => void;
   setIsListOpen: (
     isListOpen: boolean,
