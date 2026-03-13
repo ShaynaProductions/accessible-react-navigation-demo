@@ -34,8 +34,7 @@ export function SingleListPage({ data }) {
         </Navigation>
       </Box>
       <Heading headingLevel={3}>
-        Currently Implemented - Up and Down Key Implementation: Navigation
-        Between Components
+        Currently Implemented - Focus and Closing Foundation Release
       </Heading>
       <List cx="display">
         <ListItem>The List is uncontrolled and open by default</ListItem>
@@ -44,10 +43,12 @@ export function SingleListPage({ data }) {
           identifiable through screen and screen reader.
         </ListItem>
         <ListItem>
-          {" "}
           Fully Navigable using the Home, End, Right and Left Arrow Keys, along
           with Tab. The Up and Down arrow keys will also work to navigate up and
           down the list.
+          <br />
+          Using Shift+Tab from the footer link will now correctly place focus on
+          the last element in the top row.
         </ListItem>
       </List>
     </>

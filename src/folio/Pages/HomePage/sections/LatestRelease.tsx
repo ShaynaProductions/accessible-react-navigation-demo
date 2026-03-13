@@ -11,37 +11,28 @@ import {
 export const LatestRelease = () => {
   return (
     <>
-      <Heading headingLevel={3}>Tab and Shift+Tab Handling</Heading>
+      <Heading headingLevel={3}>
+        Focus on Shift+Tab and Refinement Support
+      </Heading>
       <DefinitionList>
         <DefinitionTerm>Articles</DefinitionTerm>
         <DefinitionDetail>
           <Text isInline>Development</Text>
           <Link
-            href="https://dev.to/shaynaproductions/navigating-with-tabs-17gj"
+            href="https://dev.to/shaynaproductions/focus-issues-and-refinement-support-4be4"
             openInNewTab={true}
           >
-            Navigating with Tabs
+            Focus Issues and Refinement Support
           </Link>
           <br />
         </DefinitionDetail>
-        <DefinitionDetail>
-          <Text isInline>Design</Text>
-          <Link
-            href="https://dev.to/shaynaproductions/styling-and-color-cjo"
-            openInNewTab={true}
-          >
-            Styling and Color
-          </Link>
-          <br />
-        </DefinitionDetail>
-
         <DefinitionTerm>Release</DefinitionTerm>
         <DefinitionDetail>
           <Link
-            href="https://github.com/ShaynaProductions/accessible-react-navigation-demo/releases/tag/v0.7.0"
+            href="https://github.com/ShaynaProductions/accessible-react-navigation-demo/releases/tag/v0.8.0"
             openInNewTab={true}
           >
-            Adding Tab Navigation Capabilities
+            Shift+Tab Focus and Support for Closing Requirements
           </Link>
         </DefinitionDetail>
       </DefinitionList>
