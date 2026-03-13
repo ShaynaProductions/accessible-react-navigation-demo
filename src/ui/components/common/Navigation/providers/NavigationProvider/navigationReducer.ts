@@ -11,24 +11,6 @@ export function navigationReducer(
   action: NavigationAction,
 ): NavigationState {
   switch (action.type) {
-    case "SET_PARENT": {
-      const exists = state.navigationArray.some(
-        (obj) => obj.storedParentEl === action.parentEl,
-      );
-      if (exists) return state;
-
-      const navObj: NavigationObjectProps = {
-        storedParentEl: action.parentEl,
-        isSubListOpen: action.isListOpen,
-        storedList: [],
-      };
-
-      return {
-        ...state,
-        navigationArray: [...state.navigationArray, navObj],
-      };
-    }
-
     case "SET_IS_LIST_OPEN": {
       const index = state.navigationArray.findIndex(
         (obj) => obj.storedParentEl === action.parentEl,
@@ -59,6 +41,24 @@ export function navigationReducer(
       next[index] = { ...current, storedList: nextList };
 
       return { ...state, navigationArray: next };
+    }
+
+    case "SET_PARENT": {
+      const exists = state.navigationArray.some(
+        (obj) => obj.storedParentEl === action.parentEl,
+      );
+      if (exists) return state;
+
+      const navObj: NavigationObjectProps = {
+        storedParentEl: action.parentEl,
+        isSubListOpen: action.isListOpen,
+        storedList: [],
+      };
+
+      return {
+        ...state,
+        navigationArray: [...state.navigationArray, navObj],
+      };
     }
 
     /* istanbul ignore next */

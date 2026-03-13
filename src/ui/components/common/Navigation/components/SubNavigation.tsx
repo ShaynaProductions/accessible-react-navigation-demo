@@ -66,7 +66,7 @@ export default function SubNavigation({
 
   const closeSubNavigation = useCallback(() => {
     /* istanbul ignore else */
-    if (buttonRef.current !== null) {
+    if (buttonRef.current) {
       setIsListOpen(false, buttonRef.current);
       setIsSubListOpen(false);
     }
@@ -74,7 +74,7 @@ export default function SubNavigation({
 
   const openSubNavigation = useCallback(() => {
     /* istanbul ignore else */
-    if (buttonRef.current !== null) {
+    if (buttonRef.current) {
       setIsListOpen(true, buttonRef.current);
       setIsSubListOpen(true);
     }
@@ -82,12 +82,17 @@ export default function SubNavigation({
 
   useEffect(() => {
     /* istanbul ignore else */
-    if (buttonRef.current !== null) {
+    if (buttonRef.current) {
       registerItemInCurrentList(buttonRef.current as FocusableElementType);
-      registerButtonAsParent(isSubListOpen, buttonRef.current);
+      registerButtonAsParent(
+        isSubListOpen,
+        buttonRef.current,
+        closeSubNavigation,
+      );
     }
   }, [
     buttonRef,
+    closeSubNavigation,
     isSubListOpen,
     registerButtonAsParent,
     registerItemInCurrentList,
@@ -96,7 +101,7 @@ export default function SubNavigation({
   useEffect(() => {
     const prevList = prevCurrentListItems || [];
     if (
-      buttonRef.current !== null &&
+      buttonRef.current &&
       currentListItems.length > 0 &&
       !arraysEqual(currentListItems, prevList)
     ) {

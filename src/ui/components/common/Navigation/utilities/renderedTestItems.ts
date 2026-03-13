@@ -22,6 +22,17 @@ export const getSingleListTestElements = (getByRole) => {
   };
 };
 
+export const getCommonTestElements = (
+  getByRole,
+  frontButtonLabel,
+  endButtonLabel,
+) => {
+  return {
+    frontButton: getByRole("button", { name: frontButtonLabel }),
+    endButton: getByRole("button", { name: endButtonLabel }),
+  };
+};
+
 export const getMultipleButtonsTestElements = (
   getByRole,
   getByTestId,

@@ -34,3 +34,4 @@ Each published article is linked, and where appropriate, examples will refer to 
 10. [The Ups and Downs of Keyboard Handling](https://dev.to/shaynaproductions/the-ups-and-downs-of-keyboard-handling-80n)
 11. [Navigating with Tabs](https://dev.to/shaynaproductions/navigating-with-tabs-17gj)
 12. [Styling with Color](https://dev.to/shaynaproductions/styling-and-color-cjo)
+13. [Focus Issues and Refinement Support](https://dev.to/shaynaproductions/focus-issues-and-refinement-support-4be4)

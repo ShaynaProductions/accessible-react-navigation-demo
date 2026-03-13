@@ -32,8 +32,7 @@ export function StyledVerticalUncontrolledPage({ data }): JSX.Element {
       </Navigation>
 
       <Heading headingLevel={3}>
-        Currently Implemented - Tab Handling: Navigation Between Components
-        Between Components
+        Currently Implemented - Focus and Closing Foundation Release
       </Heading>
       <List cx="display">
         <ListItem>
@@ -60,6 +59,9 @@ export function StyledVerticalUncontrolledPage({ data }): JSX.Element {
           within a single list. Use the Down or Tab Key to move into an open
           sublist and use the Up or Shift+Tab Key to navigate up through open
           and closed sublists.
+          <br />
+          Using Shift+Tab from the footer link will now correctly place focus on
+          the last element in the top row.
         </ListItem>
       </List>
     </>
