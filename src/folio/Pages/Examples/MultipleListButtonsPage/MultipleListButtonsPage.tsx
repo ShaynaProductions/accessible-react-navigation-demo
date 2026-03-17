@@ -28,7 +28,7 @@ export function MultipleListButtonsPage({ data }) {
           {navigation}
         </Navigation>
       </Box>
-
+      {/*
       <Heading headingLevel={3}>
         Currently Implemented - Focus and Closing Foundation Release
       </Heading>
@@ -57,7 +57,7 @@ export function MultipleListButtonsPage({ data }) {
           Using Shift+Tab from the footer link will now correctly place focus on
           the last element in the top row.
         </ListItem>
-      </List>
+      </List>*/}
     </>
   );
 }

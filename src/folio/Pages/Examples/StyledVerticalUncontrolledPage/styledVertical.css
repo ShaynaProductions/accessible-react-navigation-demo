@@ -1,15 +1,18 @@
 @layer system-component {
+  div.vertical {
+    position: relative;
+  }
   nav.vertical-navigation {
+    min-width: calc(var(--sp-px) * 320);
+    position: absolute;
+    top: calc(var(--sp-px) * 24);
+    width: 30%;
+    z-index: 3;
     /* Layout */
-    padding: calc(var(--sp-px) * 16);
-
-    /* Top Row nav > ul > li   */
-
     & > ul {
       & > li {
         & > button,
         & > a[href] {
-          padding-left: 0;
           justify-content: flex-start;
         }
 
@@ -25,62 +28,81 @@
             & a[href] {
               flex-wrap: nowrap;
               justify-content: flex-start;
-              padding-left: calc(var(--sp-px) * 16);
-            }
-          }
-
-          & ul {
-            & > li {
-              padding-left: calc(var(--sp-px) * 16);
             }
           }
         }
       }
     }
+
+    /* Appearance */
+    /* nav */
+    background-color: var(--component-background);
+    border-color: var(--purple-7);
+    border-style: solid;
+    border-width: calc(var(--sp-px) * 1);
+    box-shadow: calc(var(--sp-px) * 7) calc(var(--sp-px) * 7)
+      calc(var(--sp-px) * 7) oklch(var(--raw-purple-4) / 0.4);
+    padding: calc(var(--sp-px) * 8) calc(var(--sp-px) * 16);
+    padding-left: calc(var(--sp-px) * 20);
 
     & li {
-      & a[href] {
-        display: inline-block;
+      border-color: transparent;
+    }
+
+    & button,
+    & a[href] {
+      background-color: transparent;
+      border-color: transparent;
+      border-bottom-color: var(--purple-3);
+      border-radius: 0;
+      border-style: solid;
+      border-width: calc(var(--sp-px) * 1);
+      border-left-width: calc(var(--sp-px) * 2);
+      display: flex;
+      font-weight: 400;
+      padding: calc(var(--sp-px) * 4);
+      text-decoration: none;
+
+      white-space: nowrap;
+      width: 100%;
+      &:focus-visible {
+        outline: none;
       }
-      & button,
-      & a[href] {
-        background-color: transparent;
-        border-color: transparent;
-        border-radius: 0;
-        border-width: calc(var(--sp-px) * 2);
-        color: var(--component-text-color);
-        min-height: calc(var(--sp-px) * 16);
-        padding-top: calc(var(--sp-px) * 4);
-        padding-bottom: calc(var(--sp-px) * 4);
-        width: 100%;
-        text-align: left;
+      &:hover,
+      &:focus {
+        border-left-color: var(--purple-7);
       }
     }
 
-    /* Appearance*/
-    & > ul {
-      & li:has(button) {
-        border-bottom-width: calc(var(--sp-px) * 2);
-        border-bottom-color: var(--component-border-color);
-        border-bottom-style: solid;
-        padding: calc(var(--sp-px) * 4) inherit;
+    & a[href][aria-current="page"] {
+      &:before {
+        color: var(--purple-8);
+        content: "\25C9";
+        position: absolute;
+        left: calc(var(--sp-px) * 4);
+      }
+    }
 
-        &:has(button[aria-expanded="true"]) {
+    & > ul > li {
+      &:last-child {
+        & > button,
+        & > a[href] {
           border-bottom-color: transparent;
-          & > button {
-            border-bottom-color: var(--component-border-color);
-          }
         }
       }
 
-      & button,
-      & a[href] {
-        font-weight: 400;
-      }
+      & ul > li {
+        & button,
+        & a[href] {
+          padding-left: calc(var(--sp-px) * 16);
+        }
 
-      & > ul {
-        padding-top: calc(var(--sp-px) * 8);
-       
+        & > ul > li {
+          & button,
+          & a[href] {
+            padding-left: calc(var(--sp-px) * (16 * 2));
+          }
+        }
       }
     }
   }

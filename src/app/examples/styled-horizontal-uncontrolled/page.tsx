@@ -4,7 +4,7 @@ import { StyledHorizontalUncontrolledPage } from "@/folio/Pages/Examples";
 import "./page.css";
 
 const jsonObj = fs.readFileSync(
-  "src/ui/__static__/multiple-lists-link-ends.json",
+  "src/ui/__static__/multiple-lists-buttons.json",
   "utf8",
 );
 const data = {

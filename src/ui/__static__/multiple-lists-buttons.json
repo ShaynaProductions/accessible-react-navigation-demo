@@ -61,7 +61,7 @@
           {
             "label": "By Era",
             "id": "by-era",
-            "href": "/#by-era"
+            "href": "/examples/styled-vertical-uncontrolled"
           }
         ]
       }

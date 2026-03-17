@@ -3,8 +3,8 @@ import {
   createContext,
   useCallback,
   useReducer,
-  type JSX,
   useRef,
+  type JSX,
 } from "react";
 import type { EmptyObject } from "@/ui/types";
 import type {
@@ -27,7 +27,16 @@ export function NavigationProvider({ children, value }): JSX.Element {
   };
   const [state, dispatch] = useReducer(navigationReducer, {
     navigationArray: [navigationObject],
+    isComponentActive: false,
   });
+
+  const isComponentActive = () => {
+    return state.isComponentActive;
+  };
+
+  const setIsComponentActive = (isActive) => {
+    dispatch({ type: "SET_IS_COMPONENT_ACTIVE", isActive });
+  };
 
   const setIsListOpen: NavigationContextReturnValueProps["setIsListOpen"] =
     useCallback((isListOpen, parentEl) => {
@@ -71,8 +80,10 @@ export function NavigationProvider({ children, value }): JSX.Element {
     <NavigationContext.Provider
       value={{
         getNavigationArray,
+        isComponentActive,
         registerButtonAsParent,
         registerItemInNavigationArray,
+        setIsComponentActive,
         setIsListOpen,
         setListItems,
       }}

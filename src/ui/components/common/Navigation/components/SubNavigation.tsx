@@ -49,10 +49,13 @@ export default function SubNavigation({
   } = useNavigationList();
 
   const {
+    closeComponentWithFocus,
     getNextByButton,
     getNextByTabButton,
     getPreviousByButton,
     getPreviousByTabButton,
+    handleButtonFocus,
+    handleCloseSubNavigation,
     registerButtonAsParent,
     registerItemInNavigationArray,
     setIsListOpen,
@@ -67,10 +70,10 @@ export default function SubNavigation({
   const closeSubNavigation = useCallback(() => {
     /* istanbul ignore else */
     if (buttonRef.current) {
-      setIsListOpen(false, buttonRef.current);
+      handleCloseSubNavigation(buttonRef.current);
       setIsSubListOpen(false);
     }
-  }, [buttonRef, setIsListOpen, setIsSubListOpen]);
+  }, [handleCloseSubNavigation]);
 
   const openSubNavigation = useCallback(() => {
     /* istanbul ignore else */
@@ -118,6 +121,10 @@ export default function SubNavigation({
     setListWidth(buttonRef.current!.offsetWidth);
   }, [buttonRef, setListWidth]);
 
+  const handleFocus = () => {
+    handleButtonFocus(buttonRef.current!);
+  };
+
   const handleKeyDown = (e: KeyboardEvent) => {
     const buttonEl = buttonRef.current as HTMLButtonElement;
 
@@ -134,10 +141,12 @@ export default function SubNavigation({
     handleCommonKeyDown(
       e,
       buttonEl,
+      closeComponentWithFocus,
       setFirstFocus,
       setLastFocus,
       setNextFocus,
       setPreviousFocus,
+      shiftFocus,
     );
 
     let focusableEl: FocusableElementType | undefined;
@@ -172,6 +181,7 @@ export default function SubNavigation({
     "aria-controls": id,
     "aria-expanded": isSubListOpen,
     "aria-label": `${label} subnavigation`,
+    onFocus: handleFocus,
     onKeyDown: handleKeyDown,
     onPress: handlePress,
     ref: buttonRef,

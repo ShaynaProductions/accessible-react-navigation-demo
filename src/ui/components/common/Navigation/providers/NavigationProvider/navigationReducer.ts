@@ -11,6 +11,11 @@ export function navigationReducer(
   action: NavigationAction,
 ): NavigationState {
   switch (action.type) {
+    case "SET_IS_COMPONENT_ACTIVE": {
+      if (state.isComponentActive === action.isActive) return state;
+      return { ...state, isComponentActive: action.isActive };
+    }
+
     case "SET_IS_LIST_OPEN": {
       const index = state.navigationArray.findIndex(
         (obj) => obj.storedParentEl === action.parentEl,

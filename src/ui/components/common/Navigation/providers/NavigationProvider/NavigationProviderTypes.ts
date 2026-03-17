@@ -2,6 +2,7 @@ import { ControllingElementType, FocusableElementType } from "../../utilities";
 
 export type NavigationState = {
   navigationArray: NavigationObjectProps[];
+  isComponentActive: boolean;
 };
 
 export interface NavigationContextStoredValueProps {
@@ -13,11 +14,7 @@ export interface NavigationContextStoredValueProps {
 }
 
 export type NavigationAction =
-  | {
-      type: "SET_PARENT";
-      parentEl: NavigationObjectProps["storedParentEl"];
-      isListOpen: boolean;
-    }
+  | { type: "SET_IS_COMPONENT_ACTIVE"; isActive: boolean }
   | {
       type: "SET_IS_LIST_OPEN";
       parentEl: NavigationObjectProps["storedParentEl"];
@@ -27,6 +24,11 @@ export type NavigationAction =
       type: "SET_LIST_ITEMS";
       parentEl: NavigationObjectProps["storedParentEl"];
       navigationList: NavigationObjectProps["storedList"];
+    }
+  | {
+      type: "SET_PARENT";
+      parentEl: NavigationObjectProps["storedParentEl"];
+      isListOpen: boolean;
     };
 
 export interface NavigationObjectProps {
@@ -44,6 +46,7 @@ export interface NavigationInternalProps {
 
 export interface NavigationContextReturnValueProps {
   getNavigationArray: () => NavigationObjectProps[];
+  isComponentActive: () => boolean;
   registerItemInNavigationArray: (
     navigationList: FocusableElementType[],
     parentEl: ControllingElementType,
@@ -53,6 +56,7 @@ export interface NavigationContextReturnValueProps {
     parentEl: ControllingElementType,
     dispatchSubListClose: VoidFunction,
   ) => void;
+  setIsComponentActive: (isComponentActive: boolean) => void;
   setIsListOpen: (
     isListOpen: boolean,
     parentEl: ControllingElementType,

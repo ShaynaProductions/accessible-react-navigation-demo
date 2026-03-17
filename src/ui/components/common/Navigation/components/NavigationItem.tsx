@@ -36,6 +36,7 @@ export default function NavigationItem({
   } = useNavigationList();
 
   const {
+    closeComponentWithFocus,
     getNextByLink,
     getPreviousByLink,
     getNextByTabLink,
@@ -77,7 +78,7 @@ export default function NavigationItem({
   ]);
 
   const handleFocus = () => {
-    const linkEl = linkRef.current;
+    const linkEl = linkRef.current!;
     const focusableEl = handleLinkFocus(linkEl);
     if (!!focusableEl && focusableEl !== linkEl) {
       shiftFocus(focusableEl);
@@ -101,10 +102,12 @@ export default function NavigationItem({
     handleCommonKeyDown(
       e,
       linkEl as HTMLAnchorElement,
+      closeComponentWithFocus,
       setFirstFocus,
       setLastFocus,
       setNextFocus,
       setPreviousFocus,
+      shiftFocus,
     );
 
     let focusableEl: FocusableElementType | undefined;

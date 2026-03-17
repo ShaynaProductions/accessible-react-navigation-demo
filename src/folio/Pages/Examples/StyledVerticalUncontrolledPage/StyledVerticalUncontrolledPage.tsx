@@ -1,5 +1,6 @@
 "use client";
 import {
+  Box,
   Heading,
   List,
   ListItem,
@@ -21,17 +22,17 @@ export function StyledVerticalUncontrolledPage({ data }): JSX.Element {
         An example showcasing layers of custom styling on a navigation component
         comprised of multiple lists with the top row displaying buttons.
       </Text>
-
-      <Navigation
-        cx="vertical-navigation"
-        id="vertical-demo"
-        label="Vertically Styled Menu"
-        orientation="vertical"
-      >
-        {navigation}
-      </Navigation>
-
-      <Heading headingLevel={3}>
+      <Box cx="vertical">
+        <Navigation
+          cx="vertical-navigation"
+          id="vertical-demo"
+          label="Vertically Styled Menu"
+          orientation="vertical"
+        >
+          {navigation}
+        </Navigation>
+      </Box>
+      {/* <Heading headingLevel={3}>
         Currently Implemented - Focus and Closing Foundation Release
       </Heading>
       <List cx="display">
@@ -63,7 +64,7 @@ export function StyledVerticalUncontrolledPage({ data }): JSX.Element {
           Using Shift+Tab from the footer link will now correctly place focus on
           the last element in the top row.
         </ListItem>
-      </List>
+      </List>*/}
     </>
   );
 }

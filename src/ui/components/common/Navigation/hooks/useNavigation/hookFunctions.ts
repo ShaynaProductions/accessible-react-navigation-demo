@@ -1,35 +1,38 @@
-export const _getRecursiveLastElementByParent = (
-  focusableEl,
-  _getNavigationObjectByListElement,
-  _getNavigationObjectByParent,
-) => {
-  if (focusableEl.type === "button") {
-    const { storedList } = _getNavigationObjectByParent(focusableEl);
-    return _getRecursiveLastElementByParent(
-      storedList[storedList.length - 1],
-      _getNavigationObjectByListElement,
-      _getNavigationObjectByParent,
-    );
-  } else {
-    const { storedList } = _getNavigationObjectByListElement(focusableEl);
-    return storedList[storedList.length - 1];
-  }
-};
+import { UseNavigationInternalTypes } from "./useNavigationTypes";
+import { ControllingElementType, FocusableElementType } from "../../utilities";
 
-export const _getRecursiveTopElementByElement = (
-  focusableEl,
-  _getNavigationObjectByListElement,
-  isElementInTopRow,
-) => {
-  const { storedParentEl } = _getNavigationObjectByListElement(focusableEl);
+export const _getRecursiveLastElementByParent: UseNavigationInternalTypes["_getRecursiveLastElementByParent"] =
+  (
+    focusableEl,
+    _getNavigationObjectByListElement,
+    _getNavigationObjectByParent,
+  ) => {
+    if (focusableEl.type === "button") {
+      const { storedList } = _getNavigationObjectByParent(
+        focusableEl as ControllingElementType,
+      );
+      return _getRecursiveLastElementByParent(
+        storedList[storedList.length - 1],
+        _getNavigationObjectByListElement,
+        _getNavigationObjectByParent,
+      );
+    } else {
+      const { storedList } = _getNavigationObjectByListElement(focusableEl);
+      return storedList[storedList.length - 1];
+    }
+  };
 
-  if (isElementInTopRow(storedParentEl)) {
-    return storedParentEl;
-  } else {
-    return _getRecursiveTopElementByElement(
-      storedParentEl,
-      _getNavigationObjectByListElement,
-      isElementInTopRow,
-    );
-  }
-};
+export const _getRecursiveTopElementByElement: UseNavigationInternalTypes["_getRecursiveTopElementByElement"] =
+  (focusableEl, _getNavigationObjectByListElement, isElementInTopRow) => {
+    const { storedParentEl } = _getNavigationObjectByListElement(focusableEl);
+
+    if (!!storedParentEl && isElementInTopRow(storedParentEl)) {
+      return storedParentEl;
+    } else {
+      return _getRecursiveTopElementByElement(
+        storedParentEl as FocusableElementType,
+        _getNavigationObjectByListElement,
+        isElementInTopRow,
+      );
+    }
+  };
