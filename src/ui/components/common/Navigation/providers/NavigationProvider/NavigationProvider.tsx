@@ -66,10 +66,10 @@ export function NavigationProvider({ children, value }): JSX.Element {
     }, [state.navigationArray]);
 
   const registerButtonAsParent: NavigationContextReturnValueProps["registerButtonAsParent"] =
-    (isListOpen, parentEl, dispatchSubListClose) => {
+    useCallback((isListOpen, parentEl, dispatchSubListClose) => {
       dispatch({ type: "SET_PARENT", parentEl, isListOpen });
       _dispatchSubListCloseByParent.current.set(parentEl, dispatchSubListClose);
-    };
+    }, []);
 
   const registerItemInNavigationArray: NavigationContextReturnValueProps["registerItemInNavigationArray"] =
     (navigationList, parentEl) => {

@@ -186,11 +186,9 @@ export function useNavigation() {
 
   const _handleTopRowItemFocus: UseNavigationInternalTypes["_handleTopRowItemFocus"] =
     (focusedEl) => {
-      if (isComponentActive) {
+      if (isComponentActive()) {
         _closeOpenSiblings(focusedEl);
-      }
-
-      if (!isComponentActive()) {
+      } else {
         setIsComponentActive(true);
       }
     };

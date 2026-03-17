@@ -1,5 +1,7 @@
-import { UseNavigationInternalTypes } from "./useNavigationTypes";
+"use client";
+
 import { ControllingElementType, FocusableElementType } from "../../utilities";
+import { UseNavigationInternalTypes } from "./useNavigationTypes";
 
 export const _getRecursiveLastElementByParent: UseNavigationInternalTypes["_getRecursiveLastElementByParent"] =
   (

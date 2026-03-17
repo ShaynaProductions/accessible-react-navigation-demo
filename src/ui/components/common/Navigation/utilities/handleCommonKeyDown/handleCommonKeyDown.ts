@@ -17,6 +17,7 @@ export const handleCommonKeyDown = (
   switch (e.key) {
     case Keys.ESC:
       const closedEl = closeComponentWithFocus(currentlyFocusedEl);
+      /* istanbul ignore else */
       if (closedEl) {
         shiftFocus(closedEl);
       }
