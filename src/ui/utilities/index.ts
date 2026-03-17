@@ -2,8 +2,9 @@ export { sanitizeUrl } from "@braintree/sanitize-url";
 export { usePrevious } from "@mantine/hooks";
 
 export * from "./constants";
-export * from "./returnTrueElementOrUndefined";
 export * from "./getFocusableElementFromDOM";
+export * from "./OutsideEventListener";
+export * from "./returnTrueElementOrUndefined";
 
 export const arraysEqual = (arr1, arr2) => {
   if (arr1.length !== arr2.length) return false;

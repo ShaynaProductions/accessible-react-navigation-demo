@@ -4,7 +4,7 @@ import {
   getFocusableElementFromDOM,
   returnTrueElementOrUndefined,
 } from "@/ui/utilities";
-import { NavigationContext } from "../../providers/";
+import { NavigationContext, NavigationObjectProps } from "../../providers/";
 import type {
   ControllingElementType,
   FocusableElementType,
@@ -22,8 +22,10 @@ export function useNavigation() {
   const navigationContextObj = use(NavigationContext);
   const {
     getNavigationArray,
+    isComponentActive,
     registerItemInNavigationArray,
     registerButtonAsParent,
+    setIsComponentActive,
     setIsListOpen,
     setListItems,
   } = returnTrueElementOrUndefined(
@@ -63,6 +65,22 @@ export function useNavigation() {
       [getNavigationArray],
     );
 
+  const _getControllingElementsInList: UseNavigationInternalTypes["_getControllingElementsInList"] =
+    (parentEl) => {
+      const controllingListItems: NavigationObjectProps[] = [];
+      const { storedList } = _getNavigationObjectByParent(parentEl);
+
+      storedList.forEach((item) => {
+        if (item.type === "button") {
+          const currentObj = _getNavigationObjectByParent(
+            item as ControllingElementType,
+          );
+          controllingListItems.push(currentObj);
+        }
+      });
+      return controllingListItems;
+    };
+
   const _getFirstElementInIndexedList: UseNavigationInternalTypes["_getFirstElementInIndexedList"] =
     useCallback(
       (index) => {
@@ -84,7 +102,7 @@ export function useNavigation() {
     useCallback(
       (parentEl) => {
         return _getRecursiveLastElementByParent(
-          parentEl,
+          parentEl as FocusableElementType,
           _getNavigationObjectByListElement,
           _getNavigationObjectByParent,
         );
@@ -122,7 +140,7 @@ export function useNavigation() {
           lastTopEl as ControllingElementType,
         );
         /* istanbul ignore else */
-        if (focusedEl === lastEl) {
+        if (!isComponentActive() && focusedEl === lastEl) {
           return lastTopEl;
         }
       }
@@ -150,9 +168,35 @@ export function useNavigation() {
       return storedParentEl;
     };
 
-  const _isLastElementInComponent = (focusedEl) => {
-    return focusedEl === _getLastElementInComponent();
+  const _closeOpenSiblings: UseNavigationInternalTypes["_closeOpenSiblings"] = (
+    focusedEl,
+  ) => {
+    const siblingList = getNavigationArray()[0].storedList;
+
+    siblingList.forEach((siblingEl) => {
+      if (siblingEl !== focusedEl && siblingEl.type === "button") {
+        const { isSubListOpen, dispatchSubListClose } =
+          _getNavigationObjectByParent(siblingEl);
+        if (isSubListOpen && dispatchSubListClose) {
+          dispatchSubListClose();
+        }
+      }
+    });
   };
+
+  const _handleTopRowItemFocus: UseNavigationInternalTypes["_handleTopRowItemFocus"] =
+    (focusedEl) => {
+      if (isComponentActive()) {
+        _closeOpenSiblings(focusedEl);
+      } else {
+        setIsComponentActive(true);
+      }
+    };
+
+  const _isLastElementInComponent: UseNavigationInternalTypes["_isLastElementInComponent"] =
+    (focusedEl) => {
+      return focusedEl === _getLastElementInComponent();
+    };
 
   const _isLastElementInCurrentList: UseNavigationInternalTypes["_isLastElementInCurrentList"] =
     (focusedEl) => {
@@ -200,16 +244,39 @@ export function useNavigation() {
       }
     };
 
-  const _handleLastChildFocus = (focusedEl) => {
-    const { isSubListOpen } = _getNavigationObjectByListElement(focusedEl);
-    if (!isSubListOpen) {
-      return _getLastElementInTopRow(focusedEl);
-    } else {
-      return focusedEl;
-    }
-  };
+  const _handleLastChildFocus: UseNavigationInternalTypes["_handleLastChildFocus"] =
+    (focusedEl) => {
+      const { isSubListOpen } = _getNavigationObjectByListElement(focusedEl);
+      if (!isSubListOpen) {
+        setIsComponentActive(false);
+        return _getLastElementInTopRow(focusedEl);
+      } else {
+        return focusedEl;
+      }
+    };
 
   /* Controllers */
+  const closeComponent: UseNavigationReturnTypes["closeComponent"] = () => {
+    const { storedList } = _getNavigationObjectByParent(null);
+    storedList.map((currentElement) => {
+      if (currentElement.type === "button") {
+        const { isSubListOpen, dispatchSubListClose } =
+          _getNavigationObjectByParent(
+            currentElement as ControllingElementType,
+          );
+        if (isSubListOpen && dispatchSubListClose) {
+          dispatchSubListClose();
+        }
+      }
+    });
+    setIsComponentActive(false);
+  };
+
+  const closeComponentWithFocus: UseNavigationReturnTypes["closeComponentWithFocus"] =
+    (focusedEl) => {
+      closeComponent();
+      return _getTopRowElement(focusedEl as FocusableElementType);
+    };
 
   const getNextByButton: UseNavigationReturnTypes["getNextByButton"] = (
     buttonEl,
@@ -239,7 +306,10 @@ export function useNavigation() {
       _getNavigationObjectByListElement(linkEl);
 
     // default to next item in list
-    let focusableEl = _getNextElementInList(linkEl, storedList);
+    let focusableEl: FocusableElementType | undefined = _getNextElementInList(
+      linkEl,
+      storedList,
+    );
 
     // is Link the last element in the current list and not in the top row?
     if (
@@ -366,13 +436,40 @@ export function useNavigation() {
       return focusableEl;
     };
 
-  const handleLinkFocus = (linkEl) => {
+  const handleCloseSubNavigation: UseNavigationReturnTypes["handleCloseSubNavigation"] =
+    (buttonEl: ControllingElementType) => {
+      const dispatchArray = _getControllingElementsInList(buttonEl);
+      for (const dispatchObj of dispatchArray) {
+        const { dispatchSubListClose, storedParentEl, isSubListOpen } =
+          dispatchObj;
+        if (isSubListOpen && storedParentEl && dispatchSubListClose) {
+          dispatchSubListClose();
+        }
+      }
+      setIsListOpen(false, buttonEl);
+    };
+
+  const handleButtonFocus: UseNavigationReturnTypes["handleButtonFocus"] = (
+    buttonEl,
+  ) => {
+    if (_isElementInTopRow(buttonEl)) {
+      _handleTopRowItemFocus(buttonEl);
+    }
+  };
+
+  const handleLinkFocus: UseNavigationReturnTypes["handleLinkFocus"] = (
+    linkEl,
+  ) => {
     if (_isLastElementInComponent(linkEl)) {
       return _handleLastChildFocus(linkEl);
+    } else if (_isElementInTopRow(linkEl)) {
+      _handleTopRowItemFocus(linkEl);
     }
   };
 
   return {
+    closeComponent,
+    closeComponentWithFocus,
     getNextByButton,
     getNextByLink,
     getNextByTabButton,
@@ -381,7 +478,10 @@ export function useNavigation() {
     getPreviousByLink,
     getPreviousByTabButton,
     getPreviousByTabLink,
+    handleCloseSubNavigation,
+    handleButtonFocus,
     handleLinkFocus,
+    isComponentActive,
     registerItemInNavigationArray,
     registerButtonAsParent,
     setIsListOpen,

@@ -1,9 +1,13 @@
 "use client";
 
 import { useRef, type JSX } from "react";
+import {
+  NavigationProvider,
+  type NavigationContextStoredValueProps,
+} from "../providers";
 import { NavigationListProps, NavigationProps } from "./NavigationTypes";
 import NavigationList from "./NavigationList";
-import { NavigationProvider, type NavigationContextStoredValueProps } from "../providers";
+import { NavigationWrapper } from "./NavigationWrapper";
 
 export default function Navigation({
   children,
@@ -14,10 +18,6 @@ export default function Navigation({
   ...rest
 }: NavigationProps): JSX.Element {
   const parentRef = useRef<HTMLButtonElement>(null);
-  const navigationProps = {
-    "aria-label": label,
-    className: cx,
-  };
 
   const navigationContextProps: NavigationContextStoredValueProps = {
     data: {
@@ -34,12 +34,17 @@ export default function Navigation({
     parentRef,
   };
 
+  const navigationWrapperProps = {
+    className: cx,
+    label: label,
+  };
+
   return (
     <>
       <NavigationProvider value={navigationContextProps}>
-        <nav {...navigationProps}>
+        <NavigationWrapper {...navigationWrapperProps}>
           <NavigationList {...navigationListProps}>{children}</NavigationList>
-        </nav>
+        </NavigationWrapper>
       </NavigationProvider>
     </>
   );
