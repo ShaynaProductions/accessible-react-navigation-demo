@@ -32,13 +32,13 @@ export function StyledVerticalUncontrolledPage({ data }): JSX.Element {
           {navigation}
         </Navigation>
       </Box>
-      {/* <Heading headingLevel={3}>
-        Currently Implemented - Focus and Closing Foundation Release
+      <Heading headingLevel={3}>
+        Currently Implemented - Closings, Entries and Exit Strategies Release
       </Heading>
       <List cx="display">
         <ListItem>
           <strong>Current Styling</strong>: <br />
-          Includes basic layout.
+          Includes Full layout.
         </ListItem>
         <ListItem>
           The component is uncontrolled and the primary list is open by default
@@ -46,7 +46,6 @@ export function StyledVerticalUncontrolledPage({ data }): JSX.Element {
         <ListItem>
           Buttons are fully implemented and can be toggled through pointer, or
           Keyboard (Enter/Space) <br />
-          <strong>Note:</strong> Buttons must be closed manually at this time.
         </ListItem>
         <ListItem>
           Screen and Screen readers indicate when a sublist is open or closed.
@@ -54,17 +53,13 @@ export function StyledVerticalUncontrolledPage({ data }): JSX.Element {
         <ListItem>
           Navigation Keyboard functionality is fully implemented.
           <br />
-          The current implementation adds functionality for the Tab and
-          Shift+Tab arrow keys, allowing movement into and out of sub-lists, in
-          addition to the Home, End, right, and left arrow keys, which navigate
-          within a single list. Use the Down or Tab Key to move into an open
-          sublist and use the Up or Shift+Tab Key to navigate up through open
-          and closed sublists.
-          <br />
-          Using Shift+Tab from the footer link will now correctly place focus on
-          the last element in the top row.
+          The current implementation is not fully functioning. While the home,
+          end, right and left arrow keys move within a single sublist; the down
+          arrow key is implemented for the horizontal layout and while
+          functioning correctly for the layout, appears broken in a vertical
+          layout. All other keys work correctly in the feature.
         </ListItem>
-      </List>*/}
+      </List>
     </>
   );
 }

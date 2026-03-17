@@ -28,18 +28,21 @@ export function MultipleListButtonsPage({ data }) {
           {navigation}
         </Navigation>
       </Box>
-      {/*
+
       <Heading headingLevel={3}>
-        Currently Implemented - Focus and Closing Foundation Release
+        Currently Implemented - Closings, Entries and Exit Strategies Release
       </Heading>
       <List cx="display">
         <ListItem>
-          The component is uncontrolled and the top list is open by default
+          <strong>Current Styling</strong>: <br />
+          Includes basic layout.
+        </ListItem>
+        <ListItem>
+          The component is uncontrolled and the primary list is open by default
         </ListItem>
         <ListItem>
           Buttons are fully implemented and can be toggled through pointer, or
-          Keyboard (Enter/Space). <br />
-          <strong>Note:</strong> Buttons must be closed manually at this time.
+          Keyboard (Enter/Space) <br />
         </ListItem>
         <ListItem>
           Screen and Screen readers indicate when a sublist is open or closed.
@@ -47,17 +50,15 @@ export function MultipleListButtonsPage({ data }) {
         <ListItem>
           Navigation Keyboard functionality is fully implemented.
           <br />
-          The current implementation adds functionality for the Tab and
-          Shift+Tab arrow keys, allowing movement into and out of sub-lists, in
-          addition to the Home, End, right, and left arrow keys, which navigate
-          within a single list. Use the Down or Tab Key to move into an open
-          sublist and use the Up or Shift+Tab Key to navigate up through open
-          and closed sublists.
+          The current implementation is fully functioning. Use the home, end,
+          right and left arrow keys to move within a single sublist; tab and the
+          down Arrow Key to move down open lists and the shift+tab and up arrow
+          keys to move up open lists. Exit the component by activating a pointer
+          event (mouse, trackpad or finger) outside of the component or pressing
+          the Escape key while any focusable element in the component has focus.
           <br />
-          Using Shift+Tab from the footer link will now correctly place focus on
-          the last element in the top row.
         </ListItem>
-      </List>*/}
+      </List>
     </>
   );
 }

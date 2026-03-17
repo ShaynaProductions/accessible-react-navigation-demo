@@ -4,8 +4,6 @@
   }
   nav.vertical-navigation {
     min-width: calc(var(--sp-px) * 320);
-    position: absolute;
-    top: calc(var(--sp-px) * 24);
     width: 30%;
     z-index: 3;
     /* Layout */

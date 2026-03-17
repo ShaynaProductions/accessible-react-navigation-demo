@@ -11,28 +11,36 @@ import {
 export const LatestRelease = () => {
   return (
     <>
-      <Heading headingLevel={3}>
-        Focus on Shift+Tab and Refinement Support
-      </Heading>
+      <Heading headingLevel={3}>Closings, Entries and Exits</Heading>
       <DefinitionList>
         <DefinitionTerm>Articles</DefinitionTerm>
         <DefinitionDetail>
           <Text isInline>Development</Text>
           <Link
-            href="https://dev.to/shaynaproductions/focus-issues-and-refinement-support-4be4"
+            href="https://dev.to/shaynaproductions/the-ins-and-outs-of-closings-26fi"
             openInNewTab={true}
           >
-            Focus Issues and Refinement Support
+            The Ins and Outs of Closings
+          </Link>
+          <br />
+        </DefinitionDetail>
+        <DefinitionDetail>
+          <Text isInline>Design</Text>
+          <Link
+            href="https://dev.to/shaynaproductions/styling-the-vertical-achieving-parity-2de5"
+            openInNewTab={true}
+          >
+            Stylng the Vertical - Achieving Parity
           </Link>
           <br />
         </DefinitionDetail>
         <DefinitionTerm>Release</DefinitionTerm>
         <DefinitionDetail>
           <Link
-            href="https://github.com/ShaynaProductions/accessible-react-navigation-demo/releases/tag/v0.8.0"
+            href="https://github.com/ShaynaProductions/accessible-react-navigation-demo/releases/tag/v0.9.0"
             openInNewTab={true}
           >
-            Shift+Tab Focus and Support for Closing Requirements
+            Closings, Entries and Exit Strategies
           </Link>
         </DefinitionDetail>
       </DefinitionList>

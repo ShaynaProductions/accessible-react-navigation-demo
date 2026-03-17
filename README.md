@@ -35,3 +35,5 @@ Each published article is linked, and where appropriate, examples will refer to 
 11. [Navigating with Tabs](https://dev.to/shaynaproductions/navigating-with-tabs-17gj)
 12. [Styling with Color](https://dev.to/shaynaproductions/styling-and-color-cjo)
 13. [Focus Issues and Refinement Support](https://dev.to/shaynaproductions/focus-issues-and-refinement-support-4be4)
+14. [The Ins and Outs of Closings](https://dev.to/shaynaproductions/the-ins-and-outs-of-closings-26fi)
+15. [Styling the Vertical - Achieving Parity](https://dev.to/shaynaproductions/styling-the-vertical-achieving-parity-2de5)
