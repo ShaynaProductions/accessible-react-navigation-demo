@@ -30,7 +30,7 @@ export function MultipleListButtonsPage({ data }) {
       </Box>
 
       <Heading headingLevel={3}>
-        Currently Implemented - Closings, Entries and Exit Strategies Release
+        Currently Implemented - Controlled and Vertical Layout Release
       </Heading>
       <List cx="display">
         <ListItem>

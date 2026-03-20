@@ -122,7 +122,10 @@ export default function SubNavigation({
   }, [buttonRef, setListWidth]);
 
   const handleFocus = () => {
-    handleButtonFocus(buttonRef.current!);
+    const returnEl = handleButtonFocus(buttonRef.current!);
+    if (returnEl && returnEl !== buttonRef.current) {
+      shiftFocus(returnEl);
+    }
   };
 
   const handleKeyDown = (e: KeyboardEvent) => {

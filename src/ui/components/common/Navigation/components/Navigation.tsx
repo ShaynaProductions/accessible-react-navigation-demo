@@ -11,20 +11,24 @@ import { NavigationWrapper } from "./NavigationWrapper";
 
 export default function Navigation({
   children,
+  controllingRef,
   cx,
   isOpen = true,
   label,
   orientation = "horizontal",
+  skipName,
   ...rest
 }: NavigationProps): JSX.Element {
   const parentRef = useRef<HTMLButtonElement>(null);
 
   const navigationContextProps: NavigationContextStoredValueProps = {
     data: {
+      controllingRef: controllingRef,
       isSubListOpen: isOpen,
       storedParentEl: null,
       storedList: [],
     },
+    config: { orientation: orientation, skipName: skipName || "skip" },
   };
 
   const navigationListProps: NavigationListProps = {
@@ -35,17 +39,17 @@ export default function Navigation({
   };
 
   const navigationWrapperProps = {
-    className: cx,
+    cx,
+    controllingRef,
+    isOpen,
     label: label,
   };
 
   return (
-    <>
-      <NavigationProvider value={navigationContextProps}>
-        <NavigationWrapper {...navigationWrapperProps}>
-          <NavigationList {...navigationListProps}>{children}</NavigationList>
-        </NavigationWrapper>
-      </NavigationProvider>
-    </>
+    <NavigationProvider value={navigationContextProps}>
+      <NavigationWrapper {...navigationWrapperProps}>
+        <NavigationList {...navigationListProps}>{children}</NavigationList>
+      </NavigationWrapper>
+    </NavigationProvider>
   );
 }

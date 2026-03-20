@@ -15,11 +15,13 @@ export type NavigationListAction = {
 };
 
 export interface NavigationListContextStoredValueProps {
+  isLayoutVertical: boolean;
   parentRef: React.RefObject<ControllingElementType>;
 }
 
 export interface NavigationListContextReturnValueProps {
   getCurrentListItems: () => FocusableElementType[];
   getParentEl: () => ControllingElementType;
+  isLayoutVertical: boolean;
   registerItemInCurrentList: (focusableEl: FocusableElementType) => void;
 }

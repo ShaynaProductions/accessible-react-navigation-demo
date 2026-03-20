@@ -1,4 +1,4 @@
-import { FocusableElementType } from "./types";
+import { ControllingElementType, FocusableElementType } from "./types";
 
 export * from "./handleCommonKeyDown";
 export * from "./renderedTestItems";
@@ -11,4 +11,10 @@ export const returnArray = (
 ): FocusableElementType[] | [] => {
   /* istanbul ignore next */
   return array || [];
+};
+
+export const returnElementFromRefObject = (
+  refObject: React.RefObject<ControllingElementType> | undefined,
+) => {
+  return refObject ? refObject.current : null;
 };

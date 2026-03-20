@@ -33,7 +33,7 @@ export function StyledVerticalUncontrolledPage({ data }): JSX.Element {
         </Navigation>
       </Box>
       <Heading headingLevel={3}>
-        Currently Implemented - Closings, Entries and Exit Strategies Release
+        Currently Implemented - Controlled and Vertical Layout Release
       </Heading>
       <List cx="display">
         <ListItem>
@@ -53,11 +53,11 @@ export function StyledVerticalUncontrolledPage({ data }): JSX.Element {
         <ListItem>
           Navigation Keyboard functionality is fully implemented.
           <br />
-          The current implementation is not fully functioning. While the home,
-          end, right and left arrow keys move within a single sublist; the down
-          arrow key is implemented for the horizontal layout and while
-          functioning correctly for the layout, appears broken in a vertical
-          layout. All other keys work correctly in the feature.
+          The current implementation is fully functioning for a vertical layout.
+          The Up and Down arrow keys mimic the Tab and Shift+Tab keys except
+          when at the end. Tab and Shift+Tab leave the component, while the up
+          and down arrow keys remain respectively at the first and last element
+          in the first row.
         </ListItem>
       </List>
     </>

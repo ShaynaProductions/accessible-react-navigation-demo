@@ -13,13 +13,14 @@ import type {
   NavigationObjectProps,
 } from "./NavigationProviderTypes";
 import { navigationReducer } from "./navigationReducer";
+import { returnElementFromRefObject } from "@/ui/components/common/Navigation/utilities";
 
 export const NavigationContext = createContext<
   NavigationContextReturnValueProps | EmptyObject
 >({});
 
 export function NavigationProvider({ children, value }): JSX.Element {
-  const { data } = value;
+  const { data, config } = value;
   const navigationObject: NavigationObjectProps = {
     storedParentEl: data.storedParentEl,
     isSubListOpen: data.isSubListOpen,
@@ -28,6 +29,7 @@ export function NavigationProvider({ children, value }): JSX.Element {
   const [state, dispatch] = useReducer(navigationReducer, {
     navigationArray: [navigationObject],
     isComponentActive: false,
+    controllingRef: data.controllingRef,
   });
 
   const isComponentActive = () => {
@@ -37,6 +39,22 @@ export function NavigationProvider({ children, value }): JSX.Element {
   const setIsComponentActive = (isActive) => {
     dispatch({ type: "SET_IS_COMPONENT_ACTIVE", isActive });
   };
+
+  const getControllingElement = useCallback(() => {
+    return returnElementFromRefObject(state.controllingRef);
+  }, [state.controllingRef]);
+
+  const isComponentControlled = () => {
+    return getControllingElement() !== null;
+  };
+
+  const getSkipName = useCallback(() => {
+    return config.skipName;
+  }, [config.skipName]);
+
+  const isLayoutVertical = useCallback(() => {
+    return config.orientation === "vertical";
+  }, [config.orientation]);
 
   const setIsListOpen: NavigationContextReturnValueProps["setIsListOpen"] =
     useCallback((isListOpen, parentEl) => {
@@ -79,8 +97,12 @@ export function NavigationProvider({ children, value }): JSX.Element {
   return (
     <NavigationContext.Provider
       value={{
+        getControllingElement,
         getNavigationArray,
+        getSkipName,
         isComponentActive,
+        isComponentControlled,
+        isLayoutVertical,
         registerButtonAsParent,
         registerItemInNavigationArray,
         setIsComponentActive,

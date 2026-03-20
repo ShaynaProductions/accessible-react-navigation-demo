@@ -1,0 +1,17 @@
+@layer common-component {
+  div.mobile-navigation {
+    & button {
+      background-color: transparent;
+      --default-text-color: var(--purple-12);
+      --button-color: var(--purple-12);
+      padding: calc(var(--sp-px) * 8);
+      &:hover,
+      &:focus {
+        background-color: var(--purple-2);
+      }
+      & svg {
+        fill: var(--default-text-color);
+      }
+    }
+  }
+}

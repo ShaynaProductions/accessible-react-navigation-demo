@@ -7,6 +7,7 @@ import {
   StyledHorizontal,
   StyledVertical,
 } from "./";
+import { ControlledNavigation } from "@/folio/Pages/HomePage/sections/ControlledNavigation";
 
 export const Examples = () => {
   return (
@@ -37,6 +38,9 @@ export const Examples = () => {
         </ListItem>
         <ListItem>
           <StyledVertical />
+        </ListItem>
+        <ListItem>
+          <ControlledNavigation />
         </ListItem>
       </List>
     </Box>

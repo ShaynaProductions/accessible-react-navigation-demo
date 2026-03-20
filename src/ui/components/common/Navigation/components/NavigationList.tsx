@@ -1,8 +1,10 @@
 "use client";
-import { JSX } from "react";
+import { type JSX } from "react";
 import classNames from "classnames";
 
 import { List, type ListProps } from "@/ui/components";
+
+import { useNavigation } from "../hooks";
 import {
   NavigationListProvider,
   type NavigationListContextStoredValueProps,
@@ -17,7 +19,10 @@ export default function NavigationList({
   parentRef,
   ...rest
 }: NavigationListProps): JSX.Element {
+  const { isLayoutVertical } = useNavigation();
+
   const listContext: NavigationListContextStoredValueProps = {
+    isLayoutVertical,
     parentRef: parentRef,
   };
 

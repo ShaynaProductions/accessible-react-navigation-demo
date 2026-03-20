@@ -10,6 +10,11 @@ export interface NavigationProps extends BaseProps {
   children: React.ReactNode;
 
   /**
+   * Controlling Reference Object: If defined then navigation component is controlled
+   */
+  controllingRef?: React.RefObject<ControllingElementType>;
+
+  /**
    * Label of the entire navigation landmark
    */
   label: string;
@@ -24,6 +29,10 @@ export interface NavigationProps extends BaseProps {
    *  Top List orientation "horizontal" (default) | "vertical"
    */
   orientation?: Orientation;
+
+  /*
+   * data attribute name (defaults to "skip" for data-skip */
+  skipName?: string;
 }
 
 export interface NavigationItemProps
@@ -64,6 +73,17 @@ export interface NavigationWrapperProps extends Omit<BaseProps, "testid"> {
    * The children of the component.
    */
   children: React.ReactNode;
+
+  /**
+   * Controlling Reference Object: If defined then navigation component is controlled
+   */
+  controllingRef?: React.RefObject<ControllingElementType>;
+
+  /**
+   * is List visible and operable
+   */
+  isOpen: boolean;
+
   /**
    * Navigation Name
    */

@@ -1,3 +1,4 @@
+export * from "./ControlledNavigation";
 export * from "./LatestRelease";
 export * from "./PreviousReleases";
 export * from "./Examples";

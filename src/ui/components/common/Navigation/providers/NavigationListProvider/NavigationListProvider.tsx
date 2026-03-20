@@ -11,7 +11,7 @@ export const NavigationListContext = createContext<
 >({});
 
 export function NavigationListProvider({ children, value }) {
-  const { parentRef } = value;
+  const { isLayoutVertical, parentRef } = value;
   const [state, dispatch] = useReducer(navigationListReducer, {
     parentRef: parentRef,
     items: [],
@@ -37,6 +37,7 @@ export function NavigationListProvider({ children, value }) {
       value={{
         getCurrentListItems,
         getParentEl,
+        isLayoutVertical,
         registerItemInCurrentList,
       }}
     >
