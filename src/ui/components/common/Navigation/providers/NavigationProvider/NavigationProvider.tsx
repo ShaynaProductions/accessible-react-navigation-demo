@@ -44,9 +44,9 @@ export function NavigationProvider({ children, value }): JSX.Element {
     return returnElementFromRefObject(state.controllingRef);
   }, [state.controllingRef]);
 
-  const isComponentControlled = () => {
+  const isComponentControlled = useCallback(() => {
     return getControllingElement() !== null;
-  };
+  }, [getControllingElement]);
 
   const getSkipName = useCallback(() => {
     return config.skipName;

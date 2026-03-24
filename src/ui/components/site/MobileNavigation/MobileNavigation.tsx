@@ -44,13 +44,10 @@ export function MobileNavigation({
     }
   };
 
-  const handlePress = (e) => {
+  const handlePress = () => {
     /* istanbul ignore else */
     if (!open) {
       const nextEl = getFocusableElementFromDOM(buttonRef.current, "next");
-      if (nextEl.hasAttribute(`data-${skipName}`)) {
-        nextEl.removeAttribute(`data-${skipName}`);
-      }
       nextEl.focus({ preventScroll: true });
     }
     setOpen(!open);

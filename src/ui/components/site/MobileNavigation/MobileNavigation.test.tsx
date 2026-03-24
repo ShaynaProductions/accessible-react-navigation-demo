@@ -5,7 +5,6 @@ import {
   getCommonTestElements,
   getMultipleButtonsTestElements,
 } from "@/ui/components/common/Navigation/utilities";
-import { getByTestId } from "@testing-library/dom";
 
 const multipleButtonsJSONObj = fs.readFileSync(
   "src/ui/__static__/multiple-lists-buttons.json",
@@ -34,18 +33,21 @@ const renderMobileNavigation = (navigation) => {
       <Button id="front" testId={TEST_ID && `${TEST_ID}-front`}>
         {frontButtonLabel}
       </Button>
-      <MobileNavigation cx="" id={id} label={label}>
+      <MobileNavigation cx="" id={id} label={label} testId={TEST_ID}>
         {navigation}
       </MobileNavigation>
-      <Button id="button-end" testId={TEST_ID && `${TEST_ID}-end`}>
+      <Button
+        id="button-end"
+        onPress={() => {}}
+        testId={TEST_ID && `${TEST_ID}-end`}
+      >
         {endButtonLabel}
       </Button>
     </>,
   );
 };
 
-describe("MobileNavigation", () => {
-  /* Set Focus */
+describe("MobileNavigation- Controlled Component", () => {
   it("should set focus onto the top button when it the menu is opened.", async () => {
     /* conforms to Controlled Component AC 1 */
     const { getAllByRole, getByRole, getByTestId } =
@@ -152,6 +154,7 @@ describe("MobileNavigation", () => {
   });
 
   it("should close sublists when focus moves out of the component", async () => {
+    /* conforms to Controlled Component AC 5 */
     const { getByRole, getByTestId } = renderMobileNavigation(buttonChildren);
 
     const { endButton } = getCommonTestElements(
@@ -186,10 +189,48 @@ describe("MobileNavigation", () => {
     expect(aboutList).toHaveClass("srOnly");
   });
 
-  /* Vertical Layout Changes */
+  it("should close navigation when clicked outside of the component", async () => {
+    /* conforms to Controlled Component AC 5 */
+    const { getByRole, getByTestId } = renderMobileNavigation(buttonChildren);
 
+    const { endButton } = getCommonTestElements(
+      getByRole,
+      frontButtonLabel,
+      endButtonLabel,
+    );
+    const menuButton = getByRole("button", { name: "Navigation Menu" });
+    const navList = getByTestId(TEST_ID);
+    expect(navList).toHaveClass("srOnly");
+    expect(endButton).toBeInTheDocument();
+    await userEvent.click(menuButton);
+    expect(navList).not.toHaveClass("srOnly");
+
+    await userEvent.click(endButton);
+    expect(navList).toHaveClass("srOnly");
+  });
+});
+
+describe("MobileNavigation- Vertical Layout", () => {
+  it("should not close sublists when moving between top row elements", async () => {
+    /* conforms to Vertical Alighnment AC 1 */
+    const { getByRole, getByTestId } = renderMobileNavigation(buttonChildren);
+    const { communityButton, communityList, storiesButton } =
+      getMultipleButtonsTestElements(getByRole, getByTestId, TEST_ID);
+    const menuButton = getByRole("button", { name: "Navigation Menu" });
+    await userEvent.tab();
+    await userEvent.tab();
+    expect(menuButton).toHaveFocus();
+    await userEvent.keyboard("{Enter}");
+    expect(communityButton).toHaveFocus();
+    expect(communityList).toHaveClass("srOnly");
+    await userEvent.keyboard("{Enter}");
+    expect(communityList).not.toHaveClass("srOnly");
+    await userEvent.keyboard("{arrowRight}");
+    expect(storiesButton).toHaveFocus();
+    expect(communityList).not.toHaveClass("srOnly");
+  });
   it("should move to parent's next sibling when button is closed and its the last in the list.", async () => {
-    /* conforms to Vertical Alignment AC 1 */
+    /* conforms to Vertical Alignment AC 3 */
     const { getByRole, getByTestId } = renderMobileNavigation(buttonChildren);
     const {
       communityButton,
@@ -220,7 +261,7 @@ describe("MobileNavigation", () => {
   });
 
   it("should move to parent's next sibling when link is the last in it's list.", async () => {
-    /* conforms to Vertical Alignment AC 2 */
+    /* conforms to Vertical Alignment AC 4 */
     const { getByRole, getByTestId } = renderMobileNavigation(buttonChildren);
     const { communityButton, forumLink, blogLink, storiesButton } =
       getMultipleButtonsTestElements(getByRole, getByTestId, TEST_ID);
@@ -235,25 +276,6 @@ describe("MobileNavigation", () => {
     await userEvent.keyboard("{arrowDown}");
     expect(storiesButton).toHaveFocus();
   });
-
-  it("should not move when button is closed and its last child is last in the component", async () => {
-    /* conforms to Vertical Alignment AC 3 */
-    const { getByRole, getByTestId } = renderMobileNavigation(buttonChildren);
-    const { communityButton, storiesButton, referenceButton, aboutButton } =
-      getMultipleButtonsTestElements(getByRole, getByTestId, TEST_ID);
-    const menuButton = getByRole("button", { name: "Navigation Menu" });
-    await userEvent.pointer({ target: menuButton, keys: "[MouseLeft]" });
-    expect(communityButton).toHaveFocus();
-    await userEvent.keyboard("{arrowDown}");
-    expect(storiesButton).toHaveFocus();
-    await userEvent.keyboard("{arrowDown}");
-    expect(referenceButton).toHaveFocus();
-    await userEvent.keyboard("{arrowDown}");
-    expect(aboutButton).toHaveFocus();
-    await userEvent.keyboard("{arrowDown}");
-    expect(aboutButton).toHaveFocus();
-  });
-
   it("should move to parent's next sibling except when link is last in component.", async () => {
     /* conforms to Vertical Alignment AC 4 */
     const { getByRole, getByTestId } = renderMobileNavigation(buttonChildren);
@@ -288,8 +310,26 @@ describe("MobileNavigation", () => {
     expect(donateLink).toHaveFocus();
   });
 
+  it("should not move when button is closed and its last child is last in the component", async () => {
+    /* conforms to Vertical Alignment AC 6 */
+    const { getByRole, getByTestId } = renderMobileNavigation(buttonChildren);
+    const { communityButton, storiesButton, referenceButton, aboutButton } =
+      getMultipleButtonsTestElements(getByRole, getByTestId, TEST_ID);
+    const menuButton = getByRole("button", { name: "Navigation Menu" });
+    await userEvent.pointer({ target: menuButton, keys: "[MouseLeft]" });
+    expect(communityButton).toHaveFocus();
+    await userEvent.keyboard("{arrowDown}");
+    expect(storiesButton).toHaveFocus();
+    await userEvent.keyboard("{arrowDown}");
+    expect(referenceButton).toHaveFocus();
+    await userEvent.keyboard("{arrowDown}");
+    expect(aboutButton).toHaveFocus();
+    await userEvent.keyboard("{arrowDown}");
+    expect(aboutButton).toHaveFocus();
+  });
+
   it("should move up the list when all are closed", async () => {
-    /* conforms to Vertical Alignment AC 5 */
+    /* conforms to Vertical Alignment AC 7 */
     const { getByRole, getByTestId } = renderMobileNavigation(buttonChildren);
     const { communityButton, storiesButton, referenceButton, aboutButton } =
       getMultipleButtonsTestElements(getByRole, getByTestId, TEST_ID);
@@ -311,7 +351,7 @@ describe("MobileNavigation", () => {
   });
 
   it("should move up the list and into the last element when prev sibling sublist is open and the last visual element is a button", async () => {
-    /* conforms to Vertical Alignment AC 6 */
+    /* conforms to Vertical Alignment AC 7 */
     const { getByRole, getByTestId } = renderMobileNavigation(buttonChildren);
     const {
       communityButton,

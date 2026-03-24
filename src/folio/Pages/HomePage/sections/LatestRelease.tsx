@@ -11,36 +11,39 @@ import {
 export const LatestRelease = () => {
   return (
     <>
-      <Heading headingLevel={3}>Closings, Entries and Exits</Heading>
+      <Heading headingLevel={3}>
+        {" "}
+        Controlled and Vertical Layout Release
+      </Heading>
       <DefinitionList>
         <DefinitionTerm>Articles</DefinitionTerm>
         <DefinitionDetail>
           <Text isInline>Development</Text>
           <Link
-            href="https://dev.to/shaynaproductions/the-ins-and-outs-of-closings-26fi"
+            href="https://dev.to/shaynaproductions/setting-up-a-controlled-component-2j9a"
             openInNewTab={true}
           >
-            The Ins and Outs of Closings
+            Setting Up a Controlled Component
           </Link>
           <br />
         </DefinitionDetail>
         <DefinitionDetail>
-          <Text isInline>Design</Text>
+          <Text isInline>Development</Text>
           <Link
-            href="https://dev.to/shaynaproductions/styling-the-vertical-achieving-parity-2de5"
+            href="https://dev.to/shaynaproductions/vertical-layout-considerations-2gdc"
             openInNewTab={true}
           >
-            Stylng the Vertical - Achieving Parity
+            Vertical Layout Considerations
           </Link>
           <br />
         </DefinitionDetail>
         <DefinitionTerm>Release</DefinitionTerm>
         <DefinitionDetail>
           <Link
-            href="https://github.com/ShaynaProductions/accessible-react-navigation-demo/releases/tag/v0.9.0"
+            href="https://github.com/ShaynaProductions/accessible-react-navigation-demo/releases/tag/v1.0.0"
             openInNewTab={true}
           >
-            Closings, Entries and Exit Strategies
+            Full Release - Uncontrolled/Controlled - Horizontal/Vertical Layouts
           </Link>
         </DefinitionDetail>
       </DefinitionList>

@@ -217,10 +217,11 @@ export function useNavigation() {
 
   const _handlePassthroughNavigation: UseNavigationInternalTypes["_handlePassthroughNavigation"] =
     (focusedEl) => {
-      const lastElement = _getLastElementInComponent();
       const shouldSkip = focusedEl.getAttribute(`data-${getSkipName()}`);
+
       let returnEl;
       if (shouldSkip) {
+        const lastElement = _getLastElementInComponent();
         focusedEl.removeAttribute(`data-${getSkipName()}`);
         returnEl = getFocusableElementFromDOM(lastElement, "next");
       }
@@ -473,8 +474,9 @@ export function useNavigation() {
         /* istanbul ignore else */
         if (prevParentEl?.type === "button") {
           const lastElement = _getLastElementByParent(prevParentEl);
-          const lastNavObject = _getNavigationObjectByListElement(lastElement);
-          if (lastNavObject.isSubListOpen) {
+          const { isSubListOpen } =
+            _getNavigationObjectByListElement(lastElement);
+          if (isSubListOpen) {
             focusableEl = lastElement;
           } else {
             const prevParentObj = _getNavigationObjectByParent(
@@ -482,13 +484,12 @@ export function useNavigation() {
             );
             if (prevParentObj.isSubListOpen) {
               const lastElement = _getLastElementByParent(prevParentEl);
-              const lastNavObject =
+              const { isSubListOpen, storedParentEl } =
                 _getNavigationObjectByListElement(lastElement);
 
               /* istanbul ignore else */
-              if (!lastNavObject.isSubListOpen) {
-                focusableEl =
-                  lastNavObject.storedParentEl as FocusableElementType;
+              if (!isSubListOpen) {
+                focusableEl = storedParentEl as FocusableElementType;
               }
             }
           }
