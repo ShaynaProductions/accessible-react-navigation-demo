@@ -2,7 +2,7 @@
   div.vertical {
     position: relative;
   }
-  nav.vertical-navigation {
+  nav.vertical-navigation, nav.mobile-navigation {
     min-width: calc(var(--sp-px) * 320);
     width: 30%;
     z-index: 3;

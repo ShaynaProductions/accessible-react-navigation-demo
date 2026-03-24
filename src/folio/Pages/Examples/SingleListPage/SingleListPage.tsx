@@ -34,7 +34,7 @@ export function SingleListPage({ data }) {
         </Navigation>
       </Box>
       <Heading headingLevel={3}>
-        Currently Implemented - Focus and Closing Foundation Release
+        Currently Implemented - Controlled and Vertical Layout Release
       </Heading>
       <List cx="display">
         <ListItem>The List is uncontrolled and open by default</ListItem>

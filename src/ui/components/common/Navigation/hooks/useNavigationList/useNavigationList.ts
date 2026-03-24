@@ -10,11 +10,15 @@ import type {
 
 export function useNavigationList(): UseNavigationListReturnProps {
   const navigationListContextObj = use(NavigationListContext);
-  const { getCurrentListItems,getParentEl, registerItemInCurrentList } =
-    returnTrueElementOrUndefined(
-      !!navigationListContextObj,
-      navigationListContextObj,
-    );
+  const {
+    getCurrentListItems,
+    getParentEl,
+    isLayoutVertical,
+    registerItemInCurrentList,
+  } = returnTrueElementOrUndefined(
+    !!navigationListContextObj,
+    navigationListContextObj,
+  );
 
   const currentListItems: FocusableElementType[] = getCurrentListItems();
   const parentEl = getParentEl();
@@ -30,7 +34,7 @@ export function useNavigationList(): UseNavigationListReturnProps {
   const shiftFocus: UseNavigationListReturnProps["shiftFocus"] = (
     focusableEl,
   ) => {
-    focusableEl.focus({ preventScroll: true });
+    focusableEl.focus({ preventScroll: !isLayoutVertical });
   };
 
   const setFirstFocus: UseNavigationListReturnProps["setFirstFocus"] = () => {

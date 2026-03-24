@@ -35,10 +35,14 @@ export interface UseNavigationInternalTypes {
     focusedEl: FocusableElementType,
   ) => ControllingElementType;
   _closeOpenSiblings: (focusedEl: FocusableElementType) => void;
-  _handleTopRowItemFocus: (focusedEl: FocusableElementType) => void;
+  _isFirstElementInComponent: (focusedEl: FocusableElementType) => boolean;
   _isLastElementInComponent: (focusedEl: FocusableElementType) => boolean;
   _isLastElementInCurrentList: (focusedEl: FocusableElementType) => boolean;
   _isLastElementInTopList: (focusedEl: FocusableElementType) => boolean;
+  _handleTopRowItemFocus: (focusedEl: FocusableElementType) => void;
+  _handlePassthroughNavigation: (
+    focusedEl: FocusableElementType,
+  ) => FocusableElementType | undefined;
   _getNextElementInList: (
     focusedEl: FocusableElementType,
     currentList: FocusableElementType[],
@@ -95,11 +99,15 @@ export interface UseNavigationReturnTypes {
     linkEl: HTMLAnchorElement,
   ) => FocusableElementType | undefined;
   handleCloseSubNavigation: (buttonEl: ControllingElementType) => void;
-  handleButtonFocus: (buttonEl: HTMLButtonElement) => void;
+  handleButtonFocus: (
+    buttonEl: HTMLButtonElement,
+  ) => FocusableElementType | undefined;
   handleLinkFocus: (linkEl: HTMLAnchorElement) => FocusableElementType | void;
   isComponentActive: NavigationContextReturnValueProps["isComponentActive"];
+  isComponentControlled;
   registerItemInNavigationArray: NavigationContextReturnValueProps["registerItemInNavigationArray"];
   registerButtonAsParent: NavigationContextReturnValueProps["registerButtonAsParent"];
+  setControllingRef;
   setIsListOpen: NavigationContextReturnValueProps["setIsListOpen"];
   setListItems: NavigationContextReturnValueProps["setListItems"];
 }

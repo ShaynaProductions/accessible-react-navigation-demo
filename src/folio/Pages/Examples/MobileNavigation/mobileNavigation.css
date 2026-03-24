@@ -1,0 +1,29 @@
+@import url("../StyledVerticalUncontrolledPage/styledVertical.css");
+
+@layer system-component {
+  .mobile-navigation {
+    padding: calc(var(--sp-px) * 24) 0;
+    position: relative;
+    & > button {
+      --svg-fill: var(--purple-9);
+      background-color: transparent;
+      border-width: calc(var(--sp-px) * 1);
+      border-color: var(--purple-9);
+      position: relative;
+      top: calc(var(--sp-px) * 4);
+    }
+    & button[aria-expanded="true"] + nav {
+      top: calc(var(--sp-px) * 62);
+    }
+    & nav {
+      position: absolute;
+      top: calc(var(--sp-px) * 4);
+    }
+    & button[aria-expanded="false"] {
+      & + nav {
+        box-shadow: none;
+        border-color: transparent;
+      }
+    }
+  }
+}

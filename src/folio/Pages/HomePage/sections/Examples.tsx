@@ -7,6 +7,7 @@ import {
   StyledHorizontal,
   StyledVertical,
 } from "./";
+import { ControlledNavigation } from "@/folio/Pages/HomePage/sections/ControlledNavigation";
 
 export const Examples = () => {
   return (
@@ -18,7 +19,7 @@ export const Examples = () => {
         The source code for this release is fully typed and tested.
       </Text>
       <Text>
-        Current Examples provide differing desktop navigation scenarios which
+        Current examples provide differing desktop navigation scenarios which
         currently implement a base navigation structure accessible by screen,
         screen reader, mouse and the TAB key.
       </Text>
@@ -37,6 +38,9 @@ export const Examples = () => {
         </ListItem>
         <ListItem>
           <StyledVertical />
+        </ListItem>
+        <ListItem>
+          <ControlledNavigation />
         </ListItem>
       </List>
     </Box>

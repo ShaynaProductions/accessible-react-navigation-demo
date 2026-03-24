@@ -1,17 +1,11 @@
 import { ControllingElementType, FocusableElementType } from "../../utilities";
+import { Orientation } from "@/ui/types";
 
 export type NavigationState = {
   navigationArray: NavigationObjectProps[];
   isComponentActive: boolean;
+  controllingRef;
 };
-
-export interface NavigationContextStoredValueProps {
-  data: {
-    isSubListOpen: boolean;
-    storedList?: FocusableElementType[];
-    storedParentEl?: ControllingElementType;
-  };
-}
 
 export type NavigationAction =
   | { type: "SET_IS_COMPONENT_ACTIVE"; isActive: boolean }
@@ -31,6 +25,19 @@ export type NavigationAction =
       isListOpen: boolean;
     };
 
+export interface NavigationContextStoredValueProps {
+  data: {
+    controllingRef: React.RefObject<ControllingElementType> | undefined;
+    isSubListOpen: boolean;
+    storedList?: FocusableElementType[];
+    storedParentEl?: ControllingElementType;
+  };
+  config: {
+    orientation: Orientation;
+    skipName: string;
+  };
+}
+
 export interface NavigationObjectProps {
   dispatchSubListClose?: VoidFunction;
   isSubListOpen: boolean;
@@ -45,8 +52,12 @@ export interface NavigationInternalProps {
 }
 
 export interface NavigationContextReturnValueProps {
+  getControllingElement;
   getNavigationArray: () => NavigationObjectProps[];
+  getSkipName;
   isComponentActive: () => boolean;
+  isComponentControlled;
+  isLayoutVertical;
   registerItemInNavigationArray: (
     navigationList: FocusableElementType[],
     parentEl: ControllingElementType,
