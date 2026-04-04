@@ -13,7 +13,10 @@ import type {
   NavigationObjectProps,
 } from "./NavigationProviderTypes";
 import { navigationReducer } from "./navigationReducer";
-import { returnElementFromRefObject } from "@/ui/components/common/Navigation/utilities";
+import {
+  ControllingElementType,
+  returnElementFromRefObject,
+} from "../../utilities";
 
 export const NavigationContext = createContext<
   NavigationContextReturnValueProps | EmptyObject
@@ -22,7 +25,7 @@ export const NavigationContext = createContext<
 export function NavigationProvider({ children, value }): JSX.Element {
   const { data, config } = value;
   const navigationObject: NavigationObjectProps = {
-    storedParentEl: data.storedParentEl,
+    storedParentEl: data.storedParentEl as ControllingElementType,
     isSubListOpen: data.isSubListOpen,
     storedList: [],
   };
@@ -32,29 +35,35 @@ export function NavigationProvider({ children, value }): JSX.Element {
     controllingRef: data.controllingRef,
   });
 
-  const isComponentActive = () => {
-    return state.isComponentActive;
-  };
+  const isComponentActive: NavigationContextReturnValueProps["isComponentActive"] =
+    () => {
+      return state.isComponentActive;
+    };
 
-  const setIsComponentActive = (isActive) => {
-    dispatch({ type: "SET_IS_COMPONENT_ACTIVE", isActive });
-  };
+  const setIsComponentActive: NavigationContextReturnValueProps["setIsComponentActive"] =
+    (isActive) => {
+      dispatch({ type: "SET_IS_COMPONENT_ACTIVE", isActive });
+    };
 
-  const getControllingElement = useCallback(() => {
-    return returnElementFromRefObject(state.controllingRef);
-  }, [state.controllingRef]);
+  const getControllingElement: NavigationContextReturnValueProps["getControllingElement"] =
+    useCallback(() => {
+      return returnElementFromRefObject(state.controllingRef);
+    }, [state.controllingRef]);
 
-  const isComponentControlled = useCallback(() => {
-    return getControllingElement() !== null;
-  }, [getControllingElement]);
+  const isComponentControlled: NavigationContextReturnValueProps["isComponentControlled"] =
+    useCallback(() => {
+      return getControllingElement() !== null;
+    }, [getControllingElement]);
 
-  const getSkipName = useCallback(() => {
-    return config.skipName;
-  }, [config.skipName]);
+  const getSkipName: NavigationContextReturnValueProps["getSkipName"] =
+    useCallback(() => {
+      return config.skipName;
+    }, [config.skipName]);
 
-  const isLayoutVertical = useCallback(() => {
-    return config.orientation === "vertical";
-  }, [config.orientation]);
+  const isLayoutVertical: NavigationContextReturnValueProps["isLayoutVertical"] =
+    useCallback(() => {
+      return config.orientation === "vertical";
+    }, [config.orientation]);
 
   const setIsListOpen: NavigationContextReturnValueProps["setIsListOpen"] =
     useCallback((isListOpen, parentEl) => {
