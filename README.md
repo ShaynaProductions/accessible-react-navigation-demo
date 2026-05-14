@@ -24,7 +24,7 @@ You will now have a fully working example site located at localhost:3000/
 ## DEV Articles in the Accessible React Navigation Component Series
 
 Each published article is linked, and where appropriate, examples will refer to the appropriate GitHub tag to download and follow along.
-1. [Hunting For an Accessible React Navigation Component](https://dev.to/shaynaproductions/hunting-for-an-accessible-react-navigation-component-35h8)
-3. [Spacing Considerations in Accessible Design](https://dev.to/shaynaproductions/spacing-considerations-in-accessible-design-3gi)
-4. [Foundational Accessibility Begins with Base Components](https://dev.to/shaynaproductions/foundational-accessibility-begins-with-the-base-components-4f5p)
-5. [Theming in the modern age](https://dev.to/shaynaproductions/theming-in-the-modern-age-1je5)
+1. [Hunting For an Accessible React Navigation Component](https://dev.to/shaynaproductions/hunting-for-an-accessible-react-navigation-component-56mi)
+3. [Spacing Considerations in Accessible Design](https://dev.to/shaynaproductions/spacing-considerations-in-accessible-design-47ad)
+4. [Foundational Accessibility Begins with Base Components](https://dev.to/shaynaproductions/foundational-accessibility-begins-with-the-base-components-2nac)
+5. [Theming in the modern age](https://dev.to/shaynaproductions/theming-in-the-modern-age-51ke)
