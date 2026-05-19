@@ -22,10 +22,10 @@ You will now have a fully working example site located at localhost:3000/
 ## DEV Articles in the Accessible React Navigation Component Series
 
 Each published article is linked, and where appropriate, examples will refer to the appropriate GitHub tag to download and follow along.
-1. [Hunting For an Accessible React Navigation Component](https://dev.to/shaynaproductions/hunting-for-an-accessible-react-navigation-component-35h8) (available 04/30/2026)
-2. [Spacing Considerations in Accessible Design](https://dev.to/shaynaproductions/spacing-considerations-in-accessible-design-3gi)             (available 05/07/2026
-3. [Foundational Accessibility Begins with Base Components](https://dev.to/shaynaproductions/foundational-accessibility-begins-with-the-base-components-4f5p) (available 05/12/2026)
-4. [Theming in the modern age](https://dev.to/shaynaproductions/theming-in-the-modern-age-1je5) (available 05/14/2026)
+1. [Hunting For an Accessible React Navigation Component](https://dev.to/shaynaproductions/hunting-for-an-accessible-react-navigation-component-56mi) 
+2. [Spacing Considerations in Accessible Design](https://dev.to/shaynaproductions/spacing-considerations-in-accessible-design-47ad) 
+3. [Foundational Accessibility Begins with Base Components](https://dev.to/shaynaproductions/foundational-accessibility-begins-with-the-base-components-2nac) 
+4. [Theming in the modern age](https://dev.to/shaynaproductions/theming-in-the-modern-age-51ke)
 5. [Structure and Transformation](https://dev.to/shaynaproductions/structure-and-transformation-first-steps-in-navigation-implementation-248) (available 05/19/2026)
 6. [Single List Keyboard Handling](https://dev.to/shaynaproductions/single-list-keyboard-handling-254g) (available 05/21/2026)
 7. [Laying it all Out](https://dev.to/shaynaproductions/laying-it-all-out-2a8e) (available 05/26/2026)
